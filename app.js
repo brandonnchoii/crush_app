@@ -1,3 +1,5 @@
+// GENERAL: npm install
+
 // npm install node
 // npm install express
 // npm install ejs
