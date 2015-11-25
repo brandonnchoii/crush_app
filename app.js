@@ -7,6 +7,7 @@
 
 // npm i -g bower
 // bower install bootstrap
+// npm install pg --save
 
 var express = require('express');
 var path = require('path');
@@ -27,10 +28,11 @@ app.use(bodyParser());
 app.use(require('./routes'));
 
 //start the server
-app.listen(1337, function(){
-	console.log('ready on port 1337');
-})
+var port = process.env.PORT || 1337;
 
+app.listen(port, function(){
+	console.log('ready on port ' + port);
+})
 
 
 // var app = require('express').createServer();
