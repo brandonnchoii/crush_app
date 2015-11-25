@@ -5,10 +5,6 @@ var path = require('path');
 
 // This may need to be moved to the database document
 // http://stackoverflow.com/questions/30979473/get-data-from-database-with-node-js
-console.log(__dirname);
-console.log(path.join(__dirname, 'config'));
-console.log(path.join(__dirname, '../', '../', 'config'));
-console.log()
 //var connectionString = require(path.join(__dirname, '../', '../', 'config'));
 var connectionString = require(path.join(__dirname, 'config'));
 
