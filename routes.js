@@ -37,15 +37,24 @@ router.post('/add', function(req, res){
 	console.log('posted')
 })
 
+
+// ============== TODO: http://www.w3schools.com/sql/sql_autoincrement.asp ============
+ // $ curl --data "text=test&complete=false" http://127.0.0.1:1337/api/v1/todos
+
 //INSERTION
 router.post('/api/v1/todos', function(req, res) {
 
     var results = [];
 
     // Grab data from http request
-    var data = {text: req.body.text, complete: false};
+    var data = {
+    	text: req.body.text, 
+    	complete: false
+    };
+
 
     // Get a Postgres client from the connection pool
+
     pg.connect(connectionString, function(err, client, done) {
         // Handle connection errors
         if(err) {
@@ -73,6 +82,53 @@ router.post('/api/v1/todos', function(req, res) {
     });
 });
 
+//TODO: fix post statmenet
+// $ curl --data "name=test&email=test@test.com&birthday=2015&phone=1818181&city=sanfran&joindate=lel" http://127.0.0.1:1337/api/users
+// router.post('/api/users', function(req, res) {
+
+//     var results = [];
+
+//     // Grab data from http request
+//     var data = {
+//     	//id: req.body.int, 
+//     	name: req.body.text, 
+//     	email: req.body.text,
+//     	birthday: req.body.text,
+//     	phone: req.body.int,
+//     	city: req.body.text,
+//     	joindate: req.body.text
+//     };
+//     console.log(data);
+
+//     // Get a Postgres client from the connection pool
+
+//     pg.connect(connectionString, function(err, client, done) {
+//         // Handle connection errors
+//         if(err) {
+//           done();
+//           console.log(err);
+//           return res.status(500).json({ success: false, data: err});
+//         }
+
+//         // SQL Query > Insert Data
+//         client.query("INSERT INTO userinf(name, email, birthday, phone, city, joindate) values($1, $2, $3, $4, $5)", [data.name, data.email, data.birthday, data.phone, data.city, data.joindate]);
+
+//         // SQL Query > Select Data
+//         var query = client.query("SELECT * FROM userinf ORDER BY name ASC");
+
+//         // Stream results back one row at a time
+//         query.on('row', function(row) {
+//             results.push(row);
+//         });
+
+//         // After all data is returned, close connection and return results
+//         query.on('end', function() {
+//             done();
+//             return res.json(results);
+//         });
+//     });
+// });
+
 router.get('/api/v1/todos', function(req, res) {
 
     var results = [];
@@ -88,6 +144,35 @@ router.get('/api/v1/todos', function(req, res) {
 
         // SQL Query > Select Data
         var query = client.query("SELECT * FROM items ORDER BY id ASC;");
+
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+});
+
+router.get('/api/users', function(req, res) {
+
+    var results = [];
+
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        // SQL Query > Select Data
+        var query = client.query("SELECT * FROM userinf ORDER BY name ASC;");
 
         // Stream results back one row at a time
         query.on('row', function(row) {
