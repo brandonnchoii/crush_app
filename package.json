@@ -8,8 +8,8 @@
     "ejs": "^2.3.4",
     "pg": "^4.4.3"
   },
-  "devDependencies": {},
   "scripts": {
+    "start": "supervisor ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,5 +21,19 @@
   "bugs": {
     "url": "https://github.com/brandonnchoii/crush_app/issues"
   },
+  "dependencies": {
+    "body-parser": "~1.10.2",
+    "cookie-parser": "~1.3.3",
+    "debug": "~2.1.1",
+    "express": "~4.11.1",
+    "jade": "~1.9.1",
+    "morgan": "~1.5.1",
+    "pg": "^4.2.0",
+    "serve-favicon": "~2.2.0"
+  },
+  "devDependencies": {
+    "supervisor": "~0.7.1"
+  },
   "homepage": "https://github.com/brandonnchoii/crush_app"
+
 }
