@@ -1,4 +1,4 @@
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/todos';
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/todo';
 //'postgres://portal:por**tal@10.10.22.105:6432';
 
 module.exports = connectionString;
