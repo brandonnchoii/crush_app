@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html ng-app="nodeTodo">
+<html ng-app="crush">
   <head>
-    <title>Todo App - with Node + Express + Angular + PostgreSQL</title>
+    <title>Crush</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- styles -->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -12,9 +12,9 @@
     <div class="container">
 
       <div class="header">
-        <h1>Todo App</h1>
+        <h1>Crush</h1>
         <hr>
-        <h1 class="lead">Node + Express + Angular + PostgreSQL</h1>
+        <h1 class="lead">Connecting ppl (using local database)</h1>
       </div>
 
       <div class="todo-form">
@@ -22,7 +22,11 @@
           <div class="form-group">
             <input type="text" class="form-control input-lg" placeholder="Enter text..." ng-model="formData.text">
           </div>
-          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createTodo()">Add Todo</button>
+
+          <!-- Assume you are user 1 just for testing purposes -->
+          <!-- Figure out how to add autocomplete to this --> 
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createTodo()">Add Interests</button>
         </form>
       </div>
 
@@ -33,6 +37,10 @@
           <li><h3><input class="lead" type="checkbox" ng-click="deleteTodo(todo.id)">&nbsp;{{ todo.text }}</li></h3><hr>
         </ul>
       </div>
+
+
+
+      <button ng-click="redirect()">Test</button>
 
     </div>
 

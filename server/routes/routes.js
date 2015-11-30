@@ -11,6 +11,11 @@ router.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', 'index.html'));
 });
 
+router.get('/test.html', function(req, res, next) {
+  res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', 'test.html'));
+});
+
+
 
 router.post('/api/v1/todos', function(req, res) {
 

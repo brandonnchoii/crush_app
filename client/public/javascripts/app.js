@@ -1,7 +1,6 @@
-angular.module('nodeTodo', [])
+var app = angular.module('crush', []);
 
-.controller('mainController', function($scope, $http) {
-
+app.controller('mainController', function($scope, $http, $location, $window) {
     $scope.formData = {};
     $scope.todoData = {};
 
@@ -39,6 +38,12 @@ angular.module('nodeTodo', [])
                 console.log('Error: ' + data);
             });
     };
+
+    $scope.redirect = function(){
+        console.log('clicked');
+      //  $location.path('test.html');
+        $window.location.href = "test.html";
+    }
 
 });
 
