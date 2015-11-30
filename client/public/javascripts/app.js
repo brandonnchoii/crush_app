@@ -41,7 +41,7 @@ angular.module('initialCrush', [])
     // };
 
     $scope.logIn = function() {
-
+        
     }
 
     $scope.go = function(path) {
