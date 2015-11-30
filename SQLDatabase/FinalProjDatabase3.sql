@@ -10,12 +10,13 @@ joindate DATE NOT NULL,
 commitLevel VARCHAR(40) NOT NULL,
 interestedIn VARCHAR(20) NOT NULL);
 --(Above bolded may be mutable)
+--interestedIn may be "Female" "Male" or "Both"
 
 --(Table for mutables)
 CREATE TABLE UserInterests
 (uiid INTEGER NOT NULL REFERENCES UserInf(uid),
 interest VARCHAR(20) NOT NULL,
-PRIMARY KEY(uiid, interest);
+PRIMARY KEY(uiid, interest));
 
 CREATE TABLE Notifications
 (nid INTEGER NOT NULL PRIMARY KEY,
