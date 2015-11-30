@@ -54,7 +54,7 @@ IF (EXISTS
 	WHERE ( ((Relationships.user1 = NEW.user2 AND Relationships.user2 = NEW.user1)
     OR (Relationships.user1= NEW.user1 AND Relationships.user2=NEW.user2))
     AND Relationships.isReciprocated = false))) THEN
-		DELETE from Relationships as r where r.user1 = NEW.user1 AND r.user2 = NEW.user2;
+		DELETE from Relationships as r where ( (r.user1 = NEW.user1 AND r.user2 = NEW.user2) OR (r.user2=NEW.user1 AND r.user1 = NEW.user2));
         NEW.isReciprocated := true;
     RETURN NEW;
 END IF;
