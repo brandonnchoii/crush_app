@@ -34,7 +34,7 @@
 
       <div class="todo-list">
         <ul ng-repeat="todo in todoData">
-          <li><h3><input class="lead" type="checkbox" ng-click="deleteTodo(todo.id)">&nbsp;{{ todo.interest }}</li></h3><hr>
+          <li><h3><input class="lead" type="checkbox" ng-click="removeInterest(1, todo.interest)">&nbsp;{{ todo.interest }}</li></h3><hr>
         </ul>
       </div>
 

@@ -4,18 +4,6 @@ app.controller('mainController', function($scope, $http, $location, $window) {
     $scope.formData = {};
     $scope.todoData = {};
 
-    //Get all todos
-    // $http.get('/api/v1/todos')
-    //     .success(function(data) {
-    //         $scope.todoData = data;
-    //         console.log('hi');
-    //         console.log(data);
-    //     })
-    //     .error(function(error) {
-    //         console.log('Error: ' + error);
-    //     });
-
-    var id = 1;
     $http.get('/crush/interests/' + 1)
         .success(function(data) {
             $scope.todoData = data;
@@ -25,7 +13,7 @@ app.controller('mainController', function($scope, $http, $location, $window) {
             console.log('Error: ' + error);
         });
 
-    //{"interest": "teletubbies"}
+    //Note: example: {"interest": "teletubbies"} instead of form data. Right now routes.js processes form data to call data.text, not data.interest
     $scope.addInterest = function(uid) {
         console.log($scope.formData);
         $http.post('/crush/interests/' + uid, $scope.formData)
@@ -38,32 +26,17 @@ app.controller('mainController', function($scope, $http, $location, $window) {
             });
     }
 
-    // // Create a new todo
-    // $scope.createTodo = function(todoID) {
-    //     $http.post('/api/v1/todos', $scope.formData)
-    //         .success(function(data) {
-    //             $scope.formData = {};
-    //             $scope.todoData = data;
-    //             console.log(data);
-    //         })
-    //         .error(function(error) {
-    //             console.log('Error: ' + error);
-    //         });
-    // };
-
-
-
-    // // Delete a todo
-    // $scope.deleteTodo = function(todoID) {
-    //     $http.delete('/api/v1/todos/' + todoID)
-    //         .success(function(data) {
-    //             $scope.todoData = data;
-    //             console.log(data);
-    //         })
-    //         .error(function(data) {
-    //             console.log('Error: ' + data);
-    //         });
-    // };
+    $scope.removeInterest = function(uid, interest) {
+        console.log('removeinterest');
+        $http.delete('/crush/interests/' + uid + '/' + interest)
+            .success(function(data) {
+                $scope.todoData = data;
+                console.log(data);
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    };
 
     $scope.redirect = function(){
         console.log('clicked');
