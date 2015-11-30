@@ -13,8 +13,9 @@ interestedIn VARCHAR(20) NOT NULL);
 
 --(Table for mutables)
 CREATE TABLE UserInterests
-(uiid INTEGER NOT NULL PRIMARY KEY REFERENCES UserInf(uid),
-interest VARCHAR(20) NOT NULL);
+(uiid INTEGER NOT NULL REFERENCES UserInf(uid),
+interest VARCHAR(20) NOT NULL,
+PRIMARY KEY(uiid, interest);
 
 CREATE TABLE Notifications
 (nid INTEGER NOT NULL PRIMARY KEY,
@@ -67,23 +68,39 @@ FOR EACH ROW
 EXECUTE PROCEDURE RelationshipTF();
 
 
-INSERT INTO UserInf VALUES(0, 'Anna', 'anna@duke.edu', '1994-03-05', '2153783609', 'Philadelphia', '2015-11-11');
-INSERT INTO USERINF VALUES(1, 'Will', 'will@duke.edu', '1996-06-08', '1234567890', 'New York', '2015-12-15');
-INSERT INTO USERINF VALUES(2, 'Dan', 'dan@duke.edu', '1987-03-01', '9087654321', 'Boston', '2015-10-11');
-INSERT INTO USERINF VALUES(3, 'Kelly', 'kelly@duke.edu', '1987-10-10', '9087987634', 'Boston', '2015-09-11');
-INSERT INTO USERINF VALUES(4, 'Emily', 'emily@duke.edu', '1987-05-14', '8765567888', 'Toledo', '2015-12-11');
-INSERT INTO USERINF VALUES(5, 'Ian', 'ian@duke.edu', '1990-03-01', '9765123456', 'New York', '2015-10-09');
-INSERT INTO USERINF VALUES(6, 'Sarah', 'sarah@duke.edu', '1967-03-01', '9090909090', 'Tampa', '2015-12-11');
-INSERT INTO USERINF VALUES(7, 'Sophie', 'sophie@duke.edu', '1997-04-01', '3245234512', 'New York', '2015-4-11');
+INSERT INTO UserInf VALUES(0, 'Anna', 'female','anna@duke.edu', '1994-03-05', '2153783609', 'Philadelphia', '2015-11-11','relationship', 'men');
+INSERT INTO USERINF VALUES(1, 'Will','male', 'will@duke.edu', '1996-06-08', '1234567890', 'New York', '2015-12-15' , 'fwb', 'women');
+INSERT INTO USERINF VALUES(2, 'Dan', 'male', 'dan@duke.edu', '1987-03-01', '9087654321', 'Boston', '2015-10-11' , 'relationship', 'women');
+INSERT INTO USERINF VALUES(3, 'Kelly', 'female', 'kelly@duke.edu', '1987-10-10', '9087987634', 'Boston', '2015-09-11' , 'fwb', 'men');
+INSERT INTO USERINF VALUES(4, 'Emily', 'female', 'emily@duke.edu', '1987-05-14', '8765567888', 'Toledo', '2015-12-11' , 'relationship', 'both');
+INSERT INTO USERINF VALUES(5, 'Ian',  'male','ian@duke.edu', '1990-03-01', '9765123456', 'New York', '2015-10-09' , 'fwb', 'both');
+INSERT INTO USERINF VALUES(6, 'Sarah', 'female', 'sarah@duke.edu', '1967-03-01', '9090909090', 'Tampa', '2015-12-11' , 'relationship', 'both');
+INSERT INTO USERINF VALUES(7, 'Sophie', 'female', 'sophie@duke.edu', '1997-04-01', '3245234512', 'New York', '2015-4-11' , 'relationship', 'men');
 
-INSERT INTO UserInterests VALUES(0, 'relationship', 'men', 'books', 'movies', 'sports' );
-INSERT INTO UserInterests VALUES(1, 'fwb', 'women', 'guns', 'movies', 'sports' );
-INSERT INTO UserInterests VALUES(2, 'relationship', 'women', 'animals', 'netflix', 'classical music' );
-INSERT INTO UserInterests VALUES(3, 'fwb', 'men', 'writing', 'movies', 'sports' );
-INSERT INTO UserInterests VALUES(4, 'relationship', 'both', 'cooking', 'books', 'netflix' );
-INSERT INTO UserInterests VALUES(5, 'fwb', 'both', 'movies', 'classical music', 'ballet' );
-INSERT INTO UserInterests VALUES(6, 'relationship', 'both', 'horses', 'movies', 'sports' );
-INSERT INTO UserInterests VALUES(7, 'relationship', 'men', 'video games', 'fashion', 'music' );
+INSERT INTO UserInterests VALUES(0,  'books');
+INSERT INTO UserInterests VALUES(0, 'movies');
+INSERT INTO UserInterests VALUES(0, 'sports' );
+INSERT INTO UserInterests VALUES(1, 'guns');
+INSERT INTO UserInterests VALUES(1,'movies');
+INSERT INTO UserInterests VALUES(1,'sports' );
+INSERT INTO UserInterests VALUES(2, 'animals');
+INSERT INTO UserInterests VALUES(2, 'netflix');
+INSERT INTO UserInterests VALUES(2, 'classical music');
+INSERT INTO UserInterests VALUES(3, 'writing');
+INSERT INTO UserInterests VALUES(3, 'movies');
+INSERT INTO UserInterests VALUES(3, 'sports' );
+INSERT INTO UserInterests VALUES(4, 'cooking');
+INSERT INTO UserInterests VALUES(4, 'books');
+INSERT INTO UserInterests VALUES(4, 'netflix' );
+INSERT INTO UserInterests VALUES(5, 'movies');
+INSERT INTO UserInterests VALUES(5, 'classical music');
+INSERT INTO UserInterests VALUES(5, 'ballet' );
+INSERT INTO UserInterests VALUES(6, 'horses');
+INSERT INTO UserInterests VALUES(6, 'movies');
+INSERT INTO UserInterests VALUES(6, 'sports' );
+INSERT INTO UserInterests VALUES(7, 'video games');
+INSERT INTO UserInterests VALUES(7, 'fashion');
+INSERT INTO UserInterests VALUES(7, 'music' );
 
 
 INSERT INTO Friend VALUES(0,2);
