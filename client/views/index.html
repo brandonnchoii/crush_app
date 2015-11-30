@@ -14,7 +14,7 @@
       <div class="header">
         <h1>Crush</h1>
         <hr>
-        <h1 class="lead">Connecting ppl (using local database)</h1>
+        <h1 class="lead">(Using local database)</h1>
       </div>
 
       <div class="todo-form">
@@ -26,7 +26,7 @@
           <!-- Assume you are user 1 just for testing purposes -->
           <!-- Figure out how to add autocomplete to this --> 
 
-          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createTodo()">Add Interests</button>
+          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="addInterest(1)">Add Interests</button>
         </form>
       </div>
 
@@ -34,11 +34,9 @@
 
       <div class="todo-list">
         <ul ng-repeat="todo in todoData">
-          <li><h3><input class="lead" type="checkbox" ng-click="deleteTodo(todo.id)">&nbsp;{{ todo.text }}</li></h3><hr>
+          <li><h3><input class="lead" type="checkbox" ng-click="deleteTodo(todo.id)">&nbsp;{{ todo.interest }}</li></h3><hr>
         </ul>
       </div>
-
-
 
       <button ng-click="redirect()">Test</button>
 
