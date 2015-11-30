@@ -1,19 +1,42 @@
-angular.module('initialCrush', [])
+var app = angular.module('crush', []);
 
-.controller('mainController', function($scope, $http) {
+app.controller('mainController', function($scope, $http, $location, $window) {
+    $scope.formData = {};
+    $scope.todoData = {};
 
-    // $scope.formData = {};
-    // $scope.todoData = {};
-
-    // // Get all todos
+    //Get all todos
     // $http.get('/api/v1/todos')
     //     .success(function(data) {
     //         $scope.todoData = data;
+    //         console.log('hi');
     //         console.log(data);
     //     })
     //     .error(function(error) {
     //         console.log('Error: ' + error);
     //     });
+
+    var id = 1;
+    $http.get('/crush/interests/' + 1)
+        .success(function(data) {
+            $scope.todoData = data;
+            console.log(data);
+        })
+        .error(function(error) {
+            console.log('Error: ' + error);
+        });
+
+    //{"interest": "teletubbies"}
+    $scope.addInterest = function(uid) {
+        console.log($scope.formData);
+        $http.post('/crush/interests/' + uid, $scope.formData)
+            .success(function(data) {
+                $scope.todoData = data;
+                console.log(data);
+            })
+            .error(function(error) {
+                console.log('Error: ' + error);
+            });
+    }
 
     // // Create a new todo
     // $scope.createTodo = function(todoID) {
@@ -28,6 +51,8 @@ angular.module('initialCrush', [])
     //         });
     // };
 
+
+
     // // Delete a todo
     // $scope.deleteTodo = function(todoID) {
     //     $http.delete('/api/v1/todos/' + todoID)
@@ -40,15 +65,15 @@ angular.module('initialCrush', [])
     //         });
     // };
 
-    $scope.logIn = function() {
-        
+    $scope.redirect = function(){
+        console.log('clicked');
+        console.log(todoData);
+      //  $location.path('test.html');
+        $window.location.href = "test.html";
     }
 
-    $scope.go = function(path) {
-        window.location = path;
-    }
-
-    $scope.createAccount =  function() {
-        
-    }
 });
+
+
+
+
