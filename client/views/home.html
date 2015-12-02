@@ -1,0 +1,37 @@
+<div class="header">
+        <h1>Crush</h1>
+        <hr>
+        <h1 class="lead">(Using local database)</h1>
+      </div>
+
+      <div class="todo-form">
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control input-lg" placeholder="Enter text..." ng-model="formData.text">
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="addInterest()">Add Interests</button>
+        </form>
+      </div>
+
+      <br>
+
+      <div class="todo-list">
+        <ul ng-repeat="todo in interests">
+          <li><h3><input class="lead" type="checkbox" ng-click="removeInterest(todo.interest)">&nbsp;{{ todo.interest }}</li></h3><hr>
+        </ul>
+      </div>
+
+      <button ng-click="redirect()">Test</button>
+
+      <div class="form-group">
+        <!-- Add in ng-model's on the actual view -->
+        <input type="text" class="form-control input-lg" placeholder="Username" ng-model="newUser.username">
+        <input type="text" class="form-control input-lg" placeholder="Password" ng-model="newUser.password">
+        <input type="text" class="form-control input-lg" placeholder="Birthday e.g. 10-9-1995" ng-model="newUser.birthday">
+        <input type="text" class="form-control input-lg" placeholder="Gender" ng-model="newUser.gender">
+        <input type="text" class="form-control input-lg" placeholder="Sexual Orientation" ng-model="newUser.sexOrientation">
+          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createAccount()">Create Account</button>
+      </div>
+
+    </div>

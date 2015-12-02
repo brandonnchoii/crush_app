@@ -3,19 +3,30 @@ var router = express.Router();
 var path = require('path');
 var pg = require('pg');
 var connectionString = require(path.join(__dirname, '../', '../', 'config'));
-console.log("connectionstr");
-console.log(connectionString);
-
 
 router.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', 'index.html'));
 });
 
-router.get('/test.html', function(req, res, next) {
-  res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', 'test.html'));
+// router.get('*', function(req, res, next) {
+//   res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', 'index.html')); //TODO make this its specific name
+// }); //TODO put controller in every path
+
+//router.get('/client/views/templates/header.html')
+
+
+// router.get('/test.html', function(req, res, next) {
+//   res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', 'test.html'));
+// });
+
+
+router.get('/pages/:page', function(req, res, next) {
+  var page = req.params.page;
+  console.log(page);
+  res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', page + ".html")); //TODO make this its specific name
 });
 
-router.get('/crush/interests/:uid', function(req, res){
+router.get('api/crush/interests/:uid', function(req, res){
     var results = [];
     var id = req.params.uid;
 
@@ -44,8 +55,38 @@ router.get('/crush/interests/:uid', function(req, res){
     });
 })
 
+router.get('api/login/:email/:pw', function(req, res){
+    var results = [];
+    var email = req.params.email;
+    var password = req.params.pw;
 
-router.post('/crush/interests/:uid', function(req, res) {
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        // SQL Query > Select Data
+        var query = client.query("SELECT uid FROM userinf WHERE email=($1) AND password=($2);", [email, password]);
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+})
+
+
+router.post('api/crush/interests/:uid', function(req, res) {
 
     var results = [];
     var id = req.params.uid;
@@ -85,7 +126,7 @@ router.post('/crush/interests/:uid', function(req, res) {
     });
 });
 
-router.delete('/crush/interests/:uid/:interest', function(req, res) {
+router.delete('api/crush/interests/:uid/:interest', function(req, res) {
 
     var results = [];
 
