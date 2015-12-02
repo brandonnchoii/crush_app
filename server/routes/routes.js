@@ -15,16 +15,21 @@ router.get('/', function(req, res, next) {
 //router.get('/client/views/templates/header.html')
 
 
-// router.get('/test.html', function(req, res, next) {
-//   res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', 'test.html'));
-// });
+router.get('/client/views/test.html', function(req, res, next) {
+  res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', 'test.html'));
+});
+
+      
+router.get('/client/views/templates/header.html', function(req, res, next){
+    res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', 'templates', 'header.html'));
+})
 
 
-router.get('/pages/:page', function(req, res, next) {
+/*router.get('/pages/:page', function(req, res, next) {
   var page = req.params.page;
   console.log(page);
   res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', page + ".html")); //TODO make this its specific name
-});
+});*/
 
 router.get('api/crush/interests/:uid', function(req, res){
     var results = [];
