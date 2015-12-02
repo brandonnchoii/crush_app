@@ -23,8 +23,8 @@ app.controller('mainController', function($scope, $http, $location, $window) {
     }
 
     $scope.isCurrentView = function(str){
-        console.log('check if currentview is ' + str);
-        console.log('current view is ' + $scope.currentView);
+       // console.log('check if currentview is ' + str);
+       // console.log('current view is ' + $scope.currentView);
         if ($scope.currentView == str)
             return true;
         return false;
@@ -37,10 +37,10 @@ app.controller('mainController', function($scope, $http, $location, $window) {
 
     $scope.createAccount = function() {
         console.log("createAccount");
-        console.log($scope.newUser);
-        $http.post('/crush/interests/' + $scope.activeuid, $scope.formData)
+        console.log($scope.registerInfo);
+        $http.post('/crush/user/', $scope.registerInfo)
             .success(function(data) {
-                $scope.todoData = data;
+                console.log('user created');
                 console.log(data);
             })
             .error(function(error) {

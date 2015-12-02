@@ -8,38 +8,24 @@
 <!--     <link href="stylesheets/style.css" rel="stylesheet" media="screen">
  -->  </head>
 
-
-
   <body ng-controller="mainController">
 
       <header>
             <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/">Crush</a>
+                    <a class="navbar-brand" href="#" ng-click="setCurrentView('index.html')">Crush</a>
                 </div>
 
                 <ul class="nav navbar-nav navbar-right">
                   <li ng-show="checkActiveID()"><a href="#" ng-click="setCurrentView('register.html')"><i class="fa fa-home" ></i> <b>Register</b></a></li>
-                    <li ng-show="checkActiveID()"><a href="#" ng-click="setCurrentView('login.html')"> <i class="fa fa-home" ></i> Log In  </a> </li> <!-- don't think ng-include is done correctly here -->
+                    <li ng-show="checkActiveID()"><a href="#" ng-click="setCurrentView('login.html')"> <i class="fa fa-home" ></i> Log In  </a> </li> 
                     <li ng-show="!checkActiveID()"><a href="#"><i class="fa fa-home" ></i> Log Out </a></li>
                     <li ng-show="!checkActiveID()"><a href="#contact"><i class="fa fa-comment"></i> Settings</a></li>
                 </ul>
             </div>
             </nav>
       </header>
-
-   
-
- <!-- <div class="form-group" >
-        <!-- Add in ng-model's on the actual view
-       <input type="text" class="form-control input-lg" placeholder="Username" ng-model="newUser.username">
-        <input type="text" class="form-control input-lg" placeholder="Password" ng-model="newUser.password">
-        <input type="text" class="form-control input-lg" placeholder="Birthday e.g. 10-9-1995" ng-model="newUser.birthday">
-        <input type="text" class="form-control input-lg" placeholder="Gender" ng-model="newUser.gender">
-        <input type="text" class="form-control input-lg" placeholder="Sexual Orientation" ng-model="newUser.sexOrientation">
-          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createAccount()">Create Account</button>
-      </div> -->
 
       <div ng-include="'/page/test.html'" ng-show="isCurrentView('index.html')"></div>
       <div ng-include="'/page/login.html'" ng-show="isCurrentView('login.html')"></div>
