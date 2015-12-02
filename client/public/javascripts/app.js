@@ -37,7 +37,16 @@ app.controller('mainController', function($scope, $http, $location, $window) {
 
     $scope.createAccount = function() {
         console.log("createAccount");
+        
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+        $scope.registerInfo.joinDate = yyyy + "-" + mm + "-" + dd;
         console.log($scope.registerInfo);
+
         $http.post('/crush/user/', $scope.registerInfo)
             .success(function(data) {
                 console.log('user created');

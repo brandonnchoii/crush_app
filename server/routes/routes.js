@@ -22,16 +22,17 @@ router.post('/crush/user', function(req, res) {
     var results = [];    
 
     // Grab data from http request
-    var data = {
-        email: req.body.email,
-        name: req.body.name,
-        password: req.body.password,
-        birthday: req.body.birthday,
-        gender: req.body.gender,
-        sexOrientation: req.body.sexOrientation //TODO: make this interestedIN and make this a checkbox. 
-    };
+    // var data = {
+    //     email: req.body.email,
+    //     name: req.body.name,
+    //     password: req.body.password,
+    //     birthday: req.body.birthday,
+    //     gender: req.body.gender,
+    //     phone: req.body.phone,
+    //     sexOrientation: req.body.sexOrientation //TODO: make this interestedIN and make this a checkbox. 
+    // };
 
-    console.log(data);
+    // console.log(req.body);
 
     // Get a Postgres client from the connection pool
     pg.connect(connectionString, function(err, client, done) {
@@ -43,10 +44,10 @@ router.post('/crush/user', function(req, res) {
         }
 
         // SQL Query > Insert Data
-        client.query("INSERT INTO userinf(uid, name, password, gender, email, birthday, interestedIn) values($1, $2, $3, $4, $5, $6, $7)", [10, data.name, data.password, data.gender, data.email, data.birthday, data.sexOrientation]);
+        client.query("INSERT INTO userinf values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)", [10, req.body.name, req.body.password, req.body.gender, req.body.email, req.body.birthday, req.body.phone, req.body.city, req.body.joinDate, req.body.commit, req.body.sexOrientation]);
 
         // SQL Query > Select Data
-        var query = client.query("SELECT * FROM userinf WHERE email=($1);", [data.email]);
+        var query = client.query("SELECT * FROM userinf WHERE email=($1);", [req.body.email]);
 
         // Stream results back one row at a time
         query.on('row', function(row) {
