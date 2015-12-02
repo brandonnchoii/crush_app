@@ -11,9 +11,22 @@ router.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', 'index.html'));
 });
 
-router.get('/test.html', function(req, res, next) {
-  res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', 'test.html'));
+// router.get('/test.html', function(req, res, next) {
+//   res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', 'test.html'));
+// });
+
+// router.get('/login.html', function(req, res, next) {
+//     console.log("redirect to login");
+//     console.log(path.join(__dirname, '../', '../', 'client', 'views', 'login.html'));
+//   res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', 'login.html'));
+// });
+
+router.get('/page/:pageToView', function(req, res){
+    var page = req.params.pageToView;
+    res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', page));
 });
+
+// route.get pages router to automatically route
 
 router.get('/crush/interests/:uid', function(req, res){
     var results = [];

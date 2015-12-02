@@ -5,42 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- styles -->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="stylesheets/style.css" rel="stylesheet" media="screen">
-  </head>
+<!--     <link href="stylesheets/style.css" rel="stylesheet" media="screen">
+ -->  </head>
+
+
+
   <body ng-controller="mainController">
 
-    <div class="container">
+      <header>
+            <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Crush</a>
+                </div>
 
-      <div class="header">
-        <h1>Crush</h1>
-        <hr>
-        <h1 class="lead">(Using local database)</h1>
-      </div>
+                <ul class="nav navbar-nav navbar-right">
+                  <li ng-show="checkActiveID()"><a href="#" ng-click="setCurrentView('register.html')"><i class="fa fa-home" ></i> <b>Register</b></a></li>
+                    <li ng-show="checkActiveID()"><a href="#" ng-click="setCurrentView('login.html')"> <i class="fa fa-home" ></i> Log In  </a> </li> <!-- don't think ng-include is done correctly here -->
+                    <li ng-show="!checkActiveID()"><a href="#"><i class="fa fa-home" ></i> Log Out </a></li>
+                    <li ng-show="!checkActiveID()"><a href="#contact"><i class="fa fa-comment"></i> Settings</a></li>
+                </ul>
+            </div>
+            </nav>
+      </header>
 
-      <div class="todo-form">
-        <form>
-          <div class="form-group">
-            <input type="text" class="form-control input-lg" placeholder="Enter text..." ng-model="formData.text">
-          </div>
+   
 
-          <!-- Assume you are user 1 just for testing purposes -->
-          <!-- Figure out how to add autocomplete to this --> 
+ <!-- <div class="form-group" >
+        <!-- Add in ng-model's on the actual view
+       <input type="text" class="form-control input-lg" placeholder="Username" ng-model="newUser.username">
+        <input type="text" class="form-control input-lg" placeholder="Password" ng-model="newUser.password">
+        <input type="text" class="form-control input-lg" placeholder="Birthday e.g. 10-9-1995" ng-model="newUser.birthday">
+        <input type="text" class="form-control input-lg" placeholder="Gender" ng-model="newUser.gender">
+        <input type="text" class="form-control input-lg" placeholder="Sexual Orientation" ng-model="newUser.sexOrientation">
+          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createAccount()">Create Account</button>
+      </div> -->
 
-          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="addInterest(1)">Add Interests</button>
-        </form>
-      </div>
-
-      <br>
-
-      <div class="todo-list">
-        <ul ng-repeat="todo in todoData">
-          <li><h3><input class="lead" type="checkbox" ng-click="removeInterest(1, todo.interest)">&nbsp;{{ todo.interest }}</li></h3><hr>
-        </ul>
-      </div>
-
-      <button ng-click="redirect()">Test</button>
-
-    </div>
+      <div ng-include="'/page/test.html'" ng-show="isCurrentView('index.html')"></div>
+      <div ng-include="'/page/login.html'" ng-show="isCurrentView('login.html')"></div>
+      <div ng-include="'/page/register.html'" ng-show="isCurrentView('register.html')"></div>
 
     <!-- scripts -->
     <script src="http://code.jquery.com/jquery-1.11.2.min.js" type="text/javascript"></script>
