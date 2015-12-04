@@ -207,5 +207,169 @@ router.delete('api/crush/interests/:uid/:interest', function(req, res) {
 
 // });
 
+//start ones done by Cali and are not yet tested
+//gets all userinfo for one user
+router.get('api/crush/userinfo/:uid', function(req, res){
+    var results = [];
+    var id = req.params.uid;
+
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        // SQL Query > Select Data
+        var query = client.query("select name,gender,birthday,city, joindate, commitLevel, interestedIn from UserInf where uid = ($1);", [id]);
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+})
+
+//returns the names of all the relationships for one user
+router.get('api/crush/relationships/:uid', function(req, res){
+    var results = [];
+    var id = req.params.uid;
+
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        // SQL Query > Select Data
+        var query = client.query("select name from relationships as r, userinf as u where ((r.user2 = u.uid and r.user1 = ($1)) or (r.user1 = u.uid and r.user2 = ($1)));", [id]);
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+})
+
+//gets list of all friends for one user
+router.get('api/crush/friend/:uid', function(req, res){
+    var results = [];
+    var id = req.params.uid;
+
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        // SQL Query > Select Data
+        var query = client.query("select name from friend as f, userinf as u where ((f.fid2 = u.uid and f.fid1 = ($1)) or (f.fid1 = u.uid and f.fid2 = ($1)));", [id]);
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+})
+
+//add a new friend
+router.post('api/crush/friend/:uid/:friend', function(req, res) {
+
+    var results = [];
+    var id = req.params.uid;
+    var fid = req.params.friend;
+
+    // Grab data from http request
+
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        // SQL Query > Insert Data
+        client.query("INSERT INTO friend(fid1, fid2) values($1, $2);", [id, fid]);
+
+        // SQL Query > Select Data
+        var query = client.query("select name from friend as f, userinf as u where ((f.fid2 = u.uid and f.fid1 = ($1)) or (f.fid1 = u.uid and f.fid2 = ($1)));", [id]);
+
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+});
+
+//add new relationship
+router.post('api/crush/relationships/:uid/:rel', function(req, res) {
+
+    var results = [];
+    var id = req.params.uid;
+    var rid = req.params.rel;
+
+    // Grab data from http request
+
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        // SQL Query > Insert Data
+        client.query("INSERT INTO relationships(user1, user2, isReciprocated) values($1, $2, false);", [id, rid]);
+
+        // SQL Query > Select Data
+        var query = client.query("select name from relationships as r, userinf as u where ((r.user2 = u.uid and r.user1 = ($1)) or (r.user1 = u.uid and r.user2 = ($1)));", [id]);
+
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+});
 
 module.exports = router;
