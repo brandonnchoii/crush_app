@@ -18,13 +18,14 @@
       <div class="todo-form">
         <form>
           <div class="form-group">
-            <input type="text" class="form-control input-lg" placeholder="Username" ng-model="">
+            <input type="text" class="form-control input-lg" placeholder="Email" ng-model="loginInfo.email">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control input-lg" placeholder="Password" ng-model="">
+            <input type="text" class="form-control input-lg" placeholder="Password" ng-model="loginInfo.password">
           </div>
-          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="logIn">Log In</button>
-          <button class="btn btn-primary btn-lg btn-block" ng-click="go('register.html')">Sign Up</button>
+          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="login()">Log In</button><br>
+          <center>Not yet registered? <a href = "#" ng-click="setCurrentView('register.html')">Sign up here</a> instead.</center>
+          <!-- <button class="btn btn-primary btn-lg btn-block" ng-click="go('register.html')">Sign Up</button> -->
         </form>
       </div>
       <br>

@@ -1,0 +1,25 @@
+ <body ng-controller="profileController">
+
+ <div class="profile-container col-xs-8 col-xs-offset-2" style="margin-top: 8%">
+      <!-- List of suggestions -->
+
+
+      
+      <h1>Hi, {{activeUserData.name}}. </h1><p>
+      Your gender is {{activeUserData.gender}}
+
+      <h1>Interests</h1>
+
+      <ul ng-repeat="interests in interests">
+        <li><!-- Picture, name, # of mutual friends --></li>
+      </ul>
+
+      <ul ng-repeat="suggested in suggestedData">
+        <li><!-- Picture, name, # of mutual friends --></li>
+      </ul>
+
+
+
+
+    </div>
+</body>

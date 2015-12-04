@@ -16,23 +16,46 @@ router.get('/page/:pageToView', function(req, res){
     res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', page));
 });
 
+router.get('/crush/user/:email/:pw', function(req, res){
+    console.log('enter rest call');
+    //console.log(req);
+    //console.log(req.body);
+    var email = req.params.email
+    var pw = req.params.pw
+    console.log(email);
+    console.log(pw);
+
+    var results = [];
+
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        // SQL Query > Select Data
+        var query = client.query("SELECT * FROM userinf WHERE email=($1) AND password=($2);", [email, pw]);
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+})
+
 router.post('/crush/user', function(req, res) {
     console.log("REST request to create a new user");
 
     var results = [];    
-
-    // Grab data from http request
-    // var data = {
-    //     email: req.body.email,
-    //     name: req.body.name,
-    //     password: req.body.password,
-    //     birthday: req.body.birthday,
-    //     gender: req.body.gender,
-    //     phone: req.body.phone,
-    //     sexOrientation: req.body.sexOrientation //TODO: make this interestedIN and make this a checkbox. 
-    // };
-
-    // console.log(req.body);
 
     // Get a Postgres client from the connection pool
     pg.connect(connectionString, function(err, client, done) {
@@ -44,7 +67,7 @@ router.post('/crush/user', function(req, res) {
         }
 
         // SQL Query > Insert Data
-        client.query("INSERT INTO userinf values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)", [10, req.body.name, req.body.password, req.body.gender, req.body.email, req.body.birthday, req.body.phone, req.body.city, req.body.joinDate, req.body.commit, req.body.sexOrientation]);
+        client.query("INSERT INTO userinf values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)", [11, req.body.name, req.body.password, req.body.gender, req.body.email, req.body.birthday, req.body.phone, req.body.city, req.body.joinDate, req.body.commit, req.body.sexOrientation]);
 
         // SQL Query > Select Data
         var query = client.query("SELECT * FROM userinf WHERE email=($1);", [req.body.email]);
