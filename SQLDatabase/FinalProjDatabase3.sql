@@ -71,7 +71,7 @@ FOR EACH ROW
 EXECUTE PROCEDURE RelationshipTF();
 
 
-INSERT INTO UserInf VALUES('Anna', 'asodfim3', 'female','anna@duke.edu', '1994-03-05', '2153783609', 'Philadelphia', '2015-11-11','relationship', 'male');
+INSERT INTO UserInf VALUES(0,'Anna', 'asodfim3', 'female','anna@duke.edu', '1994-03-05', '2153783609', 'Philadelphia', '2015-11-11','relationship', 'male');
 INSERT INTO USERINF VALUES(1, 'Will', 'd98aji3maf', 'male', 'will@duke.edu', '1996-06-08', '1234567890', 'New York', '2015-12-15' , 'fwb', 'female');
 INSERT INTO USERINF VALUES(2, 'Dan', 'a892m3mawn3', 'male', 'dan@duke.edu', '1987-03-01', '9087654321', 'Boston', '2015-10-11' , 'relationship', 'female');
 INSERT INTO USERINF VALUES(3, 'Kelly', '8ja@*@#RFIU82', 'female', 'kelly@duke.edu', '1987-10-10', '9087987634', 'Boston', '2015-09-11' , 'fwb', 'male');
