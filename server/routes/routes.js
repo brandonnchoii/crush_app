@@ -356,4 +356,110 @@ router.post('/crush/relationships/:uid/:rel', function(req, res) {
         });
     });
 });
+
+//gets any unseen messages for the uid
+//still need to write query to update messages as seen
+router.get('/crush/newmess/:uid', function(req, res){
+    var results = [];
+    var id = req.params.uid;
+
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        // SQL Query > Select Data
+        var query = client.query("select * from notifications as n, notifstate as s where s.seen = true AND s.sid = nid AND ($1) = n.nTo;", [id]);
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+});
+
+
+//get all messages to a uid
+//need still to update any unseen messages to seen
+router.get('/crush/allmess/:uid', function(req, res){
+    var results = [];
+    var id = req.params.uid;
+
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        // SQL Query > Select Data
+        var query = client.query("select * from notifications as n, notifstate as s where s.sid = nid AND ($1) = n.nTo;", [id]);
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+});
+
+//to post a new message, need to figure out how to do timestamps automatically
+router.post('/crush/message/:uid/:idto', function(req, res) {
+
+    var results = [];
+    var id = req.params.uid;
+    var to = req.params.idto;
+
+    // Grab data from http request
+    var data = {
+        message: req.body.text  //.text because it is from a form. Otherwise, you can specify the data yourself
+    };
+
+    console.log(data);
+
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        // SQL Query > Insert Data
+        client.query("INSERT INTO notifications(nFrom, nTo, ts , text) values(($1), ($2),'2011-08-09 04:04', ($3));", [id, idto, data.interest]);
+        client.query("INSERT INTO notifState(seen) VALUES (false);");
+
+        // SQL Query > Select Data
+        var query = client.query("SELECT * FROM notifications WHERE nFrom=($1) ORDER BY nid;", [id]);
+
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+});
 module.exports = router;
