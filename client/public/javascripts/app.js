@@ -3,7 +3,7 @@ var app = angular.module('crush', []);
 //var activeuid = null;
 //http://stackoverflow.com/questions/21919962/share-data-between-angularjs-controllers
 
-app.controller('mainController', function($scope, $http, $location, $window) {
+app.controller('mainController', function($scope, $http) {
     $scope.formData = {};
     $scope.todoData = {};
     $scope.registerInfo = {};
@@ -12,8 +12,9 @@ app.controller('mainController', function($scope, $http, $location, $window) {
     $scope.activeUserData;
     $scope.currentView = 'index.html';
 
+//put into profilecontroller
+    $scope.relationships = {};
 
-    
    // $scope.getInterests = function() {
         $http.get('/crush/interests/' + $scope.activeuid)
             .success(function(data) {
@@ -56,14 +57,18 @@ app.controller('mainController', function($scope, $http, $location, $window) {
         var yyyy = today.getFullYear();
 
         $scope.registerInfo.joinDate = yyyy + "-" + mm + "-" + dd;
-        console.log($scope.registerInfo);
 
         $http.post('/crush/user/', $scope.registerInfo)
             .success(function(data) {
                 console.log('user created');
                 console.log(data);
+                console.log(data[0]);
+                console.log(data[0].uid);
                 $scope.activeuid = data[0].uid;
+                $scope.activeUserData = data[0];
+                console.log($scope.activeUserData);
                 $scope.currentView = 'profile.html';
+                console.log($scope.activeuid);
             })
             .error(function(error) {
                 //errors always print out as error? how to do error checking?
@@ -129,17 +134,34 @@ app.controller('mainController', function($scope, $http, $location, $window) {
             });
     };
 
-    $scope.redirect = function(){
-        console.log('clicked');
-        console.log(todoData);
-      //  $location.path('test.html');
-        $window.location.href = "test.html";
-    }
+    // $scope.redirect = function(){
+    //     console.log('clicked');
+    //     console.log(todoData);
+    //   //  $location.path('test.html');
+    //     $window.location.href = "test.html";
+    // }
 
+    // this should be in profilecontroller, but we'll keep it 
+    // here for now temporarily until the angular controller problem is fixed
+    $scope.getRelationships = function() {
+        console.log('relationshipsssssssss');
+        $http.get('/crush/relationships/' + $scope.activeuid)
+                .success(function(data) {
+                    $scope.relationships = data;
+                    console.log('get relationships success');
+                    console.log(data);
+                })
+                .error(function(error) {
+                    console.log('get relationships failed');
+                    console.log('Error: ' + error);
+                });
+    }
 });
 
-app.controller('profileController', function($scope, $http, $location, $window) {
+app.controller('profileController', function($scope, $http) {
     console.log('profilecontroller');
+    $scope.test2 = 'hello';
+    $scope.test = ['hi', 'bye'];
     $scope.interests = {};
 
     //upon loading
@@ -153,12 +175,10 @@ app.controller('profileController', function($scope, $http, $location, $window) 
                 console.log('get interests failed');
                 console.log('Error: ' + error);
             });
-
-
-
-
 });
 
+
+/*/crush/relationships/:uid*/
 
 
 

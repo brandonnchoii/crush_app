@@ -1,17 +1,20 @@
- <body ng-controller="profileController">
+ <div ng-controller="profileController as profCtrl" ng-init="getRelationships()">
 
  <div class="profile-container col-xs-8 col-xs-offset-2" style="margin-top: 8%">
       <!-- List of suggestions -->
 
-
-      
       <h1>Hi, {{activeUserData.name}}. </h1><p>
       Your gender is {{activeUserData.gender}}
 
       <h1>Interests</h1>
 
-      <ul ng-repeat="interests in interests">
-        <li><!-- Picture, name, # of mutual friends --></li>
+      {{profCtrl.test2}} ---
+
+      <h1> Relationships</h1>
+      {{relationships}}
+      
+      <ul ng-repeat="interest in profCtrl.test">
+        <li><!-- Picture, name, # of mutual friends -->{{interest}}</li>
       </ul>
 
       <ul ng-repeat="suggested in suggestedData">
@@ -22,4 +25,4 @@
 
 
     </div>
-</body>
+</div>
