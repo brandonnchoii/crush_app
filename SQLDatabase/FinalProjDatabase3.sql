@@ -1,6 +1,6 @@
 CREATE TABLE UserInf
 -- changed uid to serial but this may not actually work
-(uid SERIAL NOT NULL PRIMARY KEY,
+(uid SERIAL NOT NULL PRIMARY KEY DEFAULT nextval('UserInf_uid_seq'),
 name VARCHAR(256) NOT NULL,
 password VARCHAR(25) NOT NULL,
 gender VARCHAR(256) NOT NULL,
@@ -10,7 +10,8 @@ phone CHAR(10) NOT NULL UNIQUE,
 city VARCHAR(256) NOT NULL,
 joindate DATE NOT NULL,
 commitLevel VARCHAR(40) NOT NULL,
-interestedIn VARCHAR(20) NOT NULL);
+interestedIn VARCHAR(20) NOT NULL)
+profpic VARCHAR(256);
 --(Above bolded may be mutable)
 --interestedIn may be "Female" "Male" or "Both"
 
