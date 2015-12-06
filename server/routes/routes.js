@@ -254,7 +254,7 @@ router.get('/crush/relationships/:uid', function(req, res){
 })
 
 //gets list of all friends for one user
-router.get('/crush/friend/:uid', function(req, res){
+router.get('/crush/friends/:uid', function(req, res){
     var results = [];
     var id = req.params.uid;
 
@@ -283,7 +283,7 @@ router.get('/crush/friend/:uid', function(req, res){
     });
 })
 
-//add a new friend
+//add a new friend // TODO: make this into an autocompleting search box
 router.post('/crush/friend/:uid/:friend', function(req, res) {
 
     var results = [];

@@ -14,6 +14,8 @@ app.controller('mainController', function($scope, $http) {
 
 //put into profilecontroller
     $scope.relationships = {};
+    $scope.friends = {};
+    $scope.interests = {};
 
    // $scope.getInterests = function() {
         $http.get('/crush/interests/' + $scope.activeuid)
@@ -90,8 +92,11 @@ app.controller('mainController', function($scope, $http) {
                 else{
                     console.log('login successful');
                     console.log(data);
+                    console.log(data[0]);
+                    console.log(data[0].uid);
                     $scope.activeuid = data[0].uid;
                     $scope.activeUserData = data[0];
+                    console.log($scope.activeuid);
                     console.log($scope.activeUserData);
                     $scope.currentView = 'profile.html';
                 }
@@ -143,6 +148,14 @@ app.controller('mainController', function($scope, $http) {
 
     // this should be in profilecontroller, but we'll keep it 
     // here for now temporarily until the angular controller problem is fixed
+    $scope.initializeProfile = function() {
+        setTimeout(function() {
+            $scope.getRelationships();
+            $scope.getFriends();
+            $scope.getInterests();
+        }, 7000);
+    }
+
     $scope.getRelationships = function() {
         console.log('relationshipsssssssss');
         $http.get('/crush/relationships/' + $scope.activeuid)
@@ -155,6 +168,35 @@ app.controller('mainController', function($scope, $http) {
                     console.log('get relationships failed');
                     console.log('Error: ' + error);
                 });
+    }
+
+    $scope.getFriends = function() {
+        console.log('relationshipsssssssss');
+        $http.get('/crush/friends/' + $scope.activeuid)
+                .success(function(data) {
+                    $scope.friends = data;
+                    console.log('get friends success');
+                    console.log(data);
+                })
+                .error(function(error) {
+                    console.log('get friends failed');
+                    console.log('Error: ' + error);
+                });
+    }
+
+    $scope.getInterests = function() {
+         $http.get('/crush/interests/' + $scope.activeuid)
+            .success(function(data) {
+                console.log('/crush/interests/' + $scope.activeuid);
+                console.log(data);
+                $scope.interests = data;
+                console.log('get interests success');
+                console.log(data);
+            })
+            .error(function(error) {
+                console.log('get interests failed');
+                console.log('Error: ' + error);
+            });
     }
 });
 

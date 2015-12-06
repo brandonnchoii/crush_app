@@ -1,4 +1,4 @@
- <div ng-controller="profileController as profCtrl" ng-init="getRelationships()">
+ <div ng-controller="profileController as profCtrl" ng-init="initializeProfile()">
 
  <div class="profile-container col-xs-8 col-xs-offset-2" style="margin-top: 8%">
       <!-- List of suggestions -->
@@ -6,13 +6,18 @@
       <h1>Hi, {{activeUserData.name}}. </h1><p>
       Your gender is {{activeUserData.gender}}
 
-      <h1>Interests</h1>
-
-      {{profCtrl.test2}} ---
+     
 
       <h1> Relationships</h1>
       {{relationships}}
-      
+
+      <h1> Friends </h1>
+      {{friends}}
+
+       <h1>Interests</h1>
+       {{interests}}
+      <!-- {{profCtrl.test2}} why doesn't this work????? -->
+
       <ul ng-repeat="interest in profCtrl.test">
         <li><!-- Picture, name, # of mutual friends -->{{interest}}</li>
       </ul>
