@@ -22,14 +22,14 @@ interest VARCHAR(20) NOT NULL,
 PRIMARY KEY(uiid, interest));
 
 CREATE TABLE Notifications
-(nid INTEGER NOT NULL PRIMARY KEY,
+(nid SERIAL PRIMARY KEY,
 nFrom INTEGER NOT NULL REFERENCES UserInf(uid),
 nTo INTEGER NOT NULL REFERENCES UserInf(uid),
 ts TIMESTAMP NOT NULL,
 text VARCHAR(400));
 
 CREATE TABLE NotifState
-(sid INTEGER NOT NULL PRIMARY KEY REFERENCES Notifications(nid),
+(sid SERIAL PRIMARY KEY REFERENCES Notifications(nid),
 seen BOOLEAN NOT NULL,
 seenTS TIMESTAMP);
 
@@ -131,3 +131,9 @@ INSERT INTO Relationships VALUES(4, 7, false);
 INSERT INTO Relationships VALUES(5, 2, false);
 INSERT INTO Relationships VALUES(6, 8, true);
 INSERT INTO Relationships VALUES(7, 8, false);
+
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(1, 2, '2015-11-16 03:00', 'I think youre cute');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(1, 6, '2015-11-16 04:20', 'Meow');
+
+INSERT INTO NotifState(seen, seenTs) VALUES(true, '2015-11-16 08:00');
+INSERT INTO NotifState(seen) VALUES(false);
