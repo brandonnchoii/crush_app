@@ -48,6 +48,9 @@ app.controller('mainController', function($scope, $http) {
     $scope.setCurrentView = function(str){
         $scope.currentView = str;
         console.log('setCurrentView to ' + str);
+        // if (str == "profile.html"){
+        //     initializeProfile();
+        // }
     }
 
     $scope.createAccount = function() {
@@ -85,28 +88,47 @@ app.controller('mainController', function($scope, $http) {
         var email = $scope.loginInfo.email;
         var password = $scope.loginInfo.password;
 
-        $http.get('/crush/user/' + email + "/" + password)
-            .success(function(data) {
-                if(data.length == 0)
-                    console.log('login not actually successful');
-                else{
-                    console.log('login successful');
-                    console.log(data);
-                    console.log(data[0]);
-                    console.log(data[0].uid);
-                    $scope.activeuid = data[0].uid;
-                    $scope.activeUserData = data[0];
-                    console.log($scope.activeuid);
-                    console.log($scope.activeUserData);
-                    $scope.currentView = 'profile.html';
-                }
-            })
+        // var promise = new Promise(
+            // function(resolve, reject){
+                $http.get('/crush/user/' + email + "/" + password)
+                    .success(function(data) {
+                        if(data.length == 0)
+                            console.log('login not actually successful');
+                        else{
+                            console.log('login successful');
+                            console.log(data);
+                            console.log(data[0]);
+                            console.log(data[0].uid);
+                            $scope.activeuid = data[0].uid;
+                            $scope.activeUserData = data[0];
+                            console.log($scope.activeuid);
+                            console.log($scope.activeUserData);
+                            //resolve(data[0]);
+                            $scope.currentView = 'profile.html';
+                        }
+                    })
             .error(function(error) {
                 //errors always print out as error? how to do error checking?
                 console.log("Invalid email/password combination.");
                 console.log('Error: ' + error);
-            });
-        
+            // })
+        });
+
+    // promise.then(
+    //     function(val){
+    //         console.log('after promise');
+    //         console.log("post promise");
+    //         console.log(val);
+    //         $scope.currentView = 'profile.html';
+    //         console.log('set view');
+    //         $scope.activeuid = val.uid;
+    //         $scope.activeUserData = val;
+    //         console.log($scope.currentView);
+    //     })
+    // .catch(
+    //     function(reason){
+    //         console.log('rejection');
+    //     })
     }
 
     $scope.logout = function() {
@@ -149,11 +171,11 @@ app.controller('mainController', function($scope, $http) {
     // this should be in profilecontroller, but we'll keep it 
     // here for now temporarily until the angular controller problem is fixed
     $scope.initializeProfile = function() {
-        setTimeout(function() {
+         setTimeout(function() {
             $scope.getRelationships();
             $scope.getFriends();
             $scope.getInterests();
-        }, 7000);
+         }, 9000);
     }
 
     $scope.getRelationships = function() {

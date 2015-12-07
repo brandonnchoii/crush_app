@@ -9,13 +9,23 @@
      
 
       <h1> Relationships</h1>
-      {{relationships}}
+      <!-- {{relationships}} -->
+
+      <ul ng-repeat="relation in relationships">
+        <li>{{relation.name}}</li>
+      </ul>
 
       <h1> Friends </h1>
-      {{friends}}
+<!--       {{friends}} -->
+
+      <ul ng-repeat="friend in friends">
+        <li>{{friend.name}}</li>
+      </ul>
 
        <h1>Interests</h1>
        {{interests}}
+
+
       <!-- {{profCtrl.test2}} why doesn't this work????? -->
 
       <ul ng-repeat="interest in profCtrl.test">
