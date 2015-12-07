@@ -16,6 +16,42 @@ router.get('/page/:pageToView', function(req, res){
     res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', page));
 });
 
+router.get('/crush/user/:uid', function(req, res){
+    console.log('enter rest call');
+    //console.log(req);
+    //console.log(req.body);
+    var id = req.params.uid
+    
+    var results = [];
+
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        // SQL Query > Select Data
+        //phone is kept private unless there is a match, right?
+        var query = client.query("SELECT name, gender, email, birthday, city, joindate, commitlevel, interestedin, profpic FROM userinf WHERE uid=($1);", [id]);
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+})
+
+
+
 router.get('/crush/user/:email/:pw', function(req, res){
     console.log('enter rest call');
     //console.log(req);
@@ -269,7 +305,7 @@ router.get('/crush/friends/:uid', function(req, res){
         }
 
         // SQL Query > Select Data
-        var query = client.query("select name from friend as f, userinf as u where ((f.fid2 = u.uid and f.fid1 = ($1)) or (f.fid1 = u.uid and f.fid2 = ($1)));", [id]);
+        var query = client.query("select name, uid from friend as f, userinf as u where ((f.fid2 = u.uid and f.fid1 = ($1)) or (f.fid1 = u.uid and f.fid2 = ($1)));", [id]);
         // Stream results back one row at a time
         query.on('row', function(row) {
             results.push(row);

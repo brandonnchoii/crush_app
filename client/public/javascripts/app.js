@@ -11,6 +11,7 @@ app.controller('mainController', function($scope, $http) {
     $scope.loginInfo = {};
     $scope.activeuid = -1;
     $scope.activeUserData;
+    $scope.currentUserData;
     $scope.currentView = 'index.html';
 
 //put into profilecontroller
@@ -46,13 +47,44 @@ app.controller('mainController', function($scope, $http) {
         return false;
     }
 
-    $scope.setCurrentView = function(str){
+    $scope.setCurrentView = function(str, uid){
         console.log('setCurrentView to ' + str);
+        console.log(uid);
         $scope.currentView = str;
-        if (str == "profile.html"){
+        if (str == "profile.html" && uid == null){
             console.log('initializeProfile');
-            $scope.initializeProfile();
+            $scope.initializeProfile($scope.activeuid);
         }
+        if (str == "profile.html" && uid != null){
+            console.log('initializeProfile ' + uid);
+            $scope.initializeProfile(uid);
+            if (uid != $scope.activeuid){
+                console.log('not the active id!');
+                $scope.loadCurrentUserInfo(uid);
+            }
+            else
+                $scope.currentUserData = $scope.activeUserData;
+        }
+    }
+
+    $scope.loadCurrentUserInfo = function(uid) {
+        console.log("load current user info");
+          $http.get('/crush/user/' + uid)
+                    .success(function(data) {
+                        if(data.length == 0)
+                            console.log('welp');
+                        else{
+                            $scope.currentUserData = data[0];
+                            console.log(data[0]);
+                            console.log('current user data ' + $scope.currentUserData);
+                        }
+                    })
+            .error(function(error) {
+                //errors always print out as error? how to do error checking?
+                console.log("Invalid loadSelectedUserInfo");
+                console.log('Error: ' + error);
+            // })
+        });
     }
 
     $scope.createAccount = function() {
@@ -73,6 +105,7 @@ app.controller('mainController', function($scope, $http) {
                 console.log(data[0].uid);
                 $scope.activeuid = data[0].uid;
                 $scope.activeUserData = data[0];
+                $scope.currentUserData = $scope.activeUserData;
                 console.log($scope.activeUserData);
                 $scope.setCurrentView('profile.html');
                 console.log($scope.activeuid);
@@ -105,6 +138,7 @@ app.controller('mainController', function($scope, $http) {
                             console.log(data[0].uid);
                             $scope.activeuid = data[0].uid;
                             $scope.activeUserData = data[0];
+                            $scope.currentUserData = $scope.activeUserData;
                             console.log($scope.activeuid);
                             console.log($scope.activeUserData);
                             //resolve(data[0]);
@@ -175,18 +209,18 @@ app.controller('mainController', function($scope, $http) {
 
     // this should be in profilecontroller, but we'll keep it 
     // here for now temporarily until the angular controller problem is fixed
-    $scope.initializeProfile = function() {
+    $scope.initializeProfile = function(uid) {
          // setTimeout(function() {
-            $scope.getRelationships();
-            $scope.getFriends();
-            $scope.getInterests();
-            $scope.getMessages();
+            $scope.getRelationships(uid);
+            $scope.getFriends(uid);
+            $scope.getInterests(uid);
+            $scope.getMessages(uid);
          // }, 9000);
     }
 
-    $scope.getMessages = function(){
+    $scope.getMessages = function(uid){
         console.log('getMessages()');
-        $http.get('/crush/allmess/' + $scope.activeuid)
+        $http.get('/crush/allmess/' + uid)
                 .success(function(data) {
                     $scope.messages = data;
                     for (var i = 0; i < data.length; i ++){
@@ -202,9 +236,9 @@ app.controller('mainController', function($scope, $http) {
                 });
     }
 
-    $scope.getRelationships = function() {
+    $scope.getRelationships = function(uid) {
         console.log('relationshipsssssssss');
-        $http.get('/crush/relationships/' + $scope.activeuid)
+        $http.get('/crush/relationships/' + uid)
                 .success(function(data) {
                     $scope.relationships = data;
                     console.log('get relationships success');
@@ -216,9 +250,9 @@ app.controller('mainController', function($scope, $http) {
                 });
     }
 
-    $scope.getFriends = function() {
+    $scope.getFriends = function(uid) {
         console.log('relationshipsssssssss');
-        $http.get('/crush/friends/' + $scope.activeuid)
+        $http.get('/crush/friends/' + uid)
                 .success(function(data) {
                     $scope.friends = data;
                     console.log('get friends success');
@@ -230,14 +264,15 @@ app.controller('mainController', function($scope, $http) {
                 });
     }
 
-    $scope.getInterests = function() {
-         $http.get('/crush/interests/' + $scope.activeuid)
+    $scope.getInterests = function(uid) {
+         $http.get('/crush/interests/' + uid)
             .success(function(data) {
                 console.log('/crush/interests/' + $scope.activeuid);
                 console.log(data);
                 $scope.interests = data;
                 console.log('get interests success');
                 console.log(data);
+                console.log($scope.interests);
             })
             .error(function(error) {
                 console.log('get interests failed');

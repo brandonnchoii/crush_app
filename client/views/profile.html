@@ -3,45 +3,60 @@
  <div class="profile-container col-xs-8 col-xs-offset-2" style="margin-top: 8%">
       <!-- List of suggestions -->
 
-      <h1>Hi, {{activeUserData.name}}. </h1><p>
-      Your gender is {{activeUserData.gender}}
+      <h1>Hi, {{currentUserData.name}}. </h1><p>
+      Your gender is {{currentUserData.gender}}
 
      
 
-      <h1> Relationships</h1>
-
-      <ul ng-repeat="relation in relationships">
-        <li>{{relation.name}}</li>
-      </ul>
+      
 
       <h1> Friends </h1>
 
       <ul ng-repeat="friend in friends">
-        <li>{{friend.name}}</li>
+        <li><a href = "#" ng-click="setCurrentView('profile.html', friend.uid)">{{friend.name}}</a></li>
       </ul>
 
-      <h1> Messages </h1>
+      <h1>Interests</h1>
 
-      <ul ng-repeat="message in messages">
-        <li>From: <!-- {{getUser(1)}}  -->{{message.name}} at {{message.ts}}. {{message.text}}</li>
+       <ul ng-repeat="interest in interests">
+        <li>{{interest.interest}}</li>
         <!-- TODO: fix the getUser thing -->
       </ul>
 
 
-
-       <h1>Interests</h1>
-       {{interests}}
+      <!-- only show below ones if they are under the activeid -->
 
 
-      <!-- {{profCtrl.test2}} why doesn't this work????? -->
 
-      <ul ng-repeat="interest in profCtrl.test">
-        <li><!-- Picture, name, # of mutual friends -->{{interest}}</li>
-      </ul>
+    <div ng-show="currentUserData.uid==activeuid">
+		<h1> Relationships</h1>
 
-      <ul ng-repeat="suggested in suggestedData">
-        <li><!-- Picture, name, # of mutual friends --></li>
-      </ul>
+	      <ul ng-repeat="relation in relationships">
+	        <li><a href = "#" ng-click="setCurrentView('profile.html', friend.uid)">{{relation.name}}</a></li>
+	      </ul>
+
+	      <h1> <!-- ng-show=isActiveuid(currentUserData.uid) --> Messages </h1> 
+
+
+	      <ul ng-repeat="message in messages">
+	        <li>From: <!-- {{getUser(1)}}  -->{{message.name}} at {{message.ts}}. {{message.text}}</li>
+	        <!-- TODO: fix the getUser thing or write it exactly in the sql query -->
+	      </ul>
+
+	       
+	       {{interests}}
+
+
+	      <!-- {{profCtrl.test2}} why doesn't this work????? -->
+
+	      <ul ng-repeat="interest in profCtrl.test">
+	        <li><!-- Picture, name, # of mutual friends -->{{interest}}</li>
+	      </ul>
+
+	      <ul ng-repeat="suggested in suggestedData">
+	        <li><!-- Picture, name, # of mutual friends --></li>
+	      </ul>
+	</div>
 
 
 
