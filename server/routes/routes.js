@@ -421,6 +421,7 @@ router.get('/crush/allmess/:uid', function(req, res){
 });
 
 //to post a new message, need to figure out how to do timestamps automatically
+// ^ this can be done from the front-end and sent to the server
 router.post('/crush/message/:uid/:idto', function(req, res) {
 
     var results = [];
@@ -429,6 +430,7 @@ router.post('/crush/message/:uid/:idto', function(req, res) {
 
     // Grab data from http request
     var data = {
+        time: req.body.time,
         message: req.body.text  //.text because it is from a form. Otherwise, you can specify the data yourself
     };
 
@@ -444,7 +446,8 @@ router.post('/crush/message/:uid/:idto', function(req, res) {
         }
 
         // SQL Query > Insert Data
-        client.query("INSERT INTO notifications(nFrom, nTo, ts , text) values(($1), ($2),'2011-08-09 04:04', ($3));", [id, idto, data.interest]);
+        client.query("INSERT INTO notifications(nFrom, nTo, ts , text) values(($1), ($2), ($3), ($4));", [id, idto, data.time, data.message]);
+        //client.query("INSERT INTO notifications(nFrom, nTo, ts , text) values(($1), ($2),'2011-08-09 04:04', ($3));", [id, idto, data.interest]);
         client.query("INSERT INTO notifState(seen) VALUES (false);");
 
         // SQL Query > Select Data

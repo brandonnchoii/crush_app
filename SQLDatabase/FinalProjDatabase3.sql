@@ -107,7 +107,6 @@ INSERT INTO UserInterests VALUES(8, 'video games');
 INSERT INTO UserInterests VALUES(8, 'fashion');
 INSERT INTO UserInterests VALUES(8, 'music' );
 
-
 INSERT INTO Friend VALUES(1,3);
 INSERT INTO Friend VALUES(1,6);
 INSERT INTO Friend VALUES(1,2);

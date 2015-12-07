@@ -7,6 +7,7 @@ app.controller('mainController', function($scope, $http) {
     $scope.formData = {};
     $scope.todoData = {};
     $scope.registerInfo = {};
+    $scope.messages = {};
     $scope.loginInfo = {};
     $scope.activeuid = -1;
     $scope.activeUserData;
@@ -175,7 +176,22 @@ app.controller('mainController', function($scope, $http) {
             $scope.getRelationships();
             $scope.getFriends();
             $scope.getInterests();
+            $scope.getMessages();
          }, 9000);
+    }
+
+    $scope.getMessages = function(){
+        console.log('getMessages()');
+        $http.get('/crush/allmess/' + $scope.activeuid)
+                .success(function(data) {
+                    $scope.messages = data;
+                    console.log('get messages success');
+                    console.log(data);
+                })
+                .error(function(error) {
+                    console.log('get messages failed');
+                    console.log('Error: ' + error);
+                });
     }
 
     $scope.getRelationships = function() {
