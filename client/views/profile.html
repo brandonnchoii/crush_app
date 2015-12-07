@@ -1,4 +1,4 @@
- <div ng-controller="profileController as profCtrl" ng-init="initializeProfile()">
+ <div ng-controller="profileController as profCtrl">
 
  <div class="profile-container col-xs-8 col-xs-offset-2" style="margin-top: 8%">
       <!-- List of suggestions -->
@@ -9,24 +9,22 @@
      
 
       <h1> Relationships</h1>
-      <!-- {{relationships}} -->
 
       <ul ng-repeat="relation in relationships">
         <li>{{relation.name}}</li>
       </ul>
 
       <h1> Friends </h1>
-<!--       {{friends}} -->
 
       <ul ng-repeat="friend in friends">
         <li>{{friend.name}}</li>
       </ul>
 
       <h1> Messages </h1>
-<!--       {{friends}} -->
 
       <ul ng-repeat="message in messages">
-        <li>{{friend.name}}</li>
+        <li>From: <!-- {{getUser(1)}}  -->{{message.name}} at {{message.ts}}. {{message.text}}</li>
+        <!-- TODO: fix the getUser thing -->
       </ul>
 
 

@@ -47,11 +47,12 @@ app.controller('mainController', function($scope, $http) {
     }
 
     $scope.setCurrentView = function(str){
-        $scope.currentView = str;
         console.log('setCurrentView to ' + str);
-        // if (str == "profile.html"){
-        //     initializeProfile();
-        // }
+        $scope.currentView = str;
+        if (str == "profile.html"){
+            console.log('initializeProfile');
+            $scope.initializeProfile();
+        }
     }
 
     $scope.createAccount = function() {
@@ -73,7 +74,7 @@ app.controller('mainController', function($scope, $http) {
                 $scope.activeuid = data[0].uid;
                 $scope.activeUserData = data[0];
                 console.log($scope.activeUserData);
-                $scope.currentView = 'profile.html';
+                $scope.setCurrentView('profile.html');
                 console.log($scope.activeuid);
             })
             .error(function(error) {
@@ -81,6 +82,8 @@ app.controller('mainController', function($scope, $http) {
                 console.log('Error: ' + error);
             });
     }
+
+
 
     $scope.login = function() {
         console.log('loginnnn');
@@ -105,7 +108,7 @@ app.controller('mainController', function($scope, $http) {
                             console.log($scope.activeuid);
                             console.log($scope.activeUserData);
                             //resolve(data[0]);
-                            $scope.currentView = 'profile.html';
+                            $scope.setCurrentView('profile.html');
                         }
                     })
             .error(function(error) {
@@ -120,10 +123,11 @@ app.controller('mainController', function($scope, $http) {
     //         console.log('after promise');
     //         console.log("post promise");
     //         console.log(val);
-    //         $scope.currentView = 'profile.html';
     //         console.log('set view');
     //         $scope.activeuid = val.uid;
     //         $scope.activeUserData = val;
+
+    //         $scope.currentView = 'profile.html';
     //         console.log($scope.currentView);
     //     })
     // .catch(
@@ -172,12 +176,12 @@ app.controller('mainController', function($scope, $http) {
     // this should be in profilecontroller, but we'll keep it 
     // here for now temporarily until the angular controller problem is fixed
     $scope.initializeProfile = function() {
-         setTimeout(function() {
+         // setTimeout(function() {
             $scope.getRelationships();
             $scope.getFriends();
             $scope.getInterests();
             $scope.getMessages();
-         }, 9000);
+         // }, 9000);
     }
 
     $scope.getMessages = function(){
@@ -185,6 +189,10 @@ app.controller('mainController', function($scope, $http) {
         $http.get('/crush/allmess/' + $scope.activeuid)
                 .success(function(data) {
                     $scope.messages = data;
+                    for (var i = 0; i < data.length; i ++){
+                        data[i].name = $scope.getUser(data[i].nfrom);
+                    }
+                    
                     console.log('get messages success');
                     console.log(data);
                 })
@@ -230,6 +238,17 @@ app.controller('mainController', function($scope, $http) {
                 $scope.interests = data;
                 console.log('get interests success');
                 console.log(data);
+            })
+            .error(function(error) {
+                console.log('get interests failed');
+                console.log('Error: ' + error);
+            });
+    }
+
+    $scope.getUser = function(uid) {
+        $http.get('/crush/name/' + uid)
+            .success(function(data) {
+                return data;
             })
             .error(function(error) {
                 console.log('get interests failed');
