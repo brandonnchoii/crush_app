@@ -416,11 +416,11 @@ router.get('/crush/allmess/:uid', function(req, res){
 
         // SQL Query > Select Data
         var query = client.query("select u.name, mess.text, mess.ts from userinf as u,"+
-                                "(select * from notifications as n where (n.nTo = ($1) and"+
+                                " (select * from notifications as n where (n.nTo = ($1) and "+
                                 "EXISTS(select * from relationships as r "+
                                 "where( (r.user1 = n.nTo and r.user2=n.nFrom and isReciprocated = true )"+
-                                "OR (r.user2 = n.nTo and r.user1=n.nFrom and isReciprocated = true )))))"+
-                                "as mess where u.uid = mess.nFrom;", [id]);
+                                " OR (r.user2 = n.nTo and r.user1=n.nFrom and isReciprocated = true )))))"+
+                                " as mess where u.uid = mess.nFrom;", [id]);
         // Stream results back one row at a time
         query.on('row', function(row) {
             results.push(row);
