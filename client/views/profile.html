@@ -1,3 +1,4 @@
+<<<<<<< HEAD
  <!DOCTYPE html>
  <html>
  	<head>
@@ -53,3 +54,65 @@
       	<script src="javascripts/app.js"></script>
 	</body>
 </html>
+=======
+ <div ng-controller="profileController as profCtrl">
+
+ <div class="profile-container col-xs-8 col-xs-offset-2" style="margin-top: 8%">
+      <!-- List of suggestions -->
+
+      <!-- self reference to go home -->
+      <a href = "#" ng-click="setCurrentView('profile.html', activeUserData.uid)">Profile.</a>
+
+      <br><br>
+      <img src="/images/default_female.jpg" width="300" height="300"/>
+      <h1>Hi, {{currentUserData.name}}. </h1><p>
+      Your gender is {{currentUserData.gender}}
+     
+      <h1> Friends </h1>
+
+      <ul ng-repeat="friend in friends">
+        <li><a href = "#" ng-click="setCurrentView('profile.html', friend.uid)">{{friend.name}}</a></li>
+      </ul>
+
+      <h1>Interests</h1>
+       <ul ng-repeat="interest in interests">
+       	{{interests}}
+        <li>{{interest.interest}}</li>
+        <!-- TODO: fix the getUser thing -->
+      </ul>
+
+      <!-- only show below ones if they are under the activeid -->
+
+    <div ng-show="currentUserData.uid==activeuid">
+		<h1> Relationships</h1>
+
+	      <ul ng-repeat="relation in relationships">
+	        <li><a href = "#" ng-click="setCurrentView('profile.html', friend.uid)">{{relation.name}}</a></li>
+	      </ul>
+
+	      <h1> <!-- ng-show=isActiveuid(currentUserData.uid) --> Messages </h1> 
+
+	      <ul ng-repeat="message in messages">
+	        <li>From: <!-- {{getUser(1)}}  -->{{message.name}} at {{message.ts}}. {{message.text}}</li>
+	        <!-- TODO: fix the getUser thing or write it exactly in the sql query -->
+	      </ul>
+	       
+	       {{interests}}
+
+	      <!-- {{profCtrl.test2}} why doesn't this work????? -->
+
+	      <ul ng-repeat="interest in profCtrl.test">
+	        <li><!-- Picture, name, # of mutual friends -->{{interest}}</li>
+	      </ul>
+
+	      <ul ng-repeat="suggested in suggestedData">
+	        <li><!-- Picture, name, # of mutual friends --></li>
+	      </ul>
+	</div>
+
+
+
+
+    </div>
+</div>
+>>>>>>> ae9a06358629125086c8c7d5106a5f0d9a55f2c2

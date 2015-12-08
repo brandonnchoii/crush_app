@@ -16,6 +16,16 @@ router.get('/page/:pageToView', function(req, res){
     res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', page));
 });
 
+router.get('/images/:image', function(req, res){
+    var image = req.params.image;
+    res.sendFile(path.join(__dirname, '../', '../', 'client', 'images', image));
+});
+
+router.get('/stylesheets/:page', function(req, res){
+    var page = req.params.page;
+    res.sendFile(path.join(__dirname, '../', '../', 'client', 'stylesheets', page));
+});
+
 router.get('/crush/user/:uid', function(req, res){
     console.log('enter rest call');
     //console.log(req);
