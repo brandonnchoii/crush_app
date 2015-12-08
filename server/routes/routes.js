@@ -526,12 +526,67 @@ router.get('/crush/suggesstions/:uid', function(req, res){
         }
 
         // SQL Query > Select Data
-        var query = client.query("select u.uid, u.name, mess.text, mess.ts from userinf as u,"+
-                                " (select * from notifications as n where (n.nTo = ($1) and "+
-                                "EXISTS(select * from relationships as r "+
-                                "where( (r.user1 = n.nTo and r.user2=n.nFrom and isReciprocated = true )"+
-                                " OR (r.user2 = n.nTo and r.user1=n.nFrom and isReciprocated = true )))))"+
-                                " as mess where u.uid = mess.nFrom;", [id]);
+        var query = client.query("WITH "+
+            "u1int (interests) AS "+
+            "(SELECT interest "+
+            "FROM UserInterests "+
+            "WHERE UserInterests.uiid = 2),"+
+            "u1info (uid1, name1, gender1, commitLevel1, interestedIn1) AS "+
+            "(SELECT uid, name, gender, commitLevel, interestedIn "+
+            "FROM UserInf "+
+            "WHERE UserInf.uid = 2), "+
+            "compatibleUsers (uid2, name2, gender2, commitLevel2, interestedIn2) AS "+
+            "(SELECT uid, name, gender, commitLevel, interestedIn "+
+            "FROM UserInf, u1info "+
+            "WHERE "+
+            "((UserInf.gender = u1info.interestedIn1 "+
+            "AND (UserInf.interestedIn = u1info.gender1 OR UserInf.interestedIn = 'Both')) "+
+            "OR "+
+            "(u1info.gender1 = UserInf.interestedIn "+
+            "AND (u1info.interestedIn1 = UserInf.gender OR u1info.interestedIn1 = 'Both')) "+
+            "OR "+
+            "(UserInf.interestedIn = 'Both' AND u1info.interestedIn1 = 'Both')) "+
+            "AND "+
+            "UserInf.commitLevel = u1info.commitlevel1) "+
+
+            "(SELECT uid2, name2 FROM compatibleUsers "+
+            "WHERE "+
+            "(SELECT COUNT(*) "+
+            "FROM "+
+            "((SELECT interest "+
+            "FROM UserInterests "+
+            "WHERE compatibleUsers.uid2 = UserInterests.uiid) "+
+            "INTERSECT "+
+            "(SELECT * FROM u1int)) AS T) "+
+            "= 3 "+
+            ") "+
+            "UNION "+
+            "(SELECT uid2, name2 FROM compatibleUsers "+
+            "WHERE "+
+            "(SELECT COUNT(*) "+
+            "FROM "+
+            "((SELECT interest "+
+            "FROM UserInterests "+
+            "WHERE compatibleUsers.uid2 = UserInterests.uiid) "+
+            "INTERSECT "+
+            "(SELECT * FROM u1int)) AS T) "+
+            "= 2 "+
+            ") "+
+            "UNION "+
+            "(SELECT uid2, name2 FROM compatibleUsers "+
+            "WHERE "+
+            "(SELECT COUNT(*) "+
+            "FROM "+
+            "((SELECT interest "+
+            "FROM UserInterests "+
+            "WHERE compatibleUsers.uid2 = UserInterests.uiid) "+
+            "INTERSECT "+
+            "(SELECT * FROM u1int)) AS T) "+
+            "= 1"+
+            ");", [id]);
+          
+          
+          
         // Stream results back one row at a time
         query.on('row', function(row) {
             results.push(row);
