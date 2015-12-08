@@ -23,7 +23,7 @@ router.get('/images/:image', function(req, res){
 
 router.get('/stylesheets/:page', function(req, res){
     var page = req.params.page;
-    res.sendFile(path.join(__dirname, '../', '../', 'client', 'stylesheets', page));
+    res.sendFile(path.join(__dirname, '../', '../', 'client', 'public', 'stylesheets', page));
 });
 
 router.get('/crush/user/:uid', function(req, res){
