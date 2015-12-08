@@ -509,4 +509,41 @@ router.get('/crush/name/:uid', function(req, res){
         });
     });
 });
+
+
+router.get('/crush/suggesstions/:uid', function(req, res){
+    var results = [];
+    var id = req.params.uid;
+
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        // SQL Query > Select Data
+        var query = client.query("select u.uid, u.name, mess.text, mess.ts from userinf as u,"+
+                                " (select * from notifications as n where (n.nTo = ($1) and "+
+                                "EXISTS(select * from relationships as r "+
+                                "where( (r.user1 = n.nTo and r.user2=n.nFrom and isReciprocated = true )"+
+                                " OR (r.user2 = n.nTo and r.user1=n.nFrom and isReciprocated = true )))))"+
+                                " as mess where u.uid = mess.nFrom;", [id]);
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+});
+
+
 module.exports = router;
