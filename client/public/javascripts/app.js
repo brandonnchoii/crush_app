@@ -5,34 +5,21 @@ var app = angular.module('crush', []);
 
 app.controller('mainController', function($scope, $http) {
 
-
-     
-
     $scope.formData = {};
     $scope.todoData = {};
     $scope.registerInfo = {};
     $scope.messages = {};
     $scope.loginInfo = {};
     $scope.activeuid = -1;
-    $scope.activeUserData;
-    $scope.currentUserData;
+    $scope.activeUserData = {};
+    $scope.activeUserFriends = {};
+    $scope.currentUserData = {};
     $scope.currentView = 'index.html';
 
 //put into profilecontroller
     $scope.relationships = {};
     $scope.friends = {};
     $scope.interests = {};
-
-   // $scope.getInterests = function() {
-        $http.get('/crush/interests/' + $scope.activeuid)
-            .success(function(data) {
-                $scope.todoData = data;
-                console.log(data);
-            })
-            .error(function(error) {
-                console.log('Error: ' + error);
-            });
-    //}
 
     //don't really need this here twice...
    // $scope.getInterests();
@@ -53,29 +40,25 @@ app.controller('mainController', function($scope, $http) {
 
     $scope.setCurrentView = function(str, uid){
 
-       
-
-
         console.log('setCurrentView to ' + str);
         console.log(uid);
         $scope.currentView = str;
         if (str == "profile.html" && uid == null){
-            console.log('initializeProfile');
+            console.log('initializeProfile1');
             $scope.initializeProfile($scope.activeuid);
+            $scope.activeUserFriends = $scope.friends;
         }
         if (str == "profile.html" && uid != null){
-
-
-
-
             console.log('initializeProfile ' + uid);
             $scope.initializeProfile(uid);
             if (uid != $scope.activeuid){
                 console.log('not the active id!');
                 $scope.loadCurrentUserInfo(uid);
             }
-            else
+            else{
                 $scope.currentUserData = $scope.activeUserData;
+            }
+
         }
     }
 
@@ -233,9 +216,9 @@ app.controller('mainController', function($scope, $http) {
         $http.get('/crush/allmess/' + uid)
                 .success(function(data) {
                     $scope.messages = data;
-                    for (var i = 0; i < data.length; i ++){
-                        data[i].name = $scope.getUser(data[i].nfrom);
-                    }
+                    // for (var i = 0; i < data.length; i ++){
+                    //     data[i].name = $scope.getUser(data[i].nfrom);
+                    // }
                     
                     console.log('get messages success');
                     console.log(data);
@@ -301,6 +284,31 @@ app.controller('mainController', function($scope, $http) {
             });
     }
 
+    $scope.isFriend = function() { //function(uid)
+        //console.log('isfriend ' + uid);
+        console.log('isfriend');
+        console.log($scope.friends);
+        console.log($scope.currentUserData);
+        if ($scope.activeUserFriends != undefined && $scope.currentUserData.uid != undefined){
+            console.log('hay');
+            for (var i = 0; i < $scope.friends.length; i++){
+                //console.log("i " + i);
+
+                 console.log("loop " + $scope.friends[i].uid + " " + i);
+                 console.log("loop " + $scope.currentUserData.uid);
+                if ($scope.activeUserFriends[i].uid == $scope.currentUserData.uid){
+                    console.log("friend " + $scope.friends[i].uid + " is friends with " + $scope.currentUserData.uid);
+                    return true;
+                }
+            }
+        }
+
+        //console.log("friend " + $scope.friends[i].uid + " is not friends with " + $scope.currentUserData.uid);
+        console.log("not friends");
+        return false;
+       
+    }
+
 //autocomplete
 // setTimeout(function(){
 //      console.log('profile');
@@ -340,6 +348,7 @@ app.controller('mainController', function($scope, $http) {
 });
 
 app.controller('profileController', function($scope, $http) {
+
     console.log('profilecontroller');
     $scope.test2 = 'hello';
     $scope.test = ['hi', 'bye'];

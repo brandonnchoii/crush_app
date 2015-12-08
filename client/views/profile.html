@@ -14,6 +14,8 @@
 
 		      <!-- List of suggestions -->
 		      <img src="/images/default_female.jpg"/>
+		      <button ng-show="!isFriend()">Add Friend</button>
+
 		      <h1>Hi, {{currentUserData.name}}. </h1>
 		      Your gender is {{currentUserData.gender}}
 		      <h1>Friends</h1>
@@ -29,11 +31,11 @@
 		    <div ng-show="currentUserData.uid==activeuid">
 				<h1> Relationships</h1>
 			      <ul ng-repeat="relation in relationships">
-			        <li><a href = "#" ng-click="setCurrentView('profile.html', friend.uid)">{{relation.name}}</a></li>
+			        <li><a href = "#" ng-click="setCurrentView('profile.html', relation.name)">{{relation.name}}</a></li>
 			      </ul>
 			      <h1> <!-- ng-show=isActiveuid(currentUserData.uid) --> Messages </h1> 
 			      <ul ng-repeat="message in messages">
-			        <li>From: <!-- {{getUser(1)}}  -->{{message.name}} at {{message.ts}}. {{message.text}}</li>
+			        <li>From: <!-- {{getUser(1)}}  --><a href = "#" ng-click="setCurrentView('profile.html', message.name)">{{message.name}}</a> at {{message.ts}}. {{message.text}}</li>
 			        <!-- TODO: fix the getUser thing or write it exactly in the sql query -->
 			      </ul>
 			       {{interests}}
