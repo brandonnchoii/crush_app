@@ -116,8 +116,6 @@ app.controller('mainController', function($scope, $http) {
             });
     }
 
-
-
     $scope.login = function() {
         console.log('loginnnn');
         console.log($scope.loginInfo);
