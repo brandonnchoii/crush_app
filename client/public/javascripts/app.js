@@ -5,36 +5,9 @@ var app = angular.module('crush', []);
 
 app.controller('mainController', function($scope, $http) {
 
-      $(function() {
-            var availableTags = [
-              "ActionScript",
-              "AppleScript",
-              "Asp",
-              "BASIC",
-              "C",
-              "C++",
-              "Clojure",
-              "COBOL",
-              "ColdFusion",
-              "Erlang",
-              "Fortran",
-              "Groovy",
-              "Haskell",
-              "Java",
-              "JavaScript",
-              "Lisp",
-              "Perl",
-              "PHP",
-              "Python",
-              "Ruby",
-              "Scala",
-              "Scheme"
-            ];
-            $( "#tags" ).autocomplete({
-              source: availableTags
-            });
-          });
-      
+
+     
+
     $scope.formData = {};
     $scope.todoData = {};
     $scope.registerInfo = {};
@@ -79,6 +52,10 @@ app.controller('mainController', function($scope, $http) {
     }
 
     $scope.setCurrentView = function(str, uid){
+
+       
+
+
         console.log('setCurrentView to ' + str);
         console.log(uid);
         $scope.currentView = str;
@@ -87,6 +64,10 @@ app.controller('mainController', function($scope, $http) {
             $scope.initializeProfile($scope.activeuid);
         }
         if (str == "profile.html" && uid != null){
+
+
+
+
             console.log('initializeProfile ' + uid);
             $scope.initializeProfile(uid);
             if (uid != $scope.activeuid){
@@ -319,6 +300,43 @@ app.controller('mainController', function($scope, $http) {
                 console.log('Error: ' + error);
             });
     }
+
+//autocomplete
+// setTimeout(function(){
+//      console.log('profile');
+//   $(function() {
+//             var availableTags = [
+//               "ActionScript",
+//               "AppleScript",
+//               "Asp",
+//               "BASIC",
+//               "C",
+//               "C++",
+//               "Clojure",
+//               "COBOL",
+//               "ColdFusion",
+//               "Erlang",
+//               "Fortran",
+//               "Groovy",
+//               "Haskell",
+//               "Java",
+//               "JavaScript",
+//               "Lisp",
+//               "Perl",
+//               "PHP",
+//               "Python",
+//               "Ruby",
+//               "Scala",
+//               "Scheme"
+//             ];
+//             $( "#tags" ).autocomplete({
+//               source: availableTags
+//             });
+//           });
+// console.log("availableTags");
+//              console.log(availableTags);
+//          }, 5000);
+
 });
 
 app.controller('profileController', function($scope, $http) {
