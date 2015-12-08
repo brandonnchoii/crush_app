@@ -415,7 +415,7 @@ router.get('/crush/allmess/:uid', function(req, res){
         }
 
         // SQL Query > Select Data
-        var query = client.query("select u.name, mess.text, mess.ts from userinf as u,"+
+        var query = client.query("select u.uid, u.name, mess.text, mess.ts from userinf as u,"+
                                 " (select * from notifications as n where (n.nTo = ($1) and "+
                                 "EXISTS(select * from relationships as r "+
                                 "where( (r.user1 = n.nTo and r.user2=n.nFrom and isReciprocated = true )"+
