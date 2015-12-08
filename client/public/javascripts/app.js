@@ -4,6 +4,37 @@ var app = angular.module('crush', []);
 //http://stackoverflow.com/questions/21919962/share-data-between-angularjs-controllers
 
 app.controller('mainController', function($scope, $http) {
+
+      $(function() {
+            var availableTags = [
+              "ActionScript",
+              "AppleScript",
+              "Asp",
+              "BASIC",
+              "C",
+              "C++",
+              "Clojure",
+              "COBOL",
+              "ColdFusion",
+              "Erlang",
+              "Fortran",
+              "Groovy",
+              "Haskell",
+              "Java",
+              "JavaScript",
+              "Lisp",
+              "Perl",
+              "PHP",
+              "Python",
+              "Ruby",
+              "Scala",
+              "Scheme"
+            ];
+            $( "#tags" ).autocomplete({
+              source: availableTags
+            });
+          });
+      
     $scope.formData = {};
     $scope.todoData = {};
     $scope.registerInfo = {};
