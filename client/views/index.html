@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html ng-app="crush">
   <head>
-    <title>Crush</title>
+    <title>Crush - Welcome!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- styles -->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="stylesheets/generic.css" media="screen">
  </head>
 
   <body ng-controller="mainController"> <!-- as mainCtrl ... why doesn't this work? -->
@@ -14,7 +15,6 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#" ng-click="setCurrentView('index.html')">Crush</a>
                 </div>
-
                 <ul class="nav navbar-nav navbar-right">
                   <li ng-show="!hasActiveID()"><a href="#" ng-click="setCurrentView('register.html')"><i class="fa fa-home" ></i> <b>Register</b></a></li>
                     <li ng-show="!hasActiveID()"><a href="#" ng-click="setCurrentView('login.html')"> <i class="fa fa-home" ></i> Log In  </a> </li> 
