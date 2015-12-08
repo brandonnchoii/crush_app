@@ -461,8 +461,6 @@ router.post('/crush/message/:uid/:idto', function(req, res) {
 
         // SQL Query > Insert Data
         client.query("INSERT INTO notifications(nFrom, nTo, ts , text) values(($1), ($2), ($3), ($4));", [id, idto, data.time, data.message]);
-        //client.query("INSERT INTO notifications(nFrom, nTo, ts , text) values(($1), ($2),'2011-08-09 04:04', ($3));", [id, idto, data.interest]);
-        client.query("INSERT INTO notifState(seen) VALUES (false);");
         client.query("INSERT INTO relationships VALUES ($1, $2, false);");
 
         // SQL Query > Select Data
@@ -600,5 +598,33 @@ router.get('/crush/suggesstions/:uid', function(req, res){
     });
 });
 
+router.get('/crush/messfrom/:uid', function(req, res){
+    var results = [];
+    var id = req.params.uid;
+
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        // SQL Query > Select Data
+        var query = client.query("select * from notifications where nFrom = $1", [id]);
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+});
 
 module.exports = router;
