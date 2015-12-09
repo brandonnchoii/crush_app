@@ -29,6 +29,10 @@ app.controller('mainController', function($scope, $http) {
         return false;
     }
 
+    $scope.noPicGender = function(str){
+        return $scope.currentUserData.profpic == '' && str == $scope.currentUserData.gender;
+    }
+
     $scope.isCurrentView = function(str){
         if ($scope.currentView == str)
             return true;
