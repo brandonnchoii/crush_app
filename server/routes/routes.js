@@ -617,7 +617,7 @@ router.post('/crush/message/:uid/:idto', function(req, res) {
         }
 
         // SQL Query > Insert Data
-        client.query("INSERT INTO notifications(nFrom, nTo, ts , text) values(($1), ($2), ($3), ($4));", [id, idto, req.body.ts, req.body.text]);
+        client.query("INSERT INTO notifications(nFrom, nTo, ts , text) values(($1), ($2), ($3), ($4));", [id, to, req.body.ts, req.body.text]);
         client.query("INSERT INTO relationships VALUES ($1, $2, false);");
 
         // SQL Query > Select Data
