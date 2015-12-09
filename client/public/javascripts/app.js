@@ -36,7 +36,6 @@ app.controller('mainController', function($scope, $http) {
     }
 
     $scope.setCurrentView = function(str, uid){
-
         console.log('setCurrentView to ' + str);
         console.log(uid);
         $scope.currentView = str;
@@ -55,7 +54,20 @@ app.controller('mainController', function($scope, $http) {
             else{
                 $scope.currentUserData = $scope.activeUserData;
             }
-
+        }
+        if(str == "settings.html"){
+            console.log('one settings page');
+            console.log('settings_gender_' + $scope.activeUserData.gender);
+            document.getElementById('settings_gender_' + $scope.activeUserData.gender).checked = true;
+            console.log(document.getElementById('settings_gender_' + $scope.activeUserData.gender));
+            // console.log(genderRadioButton);
+            // genderRadioButton.checked = true;
+            // console.log(test);
+            // console.log(test.checked);
+            // test.checked = true;
+             var interestedInRadioButton = document.getElementById('settings_interestedin_' + $scope.activeUserData.interestedin).checked = true;
+            // interestedInRadioButton.checked = true;
+            document.getElementById('settings_commitlevel_' +  $scope.activeUserData.commitlevel).checked = true;
         }
     }
 
@@ -205,6 +217,8 @@ app.controller('mainController', function($scope, $http) {
             $scope.getFriends(uid);
             $scope.getInterests(uid);
             $scope.getMessages(uid);
+            console.log('activeUserData');
+            console.log($scope.activeUserData);
          // }, 9000);
     }
 
@@ -303,7 +317,76 @@ app.controller('mainController', function($scope, $http) {
         //console.log("friend " + $scope.friends[i].uid + " is not friends with " + $scope.currentUserData.uid);
         console.log("not friends");
         return false;
-       
+    }
+
+    $scope.updateInformation = function() {
+        console.log($scope.activeUserData);
+        var newPasswordValue = document.getElementById('settings_new_password').value;
+        if (newPasswordValue == null || newPasswordValue == ""){
+            newPasswordValue = $scope.activeUserData.password;
+        }
+        console.log(newPasswordValue);
+        // console.log(document.querySelector('input[name="test"]:checked').value);
+        var genderValue;
+        var genderRadios = document.getElementsByName('gender');
+        for (var i = 0, length = genderRadios.length; i < length; i++) {
+            if (genderRadios[i].checked) {
+                genderValue = genderRadios[i].value;
+                break;
+            }
+        }
+
+        // var commitlevelValue = document.getElementById('settings_commitlevel').value;
+        var commitlevelValue;
+        var commitRadios = document.getElementsByName('commitment');
+        for (var i = 0, length = commitRadios.length; i < length; i++) {
+            if (commitRadios[i].checked) {
+                commitlevelValue = commitRadios[i].value;
+                break;
+            }
+        }
+
+        var interestedinValue;
+        var interestedRadios = document.getElementsByName('interestedin');
+        for (var i = 0, length = interestedRadios.length; i < length; i++) {
+            if (interestedRadios[i].checked) {
+                interestedinValue = interestedRadios[i].value;
+                break;
+            }
+        }
+
+        console.log(genderValue);
+
+        // = document.getElementById('settings_gender').value;
+        var birthdayValue = document.getElementById('settings_birthday').value;
+        var phoneValue = document.getElementById('settings_phone').value;
+        var cityValue = document.getElementById('settings_city').value;
+        
+
+        var newValues = {
+            newPassword: newPasswordValue,
+            gender: genderValue,
+            birthday: birthdayValue,
+            phone: phoneValue,
+            city: cityValue, 
+            commitlevel: commitlevelValue,
+            interestedin: interestedinValue
+        };
+
+        console.log(newValues);
+        console.log('/crush/user/' + $scope.activeUserData.email + '/' + document.getElementById('settings_password').value);
+        var url = '/crush/user/' + $scope.activeUserData.email + '/' + document.getElementById('settings_password').value;
+        $http.put('/crush/user/' + $scope.activeUserData.email + '/' + document.getElementById('settings_password').value, newValues)
+            .success(function(data) {
+                $scope.friends = data;
+                console.log(data);
+            })
+            .error(function(error) {
+                console.log('put values');
+                console.log('Error: ' + error);
+        });
+
+
     }
 
 //autocomplete
@@ -351,6 +434,8 @@ app.controller('profileController', function($scope, $http) {
     $scope.test = ['hi', 'bye'];
     $scope.interests = {};
 
+
+
     //upon loading
      $http.get('/crush/interests/' + $scope.activeuid)
             .success(function(data) {
@@ -362,6 +447,8 @@ app.controller('profileController', function($scope, $http) {
                 console.log('get interests failed');
                 console.log('Error: ' + error);
             });
+
+
 });
 
 

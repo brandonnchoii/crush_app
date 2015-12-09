@@ -27,7 +27,7 @@ router.get('/stylesheets/:page', function(req, res){
 });
 
 router.get('/crush/user/:uid', function(req, res){
-    console.log('enter rest call');
+    // console.log('enter rest call');
     //console.log(req);
     //console.log(req.body);
     var id = req.params.uid
@@ -63,9 +63,6 @@ router.get('/crush/user/:uid', function(req, res){
 
 
 router.get('/crush/user/:email/:pw', function(req, res){
-    console.log('enter rest call');
-    //console.log(req);
-    //console.log(req.body);
     var email = req.params.email
     var pw = req.params.pw
     console.log(email);
@@ -97,6 +94,51 @@ router.get('/crush/user/:email/:pw', function(req, res){
         });
     });
 })
+
+router.put('/crush/user/:email/:pw', function(req, res){
+    console.log('enter rest call');
+    var email = req.params.email
+    var password = req.params.pw
+    console.log(email);
+    console.log(pw);
+    console.log(req.body);
+    console.log('process request');
+
+    //  var data = {
+    //     interest: req.body.text  //.text because it is from a form. Otherwise, you can specify the data yourself
+    // };
+
+    var results = [];
+
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        client.query("UPDATE userinf SET name=($1), password=($2), gender=($3), birthday=($4), phone=($5), city=($6), commitlevel=($8), interestedin=($9) WHERE email=($10) AND password=($11)", [req.body.name, req.body.newPassword, req.body.gender, req.body.birthday, req.body.phone, req.body.city, req.body.commitlevel, req.body.interestedin, email, password]);
+       
+        // SQL Query > Select Data
+        var query = client.query("SELECT * FROM userinf WHERE email=($1) AND password=($2);", [req.body.email, req.body.newPassword]);
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+})
+
+
+
 
 router.post('/crush/user', function(req, res) {
     console.log("REST request to create a new user");
@@ -134,6 +176,8 @@ router.post('/crush/user', function(req, res) {
 router.get('/crush/interests/:uid', function(req, res){
     var results = [];
     var id = req.params.uid;
+
+
 
     // Get a Postgres client from the connection pool
     pg.connect(connectionString, function(err, client, done) {

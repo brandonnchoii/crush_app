@@ -3,22 +3,41 @@
       <div class="register-container col-xs-4 col-xs-offset-4" style="margin-top: %">
         <div class="header">
           <h1 style="text-align: center">Settings</h1>
+          <h5 style="text-align: center">{{activeUserData.email}}</h5>
         </div>
-        Update Info
         <div class="todo-form">
           <form>
-            <div class="form-group"><input type="text" class="form-control input-lg" placeholder="Email" ng-model="registerInfo.email"></div>
-            <div class="form-group"><input type="text" class="form-control input-lg" placeholder="Name" ng-model="registerInfo.name"></div>
-            <div class="form-group"><input type="text" class="form-control input-lg" placeholder="Password" ng-model="registerInfo.password"></div>
-            
-            <div class="form-group"><input type="text" class="form-control input-lg" placeholder="Gender" ng-model="registerInfo.gender"></div>
-            <div class="form-group"><input type="text" class="form-control input-lg" placeholder="Birthday e.g. 10-9-1995" ng-model="registerInfo.birthday"></div>
-            <div class="form-group"><input type="text" class="form-control input-lg" placeholder="City" ng-model="registerInfo.city"></div>
-            <div class="form-group"><input type="text" class="form-control input-lg" placeholder="Commitment" ng-model="registerInfo.commit"></div>
-            <div class="form-group"><input type="text" class="form-control input-lg" placeholder="Phone" ng-model="registerInfo.phone"></div>
-            
-            <div class="form-group"><input type="text" class="form-control input-lg" placeholder="Sexual Orientation" ng-model="registerInfo.sexOrientation"></div>
-            <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createAccount()">Create Account</button>
+            <!-- <b>Email: {{activeUserData.email}}<b> --> <!-- <input id="settings_email" value="{{activeUserData.email}}" type="text" class="form-control input-lg"> -->
+            Current Password <div class="form-group"> <input type="password" id="settings_password" class="form-control input-lg" value=""></div>
+             New Password (if any) <div class="form-group"> <input type="password" id="settings_new_password" class="form-control input-lg"></div>
+
+             <p>
+            <div class="form-group">Name <input id="settings_name" value="{{activeUserData.name}}" type="text" class="form-control input-lg"></div>
+            Gender <br>
+            <div class="form-group">
+              <form>
+            <center><input type="radio" name="gender" id="settings_gender_Male" value="Male"/> &nbsp;Male &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="gender" id="settings_gender_Female" value="Female"/> &nbsp;Female &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="gender" id="settings_gender_Trans" value="Trans"/> &nbsp;Trans</center></div></form>
+            Birthday
+            <div class="form-group"><input id="settings_birthday" value = "{{activeUserData.birthday}}" type="text" class="form-control input-lg" placeholder="e.g. 10-9-1995" ></div>
+            City:
+            <div class="form-group"><input id="settings_city" value="{{activeUserData.city}}" type="text" class="form-control input-lg" placeholder="City"></div>
+            Commitment
+            <form>
+            <div class="form-group">
+           <center><input type="radio" name="commitment" id="settings_commitlevel_Casual" value="Male"/> &nbsp;Casual &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="commitment" id="settings_commitlevel_Relationship" value="Female"/> &nbsp;Relationship</center></div></form>
+            Phone
+            <div class="form-group"><input id="settings_phone" value="{{activeUserData.phone}}" type="text" class="form-control input-lg" placeholder="Phone"></div>
+            Interested In
+            <form><div class="form-group"> <center><input type="radio" name="interestedin" id="settings_interestedin_Male" value="Male"/> &nbsp;Male &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="interestedin" id="settings_interestedin_Female" value="Female"/> &nbsp;Female &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="interestedin" id="settings_interestedin_Both" value="Trans"/> &nbsp;Both</center></div></form>
+
+            <h5> Incorrect password entered. Please try again. </h3>
+            <h5> Changes have been saved. </h5>
+            <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="updateInformation()">Update Information</button>
           </form>
         </div>
       </div>
