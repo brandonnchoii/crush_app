@@ -409,6 +409,7 @@ app.controller('mainController', function($scope, $http) {
             .success(function(data) {
                 console.log('hay');
                 console.log(data);
+                $scope.activeUserData = data;
                 // if (data.length == 0)
                 //     console.log('Incorrect pw');
             })

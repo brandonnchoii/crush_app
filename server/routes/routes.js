@@ -197,7 +197,7 @@ router.put('/crush/user/:email/:pw', function(req, res){
         if (req.body.newPassword == "")
             client.query("UPDATE userinf SET name=($1), gender=($2), birthday=($3), phone=($4), city=($5), commitlevel=($6), interestedin=($7) WHERE email=($8) and password=($9)", [req.body.name, req.body.gender, req.body.birthday, req.body.phone, req.body.city, req.body.commitlevel, req.body.interestedin, email, password]);
         else{
-            client.query("UPDATE userinf SET name=($1), password=($2), gender=($3), birthday=($4), phone=($5), city=($6), commitlevel=($7), interestedin=($8) WHERE email=($8) and password=($9)", [req.body.name, req.body.newPassword, req.body.gender, req.body.birthday, req.body.phone, req.body.city, req.body.commitlevel, req.body.interestedin, email, password]);
+            client.query("UPDATE userinf SET name=($1), password=($2), gender=($3), birthday=($4), phone=($5), city=($6), commitlevel=($7), interestedin=($8) WHERE email=($9) and password=($10)", [req.body.name, req.body.newPassword, req.body.gender, req.body.birthday, req.body.phone, req.body.city, req.body.commitlevel, req.body.interestedin, email, password]);
         }
 
         // var uid;
