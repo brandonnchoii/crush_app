@@ -44,10 +44,11 @@ app.controller('mainController', function($scope, $http) {
             $scope.activeUserFriends = $scope.friends;
         }
         if (str == "profile.html" && uid != null){
-                        console.log($scope.activeUserData);
+            console.log("switchy ");
+            console.log($scope.activeUserData);
 
-            console.log('initializeProfile ' + uid);
             $scope.initializeProfile(uid);
+            console.log('done initializing');
             if (uid != $scope.activeuid){
                 console.log('not the active id!');
                 $scope.loadCurrentUserInfo(uid);
@@ -353,7 +354,6 @@ app.controller('mainController', function($scope, $http) {
             }
         }
 
-        // var commitlevelValue = document.getElementById('settings_commitlevel').value;
         var commitlevelValue;
         var commitRadios = document.getElementsByName('commitment');
         for (var i = 0, length = commitRadios.length; i < length; i++) {
@@ -372,7 +372,6 @@ app.controller('mainController', function($scope, $http) {
             }
         }
 
-        // = document.getElementById('settings_gender').value;
         var nameValue = document.getElementById('settings_name').value;
         var birthdayValue = document.getElementById('settings_birthday').value;
         var phoneValue = document.getElementById('settings_phone').value;
@@ -442,16 +441,11 @@ app.controller('mainController', function($scope, $http) {
             .success(function(data) {
                 console.log('hay');
                 console.log(data);
-                $scope.activeUserData = data;
-                // if (data.length == 0)
-                //     console.log('Incorrect pw');
-                console.log($scope.activeUserData);
+                $scope.activeUserData = data[0];
             })
             .error(function(error) {
                 console.log('Error: ' + error);
         });
-     // }
-     // setTimeout(function(){console.log(promise)}, 5000);
     }
 
     //sending a crush message
