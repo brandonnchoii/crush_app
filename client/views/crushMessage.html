@@ -9,10 +9,10 @@
  	</head>
 
  	<div class="msg-container col-xs-4 col-xs-offset-4">
- 		<h1 style="text-align: center">To: {{currentUserData.name}}</h1>
+ 		<h1 style="text-align: center">To:{{currentUserData.name}}</h1>
  		<div class-="msg-env">
- 			<textarea ng-model="textModel" ng-maxlength="400" ng-trim="true" id="msg-box" rows="8"></textarea>
+ 			<textarea ng-model="messageText.text" ng-maxlength="10" ng-trim="true" id="msg-box" rows="8"></textarea>
  		</div>
- 		<button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="">Send Crush!</button>
+ 		<button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="sendCrush()">Send Crush!</button>
  	</div>
 </html>

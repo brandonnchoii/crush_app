@@ -15,8 +15,7 @@ app.controller('mainController', function($scope, $http) {
     $scope.activeUserFriends = {};
     $scope.currentUserData = {};
     $scope.currentView = 'index.html';
-
-//put into profilecontroller
+    $scope.messageText = {text: ""};
     $scope.relationships = {};
     $scope.friends = {};
     $scope.interests = {};
@@ -28,15 +27,12 @@ app.controller('mainController', function($scope, $http) {
     }
 
     $scope.isCurrentView = function(str){
-       // console.log('check if currentview is ' + str);
-       // console.log('current view is ' + $scope.currentView);
         if ($scope.currentView == str)
             return true;
         return false;
     }
 
     $scope.setCurrentView = function(str, uid){
-
         console.log('setCurrentView to ' + str);
         console.log(uid);
         $scope.currentView = str;
@@ -303,8 +299,22 @@ app.controller('mainController', function($scope, $http) {
         //console.log("friend " + $scope.friends[i].uid + " is not friends with " + $scope.currentUserData.uid);
         console.log("not friends");
         return false;
-       
     }
+
+
+    //sending a crush message
+    $scope.sendCrush = function() {
+       alert($scope.messageText.text)
+       $http.get()
+            .success(function(data) {
+                return data;
+            })
+            .error(function(error) {
+                console.log('error in sending crush');
+                console.log('Error: ' + error);
+            })
+    }
+
 
 //autocomplete
 // setTimeout(function(){

@@ -4,12 +4,28 @@ body {
 	font-family: "Cicle" !important;
 }
 
+textarea {
+	color: black;
+}
+
+a {
+	color: white;
+}
+
+a:hover {
+	color:white;
+}
+
 .profile-picture {
 	max-width: 300px;
 	max-height: 300px;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+#crush-button {
+	width: 50%;
 }
 
 .user-name {
@@ -20,14 +36,16 @@ body {
 	width: 100%;
 }
 
-textarea {
-	color: black;
+.box-title {
+	text-align: center;
 }
 
-.btn, .btn-primary, .btn-lg, .btn-block {
-	background-color: #bce8fe;
+.info-box {
+	padding-left: 3%;
+	padding-right: 3%;
 }
 
-.btn:hover, .btn-primary:hover, .btn-lg:hover, .btn-block:hover {
-	background-color: remain;
+.info-row {
+	margin-top: 2%;
+	margin-bottom: 2%;
 }
