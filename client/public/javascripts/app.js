@@ -449,25 +449,38 @@ app.controller('mainController', function($scope, $http) {
             })
             .error(function(error) {
                 console.log('Error: ' + error);
-          });
+        });
      // }
      // setTimeout(function(){console.log(promise)}, 5000);
-        
-
-
     }
 
     //sending a crush message
     $scope.sendCrush = function(uidFrom, uidTo) {
-       $http.post('/crush/message/' + uidFrom + '/' + uidTo, $scope.messageText.text)
-            .success(function(data) {
-                return data;
-            })
-            .error(function(error) {
-                console.log('error in sending crush');
-                console.log('Error: ' + error);
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+        var hour = today.getHours()+1; 
+        if (hour < 10) {
+            hour = "0" + hour;
+        }
+        var minutes = today.getMinutes();
+        $scope.messageText.ts = yyyy + "-" + mm + "-" + dd + " " + hour + ":" + minutes;
+        console.log($scope.messageText);
+
+        $http.post('/crush/message/' + uidFrom + '/' + uidTo, $scope.messageText)
+                .success(function(data) {
+                    console.log("message sent: " + $scope.messageText.text);
+                    //redirect to profile page here as well
+                    //$scope.currentView = "profile.html"
+                })
+                .error(function(error) {
+                    console.log('error in sending crush');
+                    console.log('Error: ' + error);
             });
-    }
+        }
+
 });
 
 app.controller('profileController', function($scope, $http) {

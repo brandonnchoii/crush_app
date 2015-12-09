@@ -41,14 +41,17 @@
 		      	</ul>
 	 		</div>
 
-	 		<div class="col-xs-4 info-box">
-	 			<h1 class="box-title"><u>Suggestions</u></h1>
-	 			<ul ng-repeat="s in suggestions">
-	 				<li><a href = "#" ng-click="setCurrentView('profile.html', s.uid2)">{{s.name2}}</a></li>
-	 			</ul>
+	 		<div ng-show="currentUserData.uid==activeuid">
+		 		<div class="col-xs-4 info-box">
+		 			<h1 class="box-title"><u>Suggestions</u></h1>
+		 			<ul ng-repeat="s in suggestions">
+		 				<li><a href = "#" ng-click="setCurrentView('profile.html', s.uid2)">{{s.name2}}</a></li>
+		 			</ul>
+		 		</div>
 	 		</div>
 	 	</div>
 
+	 	<div ng-show="currentUserData.uid==activeuid">
 	 	<div class="row info-row"> <!-- ROW 3: sent messages, received messages, successful crushes -->
 	 		<div class="col-xs-4 info-box">
 	 			<h1 class="box-title"><u>Successful Crushes</u></h1>
@@ -65,12 +68,14 @@
 	 		</div>
 
 	 		<div class="col-xs-4 info-box">
-	 			<h1 class="box-title"><u>Messages To</u></h1>
+	 			<h1 class="box-title"><u>Messages Sent</u></h1>
 	 			<ul ng-repeat="message in messagesSent">
 			        <li>To: <a href = "#" ng-click="setCurrentView('profile.html', message.uid)">{{message.name}}</a> at {{message.ts | limitTo:10}}: {{message.text}}</li>
 			      </ul>
 	 		</div>
 	 	</div>
+	 	</div>
+
 	 	</div>
 		<script src="http://code.jquery.com/jquery-1.11.2.min.js" type="text/javascript"></script>
       	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript"></script>
