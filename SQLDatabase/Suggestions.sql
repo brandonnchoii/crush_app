@@ -4,16 +4,17 @@ WITH
 u1int (interests) AS
 	(SELECT interest
 	FROM UserInterests
-	WHERE UserInterests.uiid = 2),
+	WHERE UserInterests.uiid = u1id),
 u1info (uid1, name1, gender1, commitLevel1, interestedIn1) AS
 	(SELECT uid, name, gender, commitLevel, interestedIn
 	FROM UserInf
-	WHERE UserInf.uid = 2),
+	WHERE UserInf.uid = u1id),
 compatibleUsers (uid2, name2, gender2, commitLevel2, interestedIn2) AS
 	(SELECT uid, name, gender, commitLevel, interestedIn
 	FROM UserInf, u1info
 	WHERE
-		((UserInf.gender = u1info.interestedIn1
+		((NOT (u1info.uid1 = UserInf.uid))
+		AND (UserInf.gender = u1info.interestedIn1
 		AND (UserInf.interestedIn = u1info.gender1 OR UserInf.interestedIn = 'Both'))
 		OR
 		(u1info.gender1 = UserInf.interestedIn
@@ -57,4 +58,4 @@ WHERE
 		INTERSECT
 		(SELECT * FROM u1int)) AS T)
 	= 1
-);
+)
