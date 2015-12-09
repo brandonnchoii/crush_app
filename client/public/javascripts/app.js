@@ -231,7 +231,6 @@ app.controller('mainController', function($scope, $http) {
                     // for (var i = 0; i < data.length; i ++){
                     //     data[i].name = $scope.getUser(data[i].nfrom);
                     // }
-                    
                     console.log('get messages success');
                     console.log(data);
                 })
@@ -314,6 +313,7 @@ app.controller('mainController', function($scope, $http) {
             .success(function(data) {
                 console.log("suggestions updated");
                 $scope.suggestions = data;
+                console.log(data);
             })
             .error(function(error) {
                 console.log('get suggestions failed');
@@ -417,7 +417,6 @@ app.controller('mainController', function($scope, $http) {
 
     //sending a crush message
     $scope.sendCrush = function(uidFrom, uidTo) {
-       alert($scope.messageText.text)
        $http.post('/crush/message/' + uidFrom + '/' + uidTo, $scope.messageText.text)
             .success(function(data) {
                 return data;
@@ -434,8 +433,6 @@ app.controller('profileController', function($scope, $http) {
     $scope.test2 = 'hello';
     $scope.test = ['hi', 'bye'];
     $scope.interests = {};
-
-
 
     //upon loading
      $http.get('/crush/interests/' + $scope.activeuid)

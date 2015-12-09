@@ -581,7 +581,7 @@ router.get('/crush/name/:uid', function(req, res){
 //     });
 // });
 
-router.get('/crush/suggesstions/:uid', function(req, res){
+router.get('/crush/suggestions/:uid', function(req, res){
     var results = [];
     var id = req.params.uid;
 
