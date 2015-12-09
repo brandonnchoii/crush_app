@@ -19,20 +19,6 @@ app.controller('mainController', function($scope, $http) {
     $scope.friends = {};
     $scope.interests = {};
 
-   // $scope.getInterests = function() {
-        $http.get('/crush/interests/' + $scope.activeuid)
-            .success(function(data) {
-                $scope.todoData = data;
-                console.log(data);
-            })
-            .error(function(error) {
-                console.log('Error: ' + error);
-            });
-    //}
-
-    //don't really need this here twice...
-   // $scope.getInterests();
-
     $scope.hasActiveID = function() {
         if($scope.activeuid >= 0)
             return true;

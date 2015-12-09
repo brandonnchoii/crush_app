@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>Crush - Send a Crush!</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <!-- styles -->
+	    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	    <link rel="stylesheet" href="/stylesheets/generic.css" media="screen">
+ 	</head>
+
+ 	<div class="msg-container col-xs-4 col-xs-offset-4">
+ 		<h1 style="text-align: center">To: {{currentUserData.name}}</h1>
+ 		<div class-="msg-env">
+ 			<textarea ng-model="textModel" ng-maxlength="400" ng-trim="true" id="msg-box" rows="8"></textarea>
+ 		</div>
+ 		<button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="">Send Crush!</button>
+ 	</div>
+</html>
