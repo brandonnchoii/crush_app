@@ -30,7 +30,16 @@ app.controller('mainController', function($scope, $http) {
     }
 
     $scope.noPicGender = function(str){
-        return $scope.currentUserData.profpic == '' && str == $scope.currentUserData.gender;
+        if (str == null)
+            return $scope.currentUserData.profpic != "" && $scope.currentUserData.profpic != null;
+        console.log('noPicGender');
+        console.log($scope.currentUserData.profpic);
+        console.log(str);
+        console.log($scope.currentUserData.gender);
+        console.log(str == $scope.currentUserData.gender);
+        //if (str == null)
+          //  return $scope.currentUserData.profpic == '' && str == 'Female';
+        return ($scope.currentUserData.profpic == '' || $scope.currentUserData.profpic == null) && str == $scope.currentUserData.gender;
     }
 
     $scope.isCurrentView = function(str){
