@@ -10,7 +10,7 @@ Callie Mao:
 I setup the framework for building the project; I created the foundational/connection code and layout for the Node server, connection to local Postgresql databases using pg, RESTful API's, and front-end REST calls and front-end displays/updating in HTML/CSS/JS. In the front and back ends, I created the login page and data creation/entry for new users and updating current users, as well as general RESTful API calls for friends and interests. 
 
 Calais Nelson:
-	
+I focused mostly on the back-end of the database as well as the server. I helped design the schema along with Kevin as well as researching different platforms and how to combine the different elements of our stack. I also updated and debugged the database as we went along to better meet the needs of our application. I helped write the trigger which allowed us to keep track of which crushes had been reciprocated, and which messages to display. I also wrote and debugged many of the apis in routes.js specifically those for getting and posting messages, getting friends, getting user data, and getting suggestions. I also did a little bit of debugging on the front end.
 
 Kevin Tie:
 I primarily focused on the back-end database design in PostgreSQL, which includes the database implementation itself as well as the suggestions code. I also did research into RESTful APIs as well as general app development. During group coding sessions, all members contributed ideas to overall application implementation and design. Towards the end, I primarily contributed to the final report.
