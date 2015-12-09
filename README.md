@@ -8,27 +8,27 @@ Overview of code structure:
 Tech Stack: PostgreSQL, Node.js, Angularjs
 
 crush_app<br>
-—-bin<br>
---bower_components<br>
---client<br>
-	--images<br>
-		--ALL PICTURES (.jpg, .jpeg)<br>
-	--public<br>
-		--javascripts<br>
-			--app.js (node server code, API)<br>
-		--stylesheets<br>
-			--ALL CSS FILES<br>
-		--fonts<br>
-			--ALL FONT FILES<br>
-	--views<br>
-		--ALL HTML FILES<br>
---node_modules<br>
---SQLDatabase<br>
-	--DATABASE SQL CODE<br>
---server<br>
-	--models<br>
-	--routes<br>
-		--routes.js (routing js code, connects API to database)<br>
+—bin<br>
+-bower_components<br>
+-client<br>
+--images<br>
+----ALL PICTURES (.jpg, .jpeg)<br>
+--public<br>
+----javascripts<br>
+---------app.js (node server code, API)<br>
+----stylesheets<br>
+---------ALL CSS FILES<br>
+----fonts<br>
+---------ALL FONT FILES<br>
+--views<br>
+---------ALL HTML FILES<br>
+-node_modules<br>
+-SQLDatabase<br>
+----DATABASE SQL CODE<br>
+-server<br>
+----models<br>
+----routes<br>
+---------routes.js (routing js code, connects API to database)<br>
 
 
 How to compile, set up, deploy, and use your system:
