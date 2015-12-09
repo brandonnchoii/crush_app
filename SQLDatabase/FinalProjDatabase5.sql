@@ -80,14 +80,47 @@ EXECUTE PROCEDURE RelationshipTF();
 
 
 INSERT INTO UserInf(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Anna', 'asodfim3', 'Female','anna@duke.edu', '1994-03-05', '2153783609', 'Philadelphia', '2015-11-11','Relationship', 'Male', 'anna.jpeg');
-INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic) VALUES('Will', 'a', 'Male', 'will@duke.edu', '1996-06-08', '1234567890', 'New York', '2015-12-15' , 'Casual', 'Female', 'will.jpg');
-INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic) VALUES('Jun', 'a892m3mawn3', 'Male', 'dan@duke.edu', '1987-03-01', '9087654321', 'Boston', '2015-10-11' , 'Relationship', 'Female', 'jun.jpg');
-INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic) VALUES('Kelly', '8ja@*@#RFIU82', 'Female', 'kelly@duke.edu', '1987-10-10', '9087987634', 'Boston', '2015-09-11' , 'Casual', 'Male', 'kelly.jpg');
-INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic) VALUES('Emily', '8M*m8fnasdn8', 'Female', 'emily@duke.edu', '1987-05-14', '8765567888', 'Toledo', '2015-12-11' , 'Relationship', 'Both', 'emily.jpeg');
-INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic) VALUES('Ian', 'iaofa3 1  a 23', 'Male','ian@duke.edu', '1990-03-01', '9765123456', 'New York', '2015-10-09' , 'Casual', 'Both', 'ian.jpeg');
-INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic) VALUES('Sarah', 'LOLOLOLOLOL', 'Female', 'sarah@duke.edu', '1967-03-01', '9090909090', 'Tampa', '2015-12-11' , 'Relationship', 'Both', 'sarah.jpeg');
-INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic) VALUES('Sophie', 'abba', 'Female', 'sophie@duke.edu', '1997-04-01', '3245234512', 'New York', '2015-4-11' , 'Relationship', 'Male', 'sophie.jpeg');
+VALUES('Anna Smith', 'asodfim3', 'Female','anna@duke.edu', '1994-03-05', '2153783609', 'Philadelphia', '2015-11-11','Relationship', 'Male', 'anna.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Will Borg', 'a', 'Male', 'will@duke.edu', '1996-06-08', '1234567890', 'New York', '2015-12-15' , 'Casual', 'Female', 'will.jpg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Jun Yang', 'a892m3mawn3', 'Male', 'jun@duke.edu', '1987-03-01', '9087654321', 'Durham', '2015-10-11' , 'Relationship', 'Female', 'jun.jpg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Kelly Shi', '8ja@*@#RFIU82', 'Female', 'kelly@duke.edu', '1987-10-10', '9087987634', 'Boston', '2015-09-11' , 'Casual', 'Male', 'kelly.jpg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Emily Pook', '8M*m8fnasdn8', 'Female', 'emily@duke.edu', '1987-05-14', '8765567888', 'Toledo', '2015-12-11' , 'Relationship', 'Both', 'emily.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Ian Faulk', 'iaofa3 1  a 23', 'Male','ian@duke.edu', '1990-03-01', '9765123456', 'New York', '2015-10-09' , 'Casual', 'Both', 'ian.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Sarah Sapce', 'LOLOLOLOLOL', 'Female', 'sarah@duke.edu', '1967-03-01', '9090909090', 'Tampa', '2015-12-11' , 'Relationship', 'Both', 'sarah.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Sophie Neer', 'abba', 'Female', 'sophie@duke.edu', '1997-04-01', '3245234512', 'New York', '2015-4-11' , 'Relationship', 'Male', 'sophie.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Deega Soupa', 'bb', 'Female', 'deega@duke.edu', '1996-02-01', '1212121212', 'New York', '2015-4-11' , 'Relationship', 'Both', 'deega.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Brandon Choi', 'bcfb', 'Male', 'brandon@duke.edu', '2000-04-01', '6666664512', 'New York', '2015-4-11' , 'Casual', 'Female', 'brandon.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('John Smith', 'j', 'Male', 'john@duke.edu', '1989-04-01', '3245234511', 'New York', '2015-4-11' , 'Relationship', 'Male', 'john.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Kat Abd', 'kk', 'Female', 'kat@duke.edu', '1997-07-01', '3245234712', 'Boston', '2015-4-11' , 'Casual', 'Both', 'kat.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Karp Fish', 'aa', 'Female', 'karp@duke.edu', '1998-04-01', '3245239912', 'New York', '2015-4-11' , 'Casual', 'Both', 'karp.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Tommy Jenkins', 'ab', 'Male', 'tommy@duke.edu', '1993-12-01', '8245234512', 'Houston', '2015-5-11' , 'Relationship', 'Female', 'tommy.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Alex Sanchez', 'alex', 'Female', 'alex@duke.edu', '1999-11-04', '32456234512', 'New York', '2015-7-11' , 'Casual', 'Male', 'alex.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Aj Noor', '12', 'Male', 'aj@duke.edu', '1998-12-07', '92956234512', 'Tampa', '2015-8-11' , 'Casual', 'Female', 'aj.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Dee Curtain', 'dee', 'Female', 'dee@duke.edu', '2000-11-04', '32456234599', 'New York', '2015-9-11' , 'Relationship', 'Male', 'dee.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Dan Sanchez', 'dan', 'Male', 'dan@duke.edu', '2000-12-04', '32456239912', 'San Francisco', '2014-7-11' , 'Relationshipo', 'Male', 'dan.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Coppa Sandy', 'copa', 'Male', 'coppa@duke.edu', '1999-12-11', '32456234999', 'Green Hill', '2015-7-11' , 'Relationship', 'Male', 'coppa.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
+VALUES('Kevin Dee', 'kevin', 'Male', 'kevin@duke.edu', '1998-11-04', '32477234512', 'Houston', '2015-1-11' , 'Casual', 'Male', 'kevin.jpeg');
+
+
 
 INSERT INTO UserInterests VALUES(1,  'books');
 INSERT INTO UserInterests VALUES(1, 'movies');
@@ -113,6 +146,25 @@ INSERT INTO UserInterests VALUES(7, 'sports' );
 INSERT INTO UserInterests VALUES(8, 'video games');
 INSERT INTO UserInterests VALUES(8, 'fashion');
 INSERT INTO UserInterests VALUES(8, 'music' );
+INSERT INTO UserInterests VALUES(9, 'music' );
+INSERT INTO UserInterests VALUES(9, 'movies');
+INSERT INTO UserInterests VALUES(9, 'sports' );
+INSERT INTO UserInterests VALUES(10, 'cooking');
+INSERT INTO UserInterests VALUES(10, 'books');
+INSERT INTO UserInterests VALUES(10, 'netflix' );
+INSERT INTO UserInterests VALUES(11, 'horses');
+INSERT INTO UserInterests VALUES(11, 'movies');
+INSERT INTO UserInterests VALUES(11, 'sports' );
+INSERT INTO UserInterests VALUES(12, 'horses');
+INSERT INTO UserInterests VALUES(12, 'movies');
+INSERT INTO UserInterests VALUES(12, 'sports' );
+INSERT INTO UserInterests VALUES(13, 'movies');
+INSERT INTO UserInterests VALUES(13, 'classical music');
+INSERT INTO UserInterests VALUES(13, 'ballet' );
+
+
+
+
 
 INSERT INTO Friend VALUES(1,3);
 INSERT INTO Friend VALUES(1,6);
