@@ -727,7 +727,8 @@ router.get('/crush/suggestions/:uid', function(req, res){
             "(SELECT uid, name, gender, commitLevel, interestedIn "+
             "FROM UserInf, u1info "+
             "WHERE "+
-            "((UserInf.gender = u1info.interestedIn1 "+
+            "((NOT (u1info.uid1 = UserInf.uid))"+
+            "AND (UserInf.gender = u1info.interestedIn1 "+
             "AND (UserInf.interestedIn = u1info.gender1 OR UserInf.interestedIn = 'Both')) "+
             "OR "+
             "(u1info.gender1 = UserInf.interestedIn "+
