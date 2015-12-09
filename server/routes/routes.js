@@ -95,57 +95,160 @@ router.get('/crush/user/:email/:pw', function(req, res){
     });
 })
 
+// router.put('/crush/user/:email/:pw', function(req, res){
+//     console.log('enter PUT email/pw rest call');
+//     var email = req.params.email
+//     var password = req.params.pw
+
+//     var results = [];
+
+//     // Get a Postgres client from the connection pool
+//     pg.connect(connectionString, function(err, client, done) {
+//         // Handle connection errors
+//         if(err) {
+//           done();
+//           console.log(err);
+//           return res.status(500).json({ success: false, data: err});
+//         }
+
+//         var isCorrect;
+//         var query = client.query("SELECT * FROM userinf WHERE email=($1) AND password=($2);", [email, password]);
+
+//         query.on('row', function(row) {
+//             results.push(row);
+//         });
+
+//         query.on('end', function() {
+//             isCorrect = res.json(results);
+//         });
+
+
+//         console.log(isCorrect);
+
+//         if (req.body.password == "")
+//             client.query("UPDATE userinf SET name=($1), gender=($2), birthday=($3), phone=($4), city=($5), commitlevel=($6), interestedin=($7) WHERE email=($8) AND password=($9)", [req.body.name, req.body.gender, req.body.birthday, req.body.phone, req.body.city, req.body.commitlevel, req.body.interestedin, email, password]);
+//         else{
+//             client.query("UPDATE userinf SET name=($1), password=($2), gender=($3), birthday=($4), phone=($5), city=($6), commitlevel=($7), interestedin=($8) WHERE email=($9) AND password=($10)", [req.body.name, req.body.newPassword, req.body.gender, req.body.birthday, req.body.phone, req.body.city, req.body.commitlevel, req.body.interestedin, email, password]);
+//         }
+
+//         // console.log("test");
+//         // console.log(test);
+       
+//         // SQL Query > Select Data
+//         if (req.body.password == "")
+//             var query = client.query("SELECT * FROM userinf WHERE email=($1) AND password=($2);", [email, password]);
+//         if (req.body.password == "")
+//         // Stream results back one row at a time
+//         query.on('row', function(row) {
+//             results.push(row);
+//         });
+
+//         // After all data is returned, close connection and return results
+//         query.on('end', function() {
+//             done();
+//             return res.json(results);
+//         });
+//     });
+// })
+
 router.put('/crush/user/:email/:pw', function(req, res){
     console.log('enter PUT email/pw rest call');
-    var email = req.params.email
-    var password = req.params.pw
-    console.log(req.body);
-    console.log('hello');
-    console.log('hello');
-    console.log('hello');
-    console.log('hello');
+//    var id = req.params.uid
+    var email = req.params.email;
+    var password = req.params.pw;
     console.log(email);
-    console.log('hello');
-    console.log('hello');
-    console.log('hello');
-    console.log('hello');
-
     console.log(password);
-    console.log(req.body);
-    console.log('process request');
-
-    //  var data = {
-    //     interest: req.body.text  //.text because it is from a form. Otherwise, you can specify the data yourself
-    // };
 
     var results = [];
+
 
     // Get a Postgres client from the connection pool
     pg.connect(connectionString, function(err, client, done) {
         // Handle connection errors
-
         if(err) {
           done();
           console.log(err);
           return res.status(500).json({ success: false, data: err});
         }
 
-        client.query("UPDATE userinf SET name=($1), password=($2), gender=($3), birthday=($4), phone=($5), city=($6), commitlevel=($7), interestedin=($8) WHERE email=($9) AND password=($10)", [req.body.name, req.body.newPassword, req.body.gender, req.body.birthday, req.body.phone, req.body.city, req.body.commitlevel, req.body.interestedin, email, password]);
-       
-        // SQL Query > Select Data
-        var query = client.query("SELECT * FROM userinf WHERE email=($1) AND password=($2);", [req.body.email, req.body.newPassword]);
-        // Stream results back one row at a time
-        query.on('row', function(row) {
-            results.push(row);
+        // console.log(email);
+        // console.log(password);
+        // var uid;
+        // var query0 = client.query("SELECT uid FROM userinf WHERE email=($1) AND password=($2);", [email, password]);        
+        
+        // query0.on('row', function(row) {
+        //     console.log('on row!');
+        //     console.log(row);
+        //     uid = row.uid;
+        // });
+        // query0.on('end', function() {
+        //     done();
+        //     //check = res.json(results);
+        // });
+        // console.log('results');
+        // console.log(uid);
+        
+
+        //     if (uid == undefined){
+        //         return [];
+        //     }
+        //     else{
+                //console.log('uid not undefined');
+        if (req.body.newPassword == "")
+            client.query("UPDATE userinf SET name=($1), gender=($2), birthday=($3), phone=($4), city=($5), commitlevel=($6), interestedin=($7) WHERE email=($8) and password=($9)", [req.body.name, req.body.gender, req.body.birthday, req.body.phone, req.body.city, req.body.commitlevel, req.body.interestedin, email, password]);
+        else{
+            client.query("UPDATE userinf SET name=($1), password=($2), gender=($3), birthday=($4), phone=($5), city=($6), commitlevel=($7), interestedin=($8) WHERE email=($8) and password=($9)", [req.body.name, req.body.newPassword, req.body.gender, req.body.birthday, req.body.phone, req.body.city, req.body.commitlevel, req.body.interestedin, email, password]);
+        }
+
+        // var uid;
+        // var query0 = client.query("SELECT uid FROM userinf WHERE email=($1) AND password=($2);", [email, password]);        
+        
+        // query0.on('row', function(row) {
+        //     console.log('on row!');
+        //     console.log(row);
+        //     uid = row.uid;
+        // });
+        // query0.on('end', function() {
+        //     done();
+        //     //check = res.json(results);
+        // });
+        // console.log('results');
+        // console.log(uid);
+        
+        var query = client.query("SELECT * FROM userinf WHERE email=($1);", [email]);
+                    // Stream results back one row at a time
+            query.on('row', function(row) {
+                results.push(row);
         });
 
-        // After all data is returned, close connection and return results
+                // After all data is returned, close connection and return results
         query.on('end', function() {
             done();
-            return res.json(results);
+           return res.json(results);
         });
+
+         
+
+        // // console.log("test");
+        // // console.log(test);
+       
+        // // SQL Query > Select Data
+        // if (req.body.password == "")
+        //     var query = client.query("SELECT * FROM userinf WHERE email=($1) AND password=($2);", [email, password]);
+        // if (req.body.password == "")
+        // // Stream results back one row at a time
+        // query.on('row', function(row) {
+        //     results.push(row);
+        // });
+
+        // // After all data is returned, close connection and return results
+        // query.on('end', function() {
+        //     done();
+        //     return res.json(results);
+        // });
     });
 })
+
 
 
 

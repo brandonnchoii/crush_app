@@ -122,10 +122,6 @@ app.controller('mainController', function($scope, $http) {
                         if(data.length == 0)
                             console.log('login not actually successful');
                         else{
-                            console.log('login successful');
-                            console.log(data);
-                            console.log(data[0]);
-                            console.log(data[0].uid);
                             $scope.activeuid = data[0].uid;
                             $scope.activeUserData = data[0];
                             $scope.currentUserData = $scope.activeUserData;
@@ -308,12 +304,12 @@ app.controller('mainController', function($scope, $http) {
     }
 
     $scope.updateInformation = function() {
+
         console.log($scope.activeUserData);
         var newPasswordValue = document.getElementById('settings_new_password').value;
-        if (newPasswordValue == null || newPasswordValue == ""){
-            newPasswordValue = $scope.activeUserData.password;
-        }
-        console.log(newPasswordValue);
+        // if (newPasswordValue == null || newPasswordValue == ""){
+        //     newPasswordValue = $scope.activeUserData.password;
+        // }
         // console.log(document.querySelector('input[name="test"]:checked').value);
         var genderValue;
         var genderRadios = document.getElementsByName('gender');
@@ -343,8 +339,6 @@ app.controller('mainController', function($scope, $http) {
             }
         }
 
-        console.log(genderValue);
-
         // = document.getElementById('settings_gender').value;
         var nameValue = document.getElementById('settings_name').value;
         var birthdayValue = document.getElementById('settings_birthday').value;
@@ -363,16 +357,67 @@ app.controller('mainController', function($scope, $http) {
             interestedin: interestedinValue
         };
 
-        console.log(newValues);
-        console.log('/crush/user/' + $scope.activeUserData.email + '/' + document.getElementById('settings_password').value);
+        // console.log(newValues);
+        // console.log('/crush/user/' + $scope.activeUserData.email + '/' + document.getElementById('settings_password').value);
+        
+    //     var passwordIsCorrect;
+    //     var promise = new Promise(
+    //         function(resolve, reject){
+    //             $http.get('/crush/user/' + $scope.activeUserData.email + "/" + document.getElementById('settings_password').value)
+    //                         .success(function(data) {
+    //                             if(data.length == 0){
+    //                                 console.log('login not actually successful');
+    //                                 passwordIsCorrect = false;
+    //                             }
+    //                             else{
+    //                                 passwordIsCorrect = true;
+    //                             }
+    //                             resolve(passwordIsCorrect);
+    //                         })
+    //                 .error(function(error) {
+    //                     console.log("Invalid email/password combination.");
+    //                     console.log('Error: ' + error);
+    //             });
+    //         });
+    //     console.log(promise);
+    //     console.log(passwordIsCorrect);
+
+
+
+    //     promise.then(
+    //         function(val){
+    //             console.log('val ' + val);
+    // //         console.log('after promise');
+    // //         console.log("post promise");
+    // //         console.log(val);
+    // //         console.log('set view');
+    // //         $scope.activeuid = val.uid;
+    // //         $scope.activeUserData = val;
+
+    // //         $scope.currentView = 'profile.html';
+    // //         console.log($scope.currentView);
+    //         })
+    //     .catch(
+    //         function(reason){
+    //             console.log('rejection');
+    //     })
+
+
+    //         console.log('gogo');
+    //     if(passwordIsCorrect == true){
         $http.put('/crush/user/' + $scope.activeUserData.email + '/' + document.getElementById('settings_password').value, newValues)
             .success(function(data) {
-                $scope.friends = data;
+                console.log('hay');
                 console.log(data);
+                // if (data.length == 0)
+                //     console.log('Incorrect pw');
             })
             .error(function(error) {
                 console.log('Error: ' + error);
-        });
+          });
+     // }
+     // setTimeout(function(){console.log(promise)}, 5000);
+        
 
 
     }
