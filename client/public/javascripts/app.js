@@ -9,6 +9,7 @@ app.controller('mainController', function($scope, $http) {
     $scope.todoData = {};
     $scope.registerInfo = {};
     $scope.messages = {};
+    $scope.messagesSent = {}
     $scope.loginInfo = {};
     $scope.activeuid = -1;
     $scope.activeUserData = {};
@@ -19,6 +20,7 @@ app.controller('mainController', function($scope, $http) {
     $scope.relationships = {};
     $scope.friends = {};
     $scope.interests = {};
+    $scope.suggestions = {};
 
     $scope.hasActiveID = function() {
         if($scope.activeuid >= 0)
@@ -201,6 +203,8 @@ app.controller('mainController', function($scope, $http) {
             $scope.getFriends(uid);
             $scope.getInterests(uid);
             $scope.getMessages(uid);
+            $scope.getSuggestions(uid);
+            $scope.getMessagesSent(uid);
             console.log('activeUserData');
             console.log($scope.activeUserData);
          // }, 9000);
@@ -214,12 +218,24 @@ app.controller('mainController', function($scope, $http) {
                     // for (var i = 0; i < data.length; i ++){
                     //     data[i].name = $scope.getUser(data[i].nfrom);
                     // }
-                    
                     console.log('get messages success');
                     console.log(data);
                 })
                 .error(function(error) {
                     console.log('get messages failed');
+                    console.log('Error: ' + error);
+                });
+    }
+
+    $scope.getMessagesSent = function(uid){
+        $http.get('/crush/messfrom/' + uid)
+                .success(function(data) {
+                    $scope.messagesSent = data;                    
+                    console.log('get messages success');
+                    console.log(data);
+                })
+                .error(function(error) {
+                    console.log('get messages sent failed');
                     console.log('Error: ' + error);
                 });
     }
@@ -239,7 +255,7 @@ app.controller('mainController', function($scope, $http) {
     }
 
     $scope.getFriends = function(uid) {
-        console.log('relationshipsssssssss');
+        console.log('getFriends call');
         $http.get('/crush/friends/' + uid)
                 .success(function(data) {
                     $scope.friends = data;
@@ -275,6 +291,19 @@ app.controller('mainController', function($scope, $http) {
             })
             .error(function(error) {
                 console.log('get interests failed');
+                console.log('Error: ' + error);
+            });
+    }
+
+    $scope.getSuggestions = function(uid) {
+        $http.get('/crush/suggestions/' + uid)
+            .success(function(data) {
+                console.log("suggestions updated");
+                $scope.suggestions = data;
+                console.log(data);
+            })
+            .error(function(error) {
+                console.log('get suggestions failed');
                 console.log('Error: ' + error);
             });
     }
@@ -423,67 +452,24 @@ app.controller('mainController', function($scope, $http) {
 
     }
 
-
     //sending a crush message
-    $scope.sendCrush = function() {
-       alert($scope.messageText.text)
-       $http.get()
+    $scope.sendCrush = function(uidFrom, uidTo) {
+       $http.post('/crush/message/' + uidFrom + '/' + uidTo, $scope.messageText.text)
             .success(function(data) {
                 return data;
             })
             .error(function(error) {
                 console.log('error in sending crush');
                 console.log('Error: ' + error);
-            })
+            });
     }
-
-
-//autocomplete
-// setTimeout(function(){
-//      console.log('profile');
-//   $(function() {
-//             var availableTags = [
-//               "ActionScript",
-//               "AppleScript",
-//               "Asp",
-//               "BASIC",
-//               "C",
-//               "C++",
-//               "Clojure",
-//               "COBOL",
-//               "ColdFusion",
-//               "Erlang",
-//               "Fortran",
-//               "Groovy",
-//               "Haskell",
-//               "Java",
-//               "JavaScript",
-//               "Lisp",
-//               "Perl",
-//               "PHP",
-//               "Python",
-//               "Ruby",
-//               "Scala",
-//               "Scheme"
-//             ];
-//             $( "#tags" ).autocomplete({
-//               source: availableTags
-//             });
-//           });
-// console.log("availableTags");
-//              console.log(availableTags);
-//          }, 5000);
-
 });
 
 app.controller('profileController', function($scope, $http) {
-
     console.log('profilecontroller');
     $scope.test2 = 'hello';
     $scope.test = ['hi', 'bye'];
     $scope.interests = {};
-
-
 
     //upon loading
      $http.get('/crush/interests/' + $scope.activeuid)
@@ -496,10 +482,7 @@ app.controller('profileController', function($scope, $http) {
                 console.log('get interests failed');
                 console.log('Error: ' + error);
             });
-
-
 });
-
 
 /*/crush/relationships/:uid*/
 

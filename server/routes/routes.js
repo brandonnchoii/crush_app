@@ -442,7 +442,7 @@ router.get('/crush/relationships/:uid', function(req, res){
         }
 
         // SQL Query > Select Data
-        var query = client.query("select name from relationships as r, userinf as u where ((r.user2 = u.uid and r.user1 = ($1)) or (r.user1 = u.uid and r.user2 = ($1)));", [id]);
+        var query = client.query("select name from relationships as r, userinf as u where (r.isreciprocated = true AND (r.user2 = u.uid and r.user1 = ($1)) or (r.user1 = u.uid and r.user2 = ($1)));", [id]);
         // Stream results back one row at a time
         query.on('row', function(row) {
             results.push(row);
@@ -621,7 +621,7 @@ router.post('/crush/message/:uid/:idto', function(req, res) {
         client.query("INSERT INTO relationships VALUES ($1, $2, false);");
 
         // SQL Query > Select Data
-        var query = client.query("SELECT * FROM notifications WHERE nFrom=($1) ORDER BY nid;", [id]);
+        var query = client.query("SELECT u.uid, u.name, n.text, n.ts FROM notifications as n, userinf as u WHERE (n.nFrom=($1) and n.nTo = u.uid) ORDER BY n.nid;", [id]);
 
         // Stream results back one row at a time
         query.on('row', function(row) {
@@ -694,7 +694,7 @@ router.get('/crush/name/:uid', function(req, res){
 //     });
 // });
 
-router.get('/crush/suggesstions/:uid', function(req, res){
+router.get('/crush/suggestions/:uid', function(req, res){
     var results = [];
     var id = req.params.uid;
 
@@ -713,11 +713,11 @@ router.get('/crush/suggesstions/:uid', function(req, res){
             "u1int (interests) AS "+
             "(SELECT interest "+
             "FROM UserInterests "+
-            "WHERE UserInterests.uiid = 2),"+
+            "WHERE UserInterests.uiid = $1),"+
             "u1info (uid1, name1, gender1, commitLevel1, interestedIn1) AS "+
             "(SELECT uid, name, gender, commitLevel, interestedIn "+
             "FROM UserInf "+
-            "WHERE UserInf.uid = 2), "+
+            "WHERE UserInf.uid = $1), "+
             "compatibleUsers (uid2, name2, gender2, commitLevel2, interestedIn2) AS "+
             "(SELECT uid, name, gender, commitLevel, interestedIn "+
             "FROM UserInf, u1info "+
@@ -798,7 +798,7 @@ router.get('/crush/messfrom/:uid', function(req, res){
         }
 
         // SQL Query > Select Data
-        var query = client.query("select * from notifications where nFrom = $1", [id]);
+        var query = client.query("SELECT u.uid, u.name, n.text, n.ts FROM notifications as n, userinf as u WHERE (n.nFrom=($1) and n.nTo = u.uid) ORDER BY n.nid;", [id]);
         // Stream results back one row at a time
         query.on('row', function(row) {
             results.push(row);
