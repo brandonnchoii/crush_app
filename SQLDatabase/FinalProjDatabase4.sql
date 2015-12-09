@@ -140,7 +140,12 @@ INSERT INTO Relationships VALUES(6, 8, true);
 INSERT INTO Relationships VALUES(7, 8, false);
 
 INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(1, 2, '2015-11-16 03:00', 'I think youre cute');
-INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(1, 6, '2015-11-16 04:20', 'Meow');
-
-INSERT INTO NotifState(seen, seenTs) VALUES(true, '2015-11-16 08:00');
-INSERT INTO NotifState(seen) VALUES(false);
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(2, 1, '2015-11-16 03:07', 'Me too');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(3, 5, '2015-12-15 08:30', 'Hello');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(4, 6, '2015-12-15 08:40', 'Hey baby');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(6, 4, '2015-12-15 09:15', 'Oh, Ah');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(4, 7, '2015-12-16 08:30', 'I like you');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(5, 2, '2015-12-18 08:35', 'I like to watch you sleep');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(6, 8, '2015-12-19 09:30', 'I follow you home a lot');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(8, 6, '2015-12-19 10:30', 'You should come in some time');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(7, 8, '2015-12-30 08:30', 'Hello');
