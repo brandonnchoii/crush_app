@@ -468,7 +468,7 @@ app.controller('mainController', function($scope, $http) {
                 .success(function(data) {
                     console.log("message sent: " + $scope.messageText.text);
                     //redirect to profile page here as well
-                    //$scope.currentView = "profile.html"
+                    $scope.currentView = "profile.html"
                 })
                 .error(function(error) {
                     console.log('error in sending crush');
