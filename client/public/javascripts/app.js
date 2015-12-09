@@ -44,6 +44,8 @@ app.controller('mainController', function($scope, $http) {
             $scope.activeUserFriends = $scope.friends;
         }
         if (str == "profile.html" && uid != null){
+                        console.log($scope.activeUserData);
+
             console.log('initializeProfile ' + uid);
             $scope.initializeProfile(uid);
             if (uid != $scope.activeuid){
@@ -51,8 +53,11 @@ app.controller('mainController', function($scope, $http) {
                 $scope.loadCurrentUserInfo(uid);
             }
             else{
+            console.log($scope.activeUserData);
+
                 $scope.currentUserData = $scope.activeUserData;
             }
+            console.log($scope.currentUserData);
         }
         if(str == "settings.html"){
             document.getElementById('settings_gender_' + $scope.activeUserData.gender).checked = true;
@@ -333,7 +338,6 @@ app.controller('mainController', function($scope, $http) {
     }
 
     $scope.updateInformation = function() {
-
         console.log($scope.activeUserData);
         var newPasswordValue = document.getElementById('settings_new_password').value;
         // if (newPasswordValue == null || newPasswordValue == ""){
@@ -441,6 +445,7 @@ app.controller('mainController', function($scope, $http) {
                 $scope.activeUserData = data;
                 // if (data.length == 0)
                 //     console.log('Incorrect pw');
+                console.log($scope.activeUserData);
             })
             .error(function(error) {
                 console.log('Error: ' + error);
