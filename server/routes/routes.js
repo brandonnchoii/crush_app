@@ -508,7 +508,7 @@ router.post('/crush/message/:uid/:idto', function(req, res) {
         client.query("INSERT INTO relationships VALUES ($1, $2, false);");
 
         // SQL Query > Select Data
-        var query = client.query("SELECT * FROM notifications WHERE nFrom=($1) ORDER BY nid;", [id]);
+        var query = client.query("SELECT u.uid, u.name, n.text, n.ts FROM notifications as n, userinf as u WHERE (n.nFrom=($1) and n.nTo = u.uid) ORDER BY n.nid;", [id]);
 
         // Stream results back one row at a time
         query.on('row', function(row) {
@@ -685,7 +685,7 @@ router.get('/crush/messfrom/:uid', function(req, res){
         }
 
         // SQL Query > Select Data
-        var query = client.query("select * from notifications where nFrom = $1", [id]);
+        var query = client.query("SELECT u.uid, u.name, n.text, n.ts FROM notifications as n, userinf as u WHERE (n.nFrom=($1) and n.nTo = u.uid) ORDER BY n.nid;", [id]);
         // Stream results back one row at a time
         query.on('row', function(row) {
             results.push(row);

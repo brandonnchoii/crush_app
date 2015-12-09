@@ -445,8 +445,6 @@ app.controller('profileController', function($scope, $http) {
                 console.log('get interests failed');
                 console.log('Error: ' + error);
             });
-
-
 });
 
 /*/crush/relationships/:uid*/
