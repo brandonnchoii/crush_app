@@ -108,17 +108,17 @@ VALUES('Karp Fish', 'aa', 'Female', 'karp@duke.edu', '1998-04-01', '3245239912',
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
 VALUES('Tommy Jenkins', 'ab', 'Male', 'tommy@duke.edu', '1993-12-01', '8245234512', 'Houston', '2015-5-11' , 'Relationship', 'Female', 'tommy.jpeg');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Alex Sanchez', 'alex', 'Female', 'alex@duke.edu', '1999-11-04', '32456234512', 'New York', '2015-7-11' , 'Casual', 'Male', 'alex.jpeg');
+VALUES('Alex Sanchez', 'alex', 'Female', 'alex@duke.edu', '1999-11-04', '2456234512', 'New York', '2015-7-11' , 'Casual', 'Male', 'alex.jpeg');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Aj Noor', '12', 'Male', 'aj@duke.edu', '1998-12-07', '92956234512', 'Tampa', '2015-8-11' , 'Casual', 'Female', 'aj.jpeg');
+VALUES('Aj Noor', '12', 'Male', 'aj@duke.edu', '1998-12-07', '2956234512', 'Tampa', '2015-8-11' , 'Casual', 'Female', 'aj.jpeg');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Dee Curtain', 'dee', 'Female', 'dee@duke.edu', '2000-11-04', '32456234599', 'New York', '2015-9-11' , 'Relationship', 'Male', 'dee.jpeg');
+VALUES('Dee Curtain', 'dee', 'Female', 'dee@duke.edu', '2000-11-04', '2456234599', 'New York', '2015-9-11' , 'Relationship', 'Male', 'dee.jpeg');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Dan Sanchez', 'dan', 'Male', 'dan@duke.edu', '2000-12-04', '32456239912', 'San Francisco', '2014-7-11' , 'Relationshipo', 'Male', 'dan.jpeg');
+VALUES('Dan Sanchez', 'dan', 'Male', 'dan@duke.edu', '2000-12-04', '2456239912', 'San Francisco', '2014-7-11' , 'Relationshipo', 'Male', 'dan.jpeg');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Coppa Sandy', 'copa', 'Male', 'coppa@duke.edu', '1999-12-11', '32456234999', 'Green Hill', '2015-7-11' , 'Relationship', 'Male', 'coppa.jpeg');
+VALUES('Coppa Sandy', 'copa', 'Male', 'coppa@duke.edu', '1999-12-11', '2456234999', 'Green Hill', '2015-7-11' , 'Relationship', 'Male', 'coppa.jpeg');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Kevin Dee', 'kevin', 'Male', 'kevin@duke.edu', '1998-11-04', '32477234512', 'Houston', '2015-1-11' , 'Casual', 'Male', 'kevin.jpeg');
+VALUES('Kevin Dee', 'kevin', 'Male', 'kevin@duke.edu', '1998-11-04', '2477234512', 'Houston', '2015-1-11' , 'Casual', 'Male', 'kevin.jpeg');
 
 
 
@@ -161,7 +161,30 @@ INSERT INTO UserInterests VALUES(12, 'sports' );
 INSERT INTO UserInterests VALUES(13, 'movies');
 INSERT INTO UserInterests VALUES(13, 'classical music');
 INSERT INTO UserInterests VALUES(13, 'ballet' );
-
+INSERT INTO UserInterests VALUES(14,  'books');
+INSERT INTO UserInterests VALUES(14, 'movies');
+INSERT INTO UserInterests VALUES(14, 'sports');
+INSERT INTO UserInterests VALUES(15, 'cooking');
+INSERT INTO UserInterests VALUES(15, 'books');
+INSERT INTO UserInterests VALUES(15, 'netflix' );
+INSERT INTO UserInterests VALUES(16, 'guns');
+INSERT INTO UserInterests VALUES(16,'movies');
+INSERT INTO UserInterests VALUES(16,'sports' );
+INSERT INTO UserInterests VALUES(17,  'books');
+INSERT INTO UserInterests VALUES(17, 'movies');
+INSERT INTO UserInterests VALUES(17, 'sports');
+INSERT INTO UserInterests VALUES(18, 'video games');
+INSERT INTO UserInterests VALUES(18, 'fashion');
+INSERT INTO UserInterests VALUES(18, 'music' );
+INSERT INTO UserInterests VALUES(19, 'movies');
+INSERT INTO UserInterests VALUES(19, 'sports' );
+INSERT INTO UserInterests VALUES(19, 'cooking');
+INSERT INTO UserInterests VALUES(19, 'movies');
+INSERT INTO UserInterests VALUES(19, 'sports' );
+INSERT INTO UserInterests VALUES(19, 'cooking');
+INSERT INTO UserInterests VALUES(20, 'cooking');
+INSERT INTO UserInterests VALUES(20, 'books');
+INSERT INTO UserInterests VALUES(20, 'netflix' );
 
 
 
@@ -181,6 +204,34 @@ INSERT INTO Friend VALUES(5,6);
 INSERT INTO Friend VALUES(5,7);
 INSERT INTO Friend VALUES(6,8);
 INSERT INTO Friend VALUES(7,8);
+INSERT INTO Friend VALUES(9,8);
+INSERT INTO Friend VALUES(9,18);
+INSERT INTO Friend VALUES(10,1);
+INSERT INTO Friend VALUES(10,5);
+INSERT INTO Friend VALUES(11,2);
+INSERT INTO Friend VALUES(11,16);
+INSERT INTO Friend VALUES(12,2);
+INSERT INTO Friend VALUES(12,20);
+INSERT INTO Friend VALUES(13,3);
+INSERT INTO Friend VALUES(13,14);
+INSERT INTO Friend VALUES(14,8);
+INSERT INTO Friend VALUES(14,7);
+INSERT INTO Friend VALUES(15,12);
+INSERT INTO Friend VALUES(15,1);
+INSERT INTO Friend VALUES(16,3);
+INSERT INTO Friend VALUES(16,19);
+INSERT INTO Friend VALUES(17,2);
+INSERT INTO Friend VALUES(17,20);
+INSERT INTO Friend VALUES(18,9);
+INSERT INTO Friend VALUES(18,8);
+INSERT INTO Friend VALUES(19,6);
+INSERT INTO Friend VALUES(19,4);
+INSERT INTO Friend VALUES(20,9);
+INSERT INTO Friend VALUES(20,8);
+
+
+
+
 
 INSERT INTO Relationships VALUES(1, 2, true);
 INSERT INTO Relationships VALUES(3, 5, false);
@@ -189,14 +240,26 @@ INSERT INTO Relationships VALUES(4, 7, false);
 INSERT INTO Relationships VALUES(5, 2, false);
 INSERT INTO Relationships VALUES(6, 8, true);
 INSERT INTO Relationships VALUES(7, 8, false);
+INSERT INTO Relationships VALUES(9, 11, false);
+INSERT INTO Relationships VALUES(10, 13, true);
+INSERT INTO Relationships VALUES(15, 16, false);
+INSERT INTO Relationships VALUES(19, 20, true);
+
 
 INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(1, 2, '2015-11-16 03:00', 'I think youre cute');
 INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(2, 1, '2015-11-16 03:07', 'Me too');
-INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(3, 5, '2015-12-15 08:30', 'Hello');
-INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(4, 6, '2015-12-15 08:40', 'Hey baby');
-INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(6, 4, '2015-12-15 09:15', 'Oh, Ah');
-INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(4, 7, '2015-12-16 08:30', 'I like you');
-INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(5, 2, '2015-12-18 08:35', 'I like to watch you sleep');
-INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(6, 8, '2015-12-19 09:30', 'I follow you home a lot');
-INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(8, 6, '2015-12-19 10:30', 'You should come in some time');
-INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(7, 8, '2015-12-30 08:30', 'Hello');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(3, 5, '2015-12-06 08:30', 'Hello');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(4, 6, '2015-12-06 08:40', 'Hey baby');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(6, 4, '2015-12-07 09:15', 'Oh, Ah');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(4, 7, '2015-12-07 08:30', 'I like you');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(5, 2, '2015-12-07 08:35', 'I like to watch you sleep');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(6, 8, '2015-12-08 09:30', 'I follow you home a lot');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(8, 6, '2015-12-08 10:30', 'You should come in some time');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(7, 8, '2015-12-08 08:30', 'Hello');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(9, 11, '2015-12-08 10:30', 'Hi beautiful.');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(10, 13, '2015-12-19 10:32', 'You are awesome');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(10, 13, '2015-12-19 10:40', 'I love you');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(13, 10, '2015-12-19 10:45', 'Thanks!');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(15, 16, '2015-12-19 10:46', 'You should come over sometime');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(19, 20, '2015-12-19 10:50', 'You have great skin');
+INSERT INTO Notifications(nFrom, nTo, ts, text) VALUES(20, 19, '2015-12-19 11:00', 'I use lots of baby oil');
