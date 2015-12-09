@@ -481,30 +481,30 @@ router.get('/crush/allmess/:uid', function(req, res){
 //to post a new message, need to figure out how to do timestamps automatically
 // ^ this can be done from the front-end and sent to the server
 router.post('/crush/message/:uid/:idto', function(req, res) {
-
+    console.log("HERE");
     var results = [];
     var id = req.params.uid;
     var to = req.params.idto;
-
-    // Grab data from http request
-    var data = {
-        time: req.body.time,
-        message: req.body.text  //.text because it is from a form. Otherwise, you can specify the data yourself
-    };
-
-    console.log(data);
+    // //Grab data from http request
+    // var data = {
+    //     time: req.body.ts,
+    //     message: req.body.text  //.text because it is from a form. Otherwise, you can specify the data yourself
+    // };
+    // console.log(data);
 
     // Get a Postgres client from the connection pool
     pg.connect(connectionString, function(err, client, done) {
         // Handle connection errors
         if(err) {
           done();
+          console.log(req.body.ts);
+          console.log(req.body.text);
           console.log(err);
           return res.status(500).json({ success: false, data: err});
         }
 
         // SQL Query > Insert Data
-        client.query("INSERT INTO notifications(nFrom, nTo, ts , text) values(($1), ($2), ($3), ($4));", [id, idto, data.time, data.message]);
+        client.query("INSERT INTO notifications(nFrom, nTo, ts , text) values(($1), ($2), ($3), ($4));", [id, idto, req.body.ts, req.body.text]);
         client.query("INSERT INTO relationships VALUES ($1, $2, false);");
 
         // SQL Query > Select Data
