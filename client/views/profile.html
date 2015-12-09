@@ -13,6 +13,17 @@
 
 		      <h1 class="user-name">{{currentUserData.name}}</h1>
 
+		      <!-- List of suggestions -->
+		      <!--  <button ng-show="!isFriend()">Add Friend</button> -->
+
+		      <h1>{{currentUserData.name}}. </h1>
+		      <b>Gender:</b> {{currentUserData.gender}}<br>
+		      <b>Birthday:</b> {{currentUserData.birthday}}<br>
+		      <b>City:</b> {{currentUserData.city}}<br>
+		      <b>Join Date:</b> {{currentUserData.joindate}}<br>
+		      <b>Commit Levels:</b> {{currentUserData.commitlevel}}<br>
+		      <b>Interested In:</b> {{currentUserData.interestedin}}
+
 		      <h1>Friends</h1>
 		      <ul ng-repeat="friend in friends">
 		        <li><a href = "#" ng-click="setCurrentView('profile.html', friend.uid)">{{friend.name}}</a></li>
@@ -21,18 +32,17 @@
 		      <h1>Interests</h1>
 		       <ul ng-repeat="i in interests">
 		        <li>{{i.interest}}</li>
-		        <!-- TODO: fix the getUser thing -->
 		      </ul>
 
 		      <!-- only show below ones if they are under the activeid -->
 		    <div ng-show="currentUserData.uid==activeuid">
 				<h1> Relationships</h1>
 			      <ul ng-repeat="relation in relationships">
-			        <li><a href = "#" ng-click="setCurrentView('profile.html', friend.uid)">{{relation.name}}</a></li>
+			        <li><a href = "#" ng-click="setCurrentView('profile.html', relation.name)">{{relation.name}}</a></li>
 			      </ul>
 			      <h1> <!-- ng-show=isActiveuid(currentUserData.uid) --> Messages </h1> 
 			      <ul ng-repeat="message in messages">
-			        <li>From: <!-- {{getUser(1)}}  -->{{message.name}} at {{message.ts}}. {{message.text}}</li>
+			        <li>From: <!-- {{getUser(1)}}  --><a href = "#" ng-click="setCurrentView('profile.html', message.name)">{{message.name}}</a> at {{message.ts}}. {{message.text}}</li>
 			        <!-- TODO: fix the getUser thing or write it exactly in the sql query -->
 			      </ul>
 			       {{interests}}

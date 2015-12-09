@@ -46,7 +46,7 @@ router.get('/crush/user/:uid', function(req, res){
 
         // SQL Query > Select Data
         //phone is kept private unless there is a match, right?
-        var query = client.query("SELECT name, gender, email, birthday, city, joindate, commitlevel, interestedin, profpic FROM userinf WHERE uid=($1);", [id]);
+        var query = client.query("SELECT uid, name, gender, email, birthday, city, joindate, commitlevel, interestedin, profpic FROM userinf WHERE uid=($1);", [id]);
         // Stream results back one row at a time
         query.on('row', function(row) {
             results.push(row);
@@ -415,7 +415,7 @@ router.get('/crush/allmess/:uid', function(req, res){
         }
 
         // SQL Query > Select Data
-        var query = client.query("select u.uid, u.name, mess.text, mess.ts from userinf as u,"+
+        var query = client.query("select u.name, u.uid, mess.text, mess.ts from userinf as u,"+
                                 " (select * from notifications as n where (n.nTo = ($1) and "+
                                 "EXISTS(select * from relationships as r "+
                                 "where( (r.user1 = n.nTo and r.user2=n.nFrom and isReciprocated = true )"+
@@ -508,6 +508,34 @@ router.get('/crush/name/:uid', function(req, res){
     });
 });
 
+// router.get('/crush/friend/:activeuid/:uid', function(req, res){
+//     var results = [];
+//     var activeuid = req.params.activeuid;
+//     var uid = req.params.uid;
+
+//     // Get a Postgres client from the connection pool
+//     pg.connect(connectionString, function(err, client, done) {
+//         // Handle connection errors
+//         if(err) {
+//           done();
+//           console.log(err);
+//           return res.status(500).json({ success: false, data: err});
+//         }
+
+//         // SQL Query > Select Data
+//         var query = client.query("select fid2 from friend where (fid1 = ($1) and fid2 = ($2)) or (fid2 = ($1) and fid1 = ($2));", [activeuid, uid]);
+//         // Stream results back one row at a time
+//         query.on('row', function(row) {
+//             results.push(row);
+//         });
+
+//         // After all data is returned, close connection and return results
+//         query.on('end', function() {
+//             done();
+//             return res.json(results);
+//         });
+//     });
+// });
 
 router.get('/crush/suggesstions/:uid', function(req, res){
     var results = [];
