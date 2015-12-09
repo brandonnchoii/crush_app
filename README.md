@@ -1,2 +1,51 @@
 # crush_app
 CS 316: Database Systems.
+
+Team: Cali Nelson, Callie Mao, Brandon Choi, Kevin Tie
+
+Overview of code structure:
+
+Tech Stack: PostgreSQL, Node.js, Angularjs
+
+crush_app
+—-bin
+--bower_components
+--client
+	--images
+		--ALL PICTURES
+	--public
+		--javascripts
+			--app.js (node server code, API)
+		--stylesheets
+			--ALL CSS FILES
+		--fonts
+			--ALL FONT FILES
+	--views
+		--ALL HTML FILES
+--node_modules
+--SQLDatabase
+	--DATABASE SQL CODE
+--server
+	--models
+	--routes
+		--routes.js (routing js code, connects API to database)
+
+
+How to compile, set up, deploy, and use your system:
+
+1. Download Postgres application.
+2. Install Node.js on computer.
+3. Clone GitHub repository (https://github.com/brandonnchoii/crush_app)
+4. Set up Postgres server by running “create database crush” and then entering our SQL code with pseudo data.
+5. Enter cloned repo and run Node.js by running “npm start”
+6. Test application through localhost:3000
+7. Enjoy Crush!
+
+
+Any limitations in your current implementation:
+	
+	Limitations in the backend database design include potentially incomprehensive checks for certain attributes (i.e. commitLevel in UserInf) and a lack of constraints on which interests can be defined in UserInterests. The interests could also be further categorized for matching suggestion purposes. Interests are also currently limited to three per user.
+	
+	Limitations in the front-end include scalability of our code to different platforms such as mobile. Though we did utilize Bootstrap, some of our CSS components use pixels rather than percentages, which would therefore not scale accordingly based on screen size of the user. Moreover, any change in platform may require new front-code such as Swift for iOS and whatnot. Also, in terms of our actual code, our code could be separated further by refactoring our node API into multiple controllers. Overall, reorganization of the front-end code would help to make further development easier as well as the code more efficient. 
+
+	Other limitations include the lack of a heuristic for restricting the number of messages that users can send within a given time period and lack of real data to incorporate into our database.
