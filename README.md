@@ -21,13 +21,13 @@ crush_app<br>
 ----fonts<br>
 ---------ALL FONT FILES<br>
 --views<br>
----------ALL HTML FILES<br>
+----ALL HTML FILES<br>
 -node_modules<br>
 -SQLDatabase<br>
-----DATABASE SQL CODE<br>
+--DATABASE SQL CODE<br>
 -server<br>
-----models<br>
-----routes<br>
+--models<br>
+--routes<br>
 ---------routes.js (routing js code, connects API to database)<br>
 
 
