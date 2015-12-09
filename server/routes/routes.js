@@ -26,6 +26,11 @@ router.get('/stylesheets/:page', function(req, res){
     res.sendFile(path.join(__dirname, '../', '../', 'client', 'public', 'stylesheets', page));
 });
 
+router.get('/fonts/:page', function(req, res){
+    var page = req.params.page;
+    res.sendFile(path.join(__dirname, '../', '../', 'client', 'public', 'fonts', page));
+});
+
 router.get('/crush/user/:uid', function(req, res){
     // console.log('enter rest call');
     //console.log(req);
