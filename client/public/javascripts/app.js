@@ -253,7 +253,7 @@ app.controller('mainController', function($scope, $http) {
     $scope.getInterests = function(uid) {
          $http.get('/crush/interests/' + uid)
             .success(function(data) {
-                console.log('/crush/interests/' + $scope.activeuid);
+                console.log('/crush/interests/' + $scope.activeUserData.uid);
                 console.log(data);
                 $scope.interests = data;
                 console.log('get interests success');
