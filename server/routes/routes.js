@@ -556,11 +556,11 @@ router.get('/crush/suggesstions/:uid', function(req, res){
             "u1int (interests) AS "+
             "(SELECT interest "+
             "FROM UserInterests "+
-            "WHERE UserInterests.uiid = 2),"+
+            "WHERE UserInterests.uiid = $1),"+
             "u1info (uid1, name1, gender1, commitLevel1, interestedIn1) AS "+
             "(SELECT uid, name, gender, commitLevel, interestedIn "+
             "FROM UserInf "+
-            "WHERE UserInf.uid = 2), "+
+            "WHERE UserInf.uid = $1), "+
             "compatibleUsers (uid2, name2, gender2, commitLevel2, interestedIn2) AS "+
             "(SELECT uid, name, gender, commitLevel, interestedIn "+
             "FROM UserInf, u1info "+

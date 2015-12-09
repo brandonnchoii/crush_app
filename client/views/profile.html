@@ -43,8 +43,8 @@
 
 	 		<div class="col-xs-4 info-box">
 	 			<h1 class="box-title"><u>Suggestions</u></h1>
-	 			<ul ng-repeat="">
-	 				<li></li>
+	 			<ul ng-repeat="s in suggestions">
+	 				<li><a href = "#" ng-click="setCurrentView('profile.html', friend.uid)">{{s.name}}</a></li>
 	 			</ul>
 	 		</div>
 	 	</div>
@@ -52,22 +52,22 @@
 	 	<div class="row info-row"> <!-- ROW 3: sent messages, received messages, successful crushes -->
 	 		<div class="col-xs-4 info-box">
 	 			<h1 class="box-title"><u>Successful Crushes</u></h1>
-		       	<ul ng-repeat="i in interests">
-		        	<li>{{i.interest}}</li>
+		       	<ul ng-repeat="r in relationships">
+		        	<li><a href = "#" ng-click="setCurrentView('profile.html', friend.uid)">{{r.name}}</a></li>
 		      	</ul>
 	 		</div>
 
 	 		<div class="col-xs-4 info-box">
-	 			<h1 class="box-title"><u>Received Messages</u></h1>
+	 			<h1 class="box-title"><u>Messages Received</u></h1>
 		      	<ul ng-repeat="message in messages">
-			        <li>From: <!-- {{getUser(1)}} --><a href = "#" ng-click="setCurrentView('profile.html', message.name)">{{message.name}}</a> at {{message.ts}}. {{message.text}}</li>
+			        <li>From: <!-- {{getUser(1)}} --><a href = "#" ng-click="setCurrentView('profile.html', message.name)">{{message.name}}</a> at {{message.ts | limitTo:10}}. {{message.text}}</li>
 			      </ul>
 	 		</div>
 
 	 		<div class="col-xs-4 info-box">
-	 			<h1 class="box-title"><u>Sent Messages</u></h1>
-	 			<ul ng-repeat="message in messages">
-			        <li>From: <!-- {{getUser(1)}}  --> <a href = "#" ng-click="setCurrentView('profile.html', message.name)">{{message.name}}</a> at {{message.ts}}. {{message.text}}</li>
+	 			<h1 class="box-title"><u>Messages To</u></h1>
+	 			<ul ng-repeat="message in messagesSent">
+			        <li>From: <!-- {{getUser(1)}}  --> <a href = "#" ng-click="setCurrentView('profile.html', message.name)">{{message.name}}</a> at {{message.ts | limitTo:10}}. {{message.text}}</li>
 			      </ul>
 	 		</div>
 	 	</div>
