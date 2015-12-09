@@ -477,24 +477,25 @@ app.controller('mainController', function($scope, $http) {
 
 });
 
-app.controller('profileController', function($scope, $http) {
-    console.log('profilecontroller');
-    $scope.test2 = 'hello';
-    $scope.test = ['hi', 'bye'];
-    $scope.interests = {};
+// app.controller('profileController', function($scope, $http) {
+//     console.log('profilecontroller');
+//     $scope.test2 = 'hello';
+//     $scope.test = ['hi', 'bye'];
+//     $scope.interests = {};
 
-    //upon loading
-     $http.get('/crush/interests/' + $scope.activeuid)
-            .success(function(data) {
-                $scope.interests = data;
-                console.log('get interests success');
-                console.log(data);
-            })
-            .error(function(error) {
-                console.log('get interests failed');
-                console.log('Error: ' + error);
-            });
-});
+//     //upon loading
+//      $http.get('/crush/interests/' + $scope.activeuid)
+//             .success(function(data) {
+//                 $scope.interests = data;
+//                 console.log('get interests success');
+//                 console.log(data);
+//                 console.log($scope.interests);
+//             })
+//             .error(function(error) {
+//                 console.log('get interests failed');
+//                 console.log('Error: ' + error);
+//             });
+// });
 
 /*/crush/relationships/:uid*/
 
