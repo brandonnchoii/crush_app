@@ -38,7 +38,37 @@
             <!-- <h5> Incorrect password entered. Please try again. </h3>
             <h5> Changes have been saved. </h5> -->
             <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="updateInformation()">Update Information</button>
-          </form>
+          </form><p>
+
+
+    <h1 class="lead">Interests</h1>
+    Remove below interests by removing them. Add by entering an interest into the text box. 
+      </div>
+
+      <div class="todo-form">
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control input-lg" placeholder="Enter text..." ng-model="interestsForm.text">
+          </div>
+
+          <!-- Assume you are user 1 just for testing purposes -->
+          <!-- Figure out how to add autocomplete to this --> 
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="addInterest()">Add Interests</button>
+        </form>
+      </div>
+
+      <br>
+
+      <div class="todo-list">
+        <ul ng-repeat="i in interests">
+          <li><h3><input class="lead" type="checkbox" ng-click="removeInterest(i.interest)">&nbsp;{{ i.interest }}</li></h3><hr>
+        </ul>
+      </div>
+
+
+
+
         </div>
       </div>
    

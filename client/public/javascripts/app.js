@@ -21,6 +21,7 @@ app.controller('mainController', function($scope, $http) {
     $scope.friends = {};
     $scope.interests = {};
     $scope.suggestions = {};
+    $scope.interestsForm = {};
 
     $scope.hasActiveID = function() {
         if($scope.activeuid >= 0)
@@ -171,10 +172,11 @@ app.controller('mainController', function($scope, $http) {
 
     //Note: example: {"interest": "teletubbies"} instead of form data. Right now routes.js processes form data to call data.text, not data.interest
     $scope.addInterest = function() {
-        console.log($scope.formData);
-        $http.post('/crush/interests/' + $scope.activeuid, $scope.formData)
+        console.log('addInterest');
+        console.log($scope.interestsForm);
+        $http.post('/crush/interests/' + $scope.activeuid, $scope.interestsForm)
             .success(function(data) {
-                $scope.todoData = data;
+                $scope.interests = data;
                 console.log(data);
             })
             .error(function(error) {
@@ -183,10 +185,11 @@ app.controller('mainController', function($scope, $http) {
     }
 
     $scope.removeInterest = function(interest) {
+        console.log(interest);
         $http.delete('/crush/interests/' + $scope.activeuid + '/' + interest)
             .success(function(data) {
                 console.log("successfully removed");
-                $scope.todoData = data;
+                $scope.interests = data;
                 console.log(data);
             })
             .error(function(data) {
@@ -442,6 +445,8 @@ app.controller('mainController', function($scope, $http) {
                 console.log('hay');
                 console.log(data);
                 $scope.activeUserData = data[0];
+                $scope.setCurrentView('profile.html', $scope.activeUserData.uid);
+
             })
             .error(function(error) {
                 console.log('Error: ' + error);
@@ -467,7 +472,7 @@ app.controller('mainController', function($scope, $http) {
                 .success(function(data) {
                     console.log("message sent: " + $scope.messageText.text);
                     //redirect to profile page here as well
-                    $scope.currentView = "profile.html"
+                    $scope.currentView = "profile.html";
                 })
                 .error(function(error) {
                     console.log('error in sending crush');
