@@ -8,7 +8,7 @@ Overview of code structure:
 Tech Stack: PostgreSQL, Node.js, Angularjs
 
 crush_app<br>
-—bin<br>
+-bin<br>
 -bower_components<br>
 -client<br>
 --images<br>
