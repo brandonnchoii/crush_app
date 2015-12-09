@@ -1,0 +1,18 @@
+Before milestone 2, all team members contributed equally to the project. Most of the time spent was meeting, discussing viable ideas, and determining how much and what type of data to collect and store.
+
+The following highlight specific contributions to the project after milestone 2:
+
+Brandon Choi:
+Since the last milestone, I, like everyone else on the team, did a lot of research on technologies and app development in general. I also consulted Charles about our technology stack before the team started actually coding. I primarily worked on the front-end of the project utilizing Angular, HTML, CSS, and Node.js. Because of my familiarity with web development tools such as Bootstrap, I also focused on basic UI concepts. When working in a team setting, the entire group collaborated in discussing our code so that by the end, we were all aware to some degree about what was happening on all levels of the code. 
+	
+
+Callie Mao:
+	
+
+Calais Nelson:
+	
+
+Kevin Tie:
+	Back-end database design with PostgreSQL
+	Suggestions.sql
+	Final report
