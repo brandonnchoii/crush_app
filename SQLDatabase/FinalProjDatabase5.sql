@@ -80,15 +80,15 @@ FOR EACH ROW
 EXECUTE PROCEDURE RelationshipTF();
 
 
-INSERT INTO UserInf(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn)
+INSERT INTO UserInf(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
 VALUES('Anna', 'asodfim3', 'Female','anna@duke.edu', '1994-03-05', '2153783609', 'Philadelphia', '2015-11-11','Relationship', 'Male', 'anna.jpeg');
-INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn) VALUES('Will', 'a', 'Male', 'will@duke.edu', '1996-06-08', '1234567890', 'New York', '2015-12-15' , 'Casual', 'Female', 'will.jpg');
-INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn) VALUES('Jun', 'a892m3mawn3', 'Male', 'dan@duke.edu', '1987-03-01', '9087654321', 'Boston', '2015-10-11' , 'Relationship', 'Female', 'jun.jpg');
-INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn) VALUES('Kelly', '8ja@*@#RFIU82', 'Female', 'kelly@duke.edu', '1987-10-10', '9087987634', 'Boston', '2015-09-11' , 'Casual', 'Male', 'kelly.jpg');
-INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn) VALUES('Emily', '8M*m8fnasdn8', 'Female', 'emily@duke.edu', '1987-05-14', '8765567888', 'Toledo', '2015-12-11' , 'Relationship', 'Both', 'emily.jpeg');
-INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn) VALUES('Ian', 'iaofa3 1  a 23', 'Male','ian@duke.edu', '1990-03-01', '9765123456', 'New York', '2015-10-09' , 'Casual', 'Both', 'ian.jpeg');
-INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn) VALUES('Sarah', 'LOLOLOLOLOL', 'Female', 'sarah@duke.edu', '1967-03-01', '9090909090', 'Tampa', '2015-12-11' , 'Relationship', 'Both', 'sarah.jpeg');
-INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn) VALUES('Sophie', '(*&@!*#&!(@&#(*', 'Female', 'sophie@duke.edu', '1997-04-01', '3245234512', 'New York', '2015-4-11' , 'Relationship', 'Male', 'sophie.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic) VALUES('Will', 'a', 'Male', 'will@duke.edu', '1996-06-08', '1234567890', 'New York', '2015-12-15' , 'Casual', 'Female', 'will.jpg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic) VALUES('Jun', 'a892m3mawn3', 'Male', 'dan@duke.edu', '1987-03-01', '9087654321', 'Boston', '2015-10-11' , 'Relationship', 'Female', 'jun.jpg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic) VALUES('Kelly', '8ja@*@#RFIU82', 'Female', 'kelly@duke.edu', '1987-10-10', '9087987634', 'Boston', '2015-09-11' , 'Casual', 'Male', 'kelly.jpg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic) VALUES('Emily', '8M*m8fnasdn8', 'Female', 'emily@duke.edu', '1987-05-14', '8765567888', 'Toledo', '2015-12-11' , 'Relationship', 'Both', 'emily.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic) VALUES('Ian', 'iaofa3 1  a 23', 'Male','ian@duke.edu', '1990-03-01', '9765123456', 'New York', '2015-10-09' , 'Casual', 'Both', 'ian.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic) VALUES('Sarah', 'LOLOLOLOLOL', 'Female', 'sarah@duke.edu', '1967-03-01', '9090909090', 'Tampa', '2015-12-11' , 'Relationship', 'Both', 'sarah.jpeg');
+INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic) VALUES('Sophie', '(*&@!*#&!(@&#(*', 'Female', 'sophie@duke.edu', '1997-04-01', '3245234512', 'New York', '2015-4-11' , 'Relationship', 'Male', 'sophie.jpeg');
 
 INSERT INTO UserInterests VALUES(1,  'books');
 INSERT INTO UserInterests VALUES(1, 'movies');
