@@ -10,7 +10,7 @@
 	 			<div class="profile-container col-xs-4">
 	 				<img ng-show="noPicGender('Male')" class="profile-picture" src="/images/default_male.png"/>
 	 				<img ng-show="noPicGender('Female')" class="profile-picture" src="/images/default_female.jpg"/>
-	 				<img ng-show="currentUserData.profpic()" class="profile-picture" src="/images/{{currentUserData.profpic}}" width='300' height='300'/>
+	 				<img ng-show="noPicGender()" class="profile-picture" src="/images/{{currentUserData.profpic}}" width='300' height='300'/>
 	 			</div>
 	 			<div class="col-xs-3">
 	 				<h1>{{currentUserData.name}}</h1>
