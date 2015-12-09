@@ -442,7 +442,7 @@ router.get('/crush/relationships/:uid', function(req, res){
         }
 
         // SQL Query > Select Data
-        var query = client.query("select name from relationships as r, userinf as u where (r.isreciprocated = true AND (r.user2 = u.uid and r.user1 = ($1)) or (r.user1 = u.uid and r.user2 = ($1)));", [id]);
+        var query = client.query("select name, uid from relationships as r, userinf as u where (r.isreciprocated = true AND (r.user2 = u.uid and r.user1 = ($1)) or (r.user1 = u.uid and r.user2 = ($1)));", [id]);
         // Stream results back one row at a time
         query.on('row', function(row) {
             results.push(row);
