@@ -114,7 +114,7 @@ VALUES('Aj Noor', '12', 'Male', 'aj@duke.edu', '1998-12-07', '2956234512', 'Tamp
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
 VALUES('Dee Curtain', 'dee', 'Female', 'dee@duke.edu', '2000-11-04', '2456234599', 'New York', '2015-9-11' , 'Relationship', 'Male', 'dee.jpeg');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Dan Sanchez', 'dan', 'Male', 'dan@duke.edu', '2000-12-04', '2456239912', 'San Francisco', '2014-7-11' , 'Relationshipo', 'Male', 'dan.jpeg');
+VALUES('Dan Sanchez', 'dan', 'Male', 'dan@duke.edu', '2000-12-04', '2456239912', 'San Francisco', '2014-7-11' , 'Relationship', 'Male', 'dan.jpeg');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
 VALUES('Coppa Sandy', 'copa', 'Male', 'coppa@duke.edu', '1999-12-11', '2456234999', 'Green Hill', '2015-7-11' , 'Relationship', 'Male', 'coppa.jpeg');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
