@@ -21,9 +21,6 @@ app.controller('mainController', function($scope, $http) {
     $scope.friends = {};
     $scope.interests = {};
 
-    //don't really need this here twice...
-   // $scope.getInterests();
-
     $scope.hasActiveID = function() {
         if($scope.activeuid >= 0)
             return true;

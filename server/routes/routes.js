@@ -415,7 +415,11 @@ router.get('/crush/allmess/:uid', function(req, res){
         }
 
         // SQL Query > Select Data
+<<<<<<< HEAD
         var query = client.query("select u.name, u.uid, mess.text, mess.ts from userinf as u,"+
+=======
+        var query = client.query("select u.uid, u.name, mess.text, mess.ts from userinf as u,"+
+>>>>>>> 5c2b33d861ae35848b3b5ba383d52064dd5e95ce
                                 " (select * from notifications as n where (n.nTo = ($1) and "+
                                 "EXISTS(select * from relationships as r "+
                                 "where( (r.user1 = n.nTo and r.user2=n.nFrom and isReciprocated = true )"+
@@ -461,8 +465,6 @@ router.post('/crush/message/:uid/:idto', function(req, res) {
 
         // SQL Query > Insert Data
         client.query("INSERT INTO notifications(nFrom, nTo, ts , text) values(($1), ($2), ($3), ($4));", [id, idto, data.time, data.message]);
-        //client.query("INSERT INTO notifications(nFrom, nTo, ts , text) values(($1), ($2),'2011-08-09 04:04', ($3));", [id, idto, data.interest]);
-        client.query("INSERT INTO notifState(seen) VALUES (false);");
         client.query("INSERT INTO relationships VALUES ($1, $2, false);");
 
         // SQL Query > Select Data
@@ -538,5 +540,123 @@ router.get('/crush/name/:uid', function(req, res){
 //         });
 //     });
 // });
+
+router.get('/crush/suggesstions/:uid', function(req, res){
+    var results = [];
+    var id = req.params.uid;
+
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        // SQL Query > Select Data
+        var query = client.query("WITH "+
+            "u1int (interests) AS "+
+            "(SELECT interest "+
+            "FROM UserInterests "+
+            "WHERE UserInterests.uiid = 2),"+
+            "u1info (uid1, name1, gender1, commitLevel1, interestedIn1) AS "+
+            "(SELECT uid, name, gender, commitLevel, interestedIn "+
+            "FROM UserInf "+
+            "WHERE UserInf.uid = 2), "+
+            "compatibleUsers (uid2, name2, gender2, commitLevel2, interestedIn2) AS "+
+            "(SELECT uid, name, gender, commitLevel, interestedIn "+
+            "FROM UserInf, u1info "+
+            "WHERE "+
+            "((UserInf.gender = u1info.interestedIn1 "+
+            "AND (UserInf.interestedIn = u1info.gender1 OR UserInf.interestedIn = 'Both')) "+
+            "OR "+
+            "(u1info.gender1 = UserInf.interestedIn "+
+            "AND (u1info.interestedIn1 = UserInf.gender OR u1info.interestedIn1 = 'Both')) "+
+            "OR "+
+            "(UserInf.interestedIn = 'Both' AND u1info.interestedIn1 = 'Both')) "+
+            "AND "+
+            "UserInf.commitLevel = u1info.commitlevel1) "+
+
+            "(SELECT uid2, name2 FROM compatibleUsers "+
+            "WHERE "+
+            "(SELECT COUNT(*) "+
+            "FROM "+
+            "((SELECT interest "+
+            "FROM UserInterests "+
+            "WHERE compatibleUsers.uid2 = UserInterests.uiid) "+
+            "INTERSECT "+
+            "(SELECT * FROM u1int)) AS T) "+
+            "= 3 "+
+            ") "+
+            "UNION "+
+            "(SELECT uid2, name2 FROM compatibleUsers "+
+            "WHERE "+
+            "(SELECT COUNT(*) "+
+            "FROM "+
+            "((SELECT interest "+
+            "FROM UserInterests "+
+            "WHERE compatibleUsers.uid2 = UserInterests.uiid) "+
+            "INTERSECT "+
+            "(SELECT * FROM u1int)) AS T) "+
+            "= 2 "+
+            ") "+
+            "UNION "+
+            "(SELECT uid2, name2 FROM compatibleUsers "+
+            "WHERE "+
+            "(SELECT COUNT(*) "+
+            "FROM "+
+            "((SELECT interest "+
+            "FROM UserInterests "+
+            "WHERE compatibleUsers.uid2 = UserInterests.uiid) "+
+            "INTERSECT "+
+            "(SELECT * FROM u1int)) AS T) "+
+            "= 1"+
+            ");", [id]);
+          
+          
+          
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+});
+
+router.get('/crush/messfrom/:uid', function(req, res){
+    var results = [];
+    var id = req.params.uid;
+
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        // SQL Query > Select Data
+        var query = client.query("select * from notifications where nFrom = $1", [id]);
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+});
 
 module.exports = router;
