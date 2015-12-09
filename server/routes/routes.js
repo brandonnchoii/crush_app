@@ -96,11 +96,21 @@ router.get('/crush/user/:email/:pw', function(req, res){
 })
 
 router.put('/crush/user/:email/:pw', function(req, res){
-    console.log('enter rest call');
+    console.log('enter PUT email/pw rest call');
     var email = req.params.email
     var password = req.params.pw
+    console.log(req.body);
+    console.log('hello');
+    console.log('hello');
+    console.log('hello');
+    console.log('hello');
     console.log(email);
-    console.log(pw);
+    console.log('hello');
+    console.log('hello');
+    console.log('hello');
+    console.log('hello');
+
+    console.log(password);
     console.log(req.body);
     console.log('process request');
 
@@ -120,7 +130,7 @@ router.put('/crush/user/:email/:pw', function(req, res){
           return res.status(500).json({ success: false, data: err});
         }
 
-        client.query("UPDATE userinf SET name=($1), password=($2), gender=($3), birthday=($4), phone=($5), city=($6), commitlevel=($8), interestedin=($9) WHERE email=($10) AND password=($11)", [req.body.name, req.body.newPassword, req.body.gender, req.body.birthday, req.body.phone, req.body.city, req.body.commitlevel, req.body.interestedin, email, password]);
+        client.query("UPDATE userinf SET name=($1), password=($2), gender=($3), birthday=($4), phone=($5), city=($6), commitlevel=($7), interestedin=($8) WHERE email=($9) AND password=($10)", [req.body.name, req.body.newPassword, req.body.gender, req.body.birthday, req.body.phone, req.body.city, req.body.commitlevel, req.body.interestedin, email, password]);
        
         // SQL Query > Select Data
         var query = client.query("SELECT * FROM userinf WHERE email=($1) AND password=($2);", [req.body.email, req.body.newPassword]);

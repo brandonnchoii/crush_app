@@ -53,17 +53,8 @@ app.controller('mainController', function($scope, $http) {
             }
         }
         if(str == "settings.html"){
-            console.log('one settings page');
-            console.log('settings_gender_' + $scope.activeUserData.gender);
             document.getElementById('settings_gender_' + $scope.activeUserData.gender).checked = true;
-            console.log(document.getElementById('settings_gender_' + $scope.activeUserData.gender));
-            // console.log(genderRadioButton);
-            // genderRadioButton.checked = true;
-            // console.log(test);
-            // console.log(test.checked);
-            // test.checked = true;
-             var interestedInRadioButton = document.getElementById('settings_interestedin_' + $scope.activeUserData.interestedin).checked = true;
-            // interestedInRadioButton.checked = true;
+            document.getElementById('settings_interestedin_' + $scope.activeUserData.interestedin).checked = true;
             document.getElementById('settings_commitlevel_' +  $scope.activeUserData.commitlevel).checked = true;
         }
     }
@@ -355,12 +346,14 @@ app.controller('mainController', function($scope, $http) {
         console.log(genderValue);
 
         // = document.getElementById('settings_gender').value;
+        var nameValue = document.getElementById('settings_name').value;
         var birthdayValue = document.getElementById('settings_birthday').value;
         var phoneValue = document.getElementById('settings_phone').value;
         var cityValue = document.getElementById('settings_city').value;
         
 
         var newValues = {
+            name: nameValue,
             newPassword: newPasswordValue,
             gender: genderValue,
             birthday: birthdayValue,
@@ -372,14 +365,12 @@ app.controller('mainController', function($scope, $http) {
 
         console.log(newValues);
         console.log('/crush/user/' + $scope.activeUserData.email + '/' + document.getElementById('settings_password').value);
-        var url = '/crush/user/' + $scope.activeUserData.email + '/' + document.getElementById('settings_password').value;
         $http.put('/crush/user/' + $scope.activeUserData.email + '/' + document.getElementById('settings_password').value, newValues)
             .success(function(data) {
                 $scope.friends = data;
                 console.log(data);
             })
             .error(function(error) {
-                console.log('put values');
                 console.log('Error: ' + error);
         });
 
