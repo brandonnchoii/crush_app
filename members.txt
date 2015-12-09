@@ -5,7 +5,6 @@ The following highlight specific contributions to the project after milestone 2:
 Brandon Choi:
 Since the last milestone, I, like everyone else on the team, did a lot of research on technologies and app development in general. I also consulted Charles about our technology stack before the team started actually coding. I primarily worked on the front-end of the project utilizing Angular, HTML, CSS, and Node.js. Because of my familiarity with web development tools such as Bootstrap, I also focused on basic UI concepts. When working in a team setting, the entire group collaborated in discussing our code so that by the end, we were all aware to some degree about what was happening on all levels of the code. 
 	
-
 Callie Mao:
 I setup the framework for building the project; I created the foundational/connection code and layout for the Node server, connection to local Postgresql databases using pg, RESTful API's, and front-end REST calls and front-end displays/updating in HTML/CSS/JS. In the front and back ends, I created the login page and data creation/entry for new users and updating current users, as well as general RESTful API calls for friends and interests. 
 
