@@ -7,7 +7,7 @@ Since the last milestone, I, like everyone else on the team, did a lot of resear
 	
 
 Callie Mao:
-	
+I setup the framework for building the project; I created the foundational/connection code and layout for the Node server, connection to local Postgresql databases using pg, RESTful API's, and front-end REST calls and front-end displays/updating in HTML/CSS/JS. In the front and back ends, I created the login page and data creation/entry for new users and updating current users, as well as general RESTful API calls for friends and interests. 
 
 Calais Nelson:
 	

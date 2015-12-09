@@ -20,7 +20,7 @@
             <input type="radio" name="gender" id="settings_gender_Female" value="Female"/> &nbsp;Female &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="radio" name="gender" id="settings_gender_Trans" value="Trans"/> &nbsp;Trans</center></div></form>
             Birthday
-            <div class="form-group"><input id="settings_birthday" value = "{{activeUserData.birthday}}" type="text" class="form-control input-lg" placeholder="e.g. 10-9-1995" ></div>
+            <div class="form-group"><input id="settings_birthday" value = "{{activeUserData.birthday | limitTo:10}}" type="text" class="form-control input-lg" placeholder="e.g. 10-9-1995" ></div>
             City:
             <div class="form-group"><input id="settings_city" value="{{activeUserData.city}}" type="text" class="form-control input-lg" placeholder="City"></div>
             Commitment
