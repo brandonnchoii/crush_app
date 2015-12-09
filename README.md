@@ -28,7 +28,7 @@ crush_app<br>
 -server<br>
 --models<br>
 --routes<br>
----------routes.js (routing js code, connects API to database)<br>
+----routes.js (routing js code, connects API to database)<br>
 
 
 How to compile, set up, deploy, and use your system:
