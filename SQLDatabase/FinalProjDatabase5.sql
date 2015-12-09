@@ -96,29 +96,29 @@ VALUES('Sarah Sapce', 'password', 'Female', 'sarah@duke.edu', '1967-03-01', '909
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
 VALUES('Sophie Neer', 'abba', 'Female', 'sophie@duke.edu', '1997-04-01', '3245234512', 'New York', '2015-4-11' , 'Relationship', 'Male', 'sophie.jpeg');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Deega Soupa', 'bb', 'Female', 'deega@duke.edu', '1996-02-01', '1212121212', 'New York', '2015-4-11' , 'Relationship', 'Both', 'deega.jpeg');
+VALUES('Deega Soupa', 'bb', 'Female', 'deega@duke.edu', '1996-02-01', '1212121212', 'New York', '2015-4-11' , 'Relationship', 'Both', '');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Brandon Choi', 'bcfb', 'Male', 'brandon@duke.edu', '2000-04-01', '6666664512', 'New York', '2015-4-11' , 'Casual', 'Female', 'brandon.jpeg');
+VALUES('Brandon Choi', 'bcfb', 'Male', 'brandon@duke.edu', '2000-04-01', '6666664512', 'New York', '2015-4-11' , 'Casual', 'Female', '');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('John Smith', 'j', 'Male', 'john@duke.edu', '1989-04-01', '3245234511', 'New York', '2015-4-11' , 'Relationship', 'Male', 'john.jpeg');
+VALUES('John Smith', 'j', 'Male', 'john@duke.edu', '1989-04-01', '3245234511', 'New York', '2015-4-11' , 'Relationship', 'Male', '');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Kat Abd', 'kk', 'Female', 'kat@duke.edu', '1997-07-01', '3245234712', 'Boston', '2015-4-11' , 'Casual', 'Both', 'kat.jpeg');
+VALUES('Kat Abd', 'kk', 'Female', 'kat@duke.edu', '1997-07-01', '3245234712', 'Boston', '2015-4-11' , 'Casual', 'Both', '');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Karp Fish', 'aa', 'Female', 'karp@duke.edu', '1998-04-01', '3245239912', 'New York', '2015-4-11' , 'Casual', 'Both', 'karp.jpeg');
+VALUES('Karp Fish', 'aa', 'Female', 'karp@duke.edu', '1998-04-01', '3245239912', 'New York', '2015-4-11' , 'Casual', 'Both', '');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Tommy Jenkins', 'ab', 'Male', 'tommy@duke.edu', '1993-12-01', '8245234512', 'Houston', '2015-5-11' , 'Relationship', 'Female', 'tommy.jpeg');
+VALUES('Tommy Jenkins', 'ab', 'Male', 'tommy@duke.edu', '1993-12-01', '8245234512', 'Houston', '2015-5-11' , 'Relationship', 'Female', '');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Alex Sanchez', 'alex', 'Female', 'alex@duke.edu', '1999-11-04', '2456234512', 'New York', '2015-7-11' , 'Casual', 'Male', 'alex.jpeg');
+VALUES('Alex Sanchez', 'alex', 'Female', 'alex@duke.edu', '1999-11-04', '2456234512', 'New York', '2015-7-11' , 'Casual', 'Male', '');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
 VALUES('Aj Noor', '12', 'Male', 'aj@duke.edu', '1998-12-07', '2956234512', 'Tampa', '2015-8-11' , 'Casual', 'Female', 'aj.jpeg');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Dee Curtain', 'dee', 'Female', 'dee@duke.edu', '2000-11-04', '2456234599', 'New York', '2015-9-11' , 'Relationship', 'Male', 'dee.jpeg');
+VALUES('Dee Curtain', 'dee', 'Female', 'dee@duke.edu', '2000-11-04', '2456234599', 'New York', '2015-9-11' , 'Relationship', 'Male', '');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Dan Sanchez', 'dan', 'Male', 'dan@duke.edu', '2000-12-04', '2456239912', 'San Francisco', '2014-7-11' , 'Relationship', 'Male', 'dan.jpeg');
+VALUES('Dan Sanchez', 'dan', 'Male', 'dan@duke.edu', '2000-12-04', '2456239912', 'San Francisco', '2014-7-11' , 'Relationship', 'Male', '');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Coppa Sandy', 'copa', 'Male', 'coppa@duke.edu', '1999-12-11', '2456234999', 'Green Hill', '2015-7-11' , 'Relationship', 'Male', 'coppa.jpeg');
+VALUES('Coppa Sandy', 'copa', 'Male', 'coppa@duke.edu', '1999-12-11', '2456234999', 'Green Hill', '2015-7-11' , 'Relationship', 'Male', '');
 INSERT INTO USERINF(name, password, gender, email, birthday, phone, city, joindate, commitLevel, interestedIn, profpic)
-VALUES('Kevin Dee', 'kevin', 'Male', 'kevin@duke.edu', '1998-11-04', '2477234512', 'Houston', '2015-1-11' , 'Casual', 'Male', 'kevin.jpeg');
+VALUES('Kevin Dee', 'kevin', 'Male', 'kevin@duke.edu', '1998-11-04', '2477234512', 'Houston', '2015-1-11' , 'Casual', 'Male', '');
 
 
 
