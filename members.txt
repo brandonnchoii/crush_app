@@ -14,4 +14,4 @@ Calais Nelson
 Kevin Tie
 	Back-end database design with PostgreSQL
 	Suggestions.sql
-	Final paper
+	Final report
