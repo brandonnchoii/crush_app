@@ -13,6 +13,4 @@ Calais Nelson:
 	
 
 Kevin Tie:
-	Back-end database design with PostgreSQL
-	Suggestions.sql
-	Final report
+I primarily focused on the back-end database design in PostgreSQL, which includes the database implementation itself as well as the suggestions code. I also did research into RESTful APIs as well as general app development. During group coding sessions, all members contributed ideas to overall application implementation and design. Towards the end, I primarily contributed to the final report.
