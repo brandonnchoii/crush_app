@@ -1,0 +1,17 @@
+Before milestone 2, all team members contributed equally to the project. Most of the time spent was meeting, discussing viable ideas, and determining how much and what type of data to collect and store.
+
+The following highlight specific contributions to the project after milestone 2:
+
+Brandon Choi
+	
+
+Callie Mao
+	
+
+Calais Nelson
+	
+
+Kevin Tie
+	Back-end database design with PostgreSQL
+	Suggestions.sql
+	Final paper
